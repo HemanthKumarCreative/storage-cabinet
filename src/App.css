@@ -21,7 +21,7 @@ canvas {
 
 /* App.css */
 .canvas-container {
-  width: 75vw;
+  width: 100vw;
   height: 100vh;
   margin: auto;
   display: flex;

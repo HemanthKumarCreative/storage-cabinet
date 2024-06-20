@@ -8,26 +8,6 @@ import DrawerCabinet from "./Cabinets/DrawerCabinet";
 import StorageCabinet from "./Cabinets/StorageCabinet";
 import Person from "./Cabinets/Person";
 
-function PersonPlaceholder(props) {
-  const { position, ...restProps } = props;
-
-  return (
-    <group position={position}>
-      {/* Body */}
-      <mesh {...restProps}>
-        <boxGeometry args={[0.3, 1.8, 0.2]} /> {/* Width, Height, Depth */}
-        <meshStandardMaterial color="blue" />
-      </mesh>
-      {/* Head */}
-      <mesh position={[0, 0.9, 0]}>
-        <sphereGeometry args={[0.15, 32, 32]} />{" "}
-        {/* Radius, WidthSegments, HeightSegments */}
-        <meshStandardMaterial color="pink" />
-      </mesh>
-    </group>
-  );
-}
-
 export default function App() {
   const horizontalAlignment = (count) => {
     const groups = [];
@@ -54,11 +34,11 @@ export default function App() {
   return (
     <div className="canvas-container">
       <Canvas
-        camera={{ position: [0, 0, 15], fov: 50 }} // Adjust camera position to have a better view
+        camera={{ position: [0, 0, 15], fov: 60 }} // Adjust camera position to have a better view
         shadows
         gl={{ antialias: true }}
       >
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.9} />
         <spotLight
           position={[10, 10, 10]}
           angle={0.15}
@@ -66,14 +46,15 @@ export default function App() {
           castShadow
         />
         <pointLight position={[-10, -10, -10]} />
-        <Person
-          position={[-9, 0, 0]}
-          scale={[0.05, 0.05, 0.05]}
-          rotation={[-Math.PI / 2, -Math.PI / 24, -Math.PI / 4]}
-        />
-        {/* Grouping cabinets and applying rotation to the group */}
-        {horizontalAlignment(8)}
-
+        <group rotation={[0, Math.PI / 8, 0]}>
+          <Person
+            position={[-9, -5.5, 0.8]}
+            scale={[0.04, 0.03, 0.04]}
+            rotation={[-Math.PI / 2, 0, Math.PI / 3]}
+          />
+          {/* Grouping cabinets and applying rotation to the group */}
+          {horizontalAlignment(8)}
+        </group>
         <OrbitControls />
       </Canvas>
     </div>

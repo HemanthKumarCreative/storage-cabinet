@@ -6,6 +6,27 @@ import SmallCabinet from "./Cabinets/SmallCabinet";
 import OpenCabinet from "./Cabinets/OpenCabinet";
 import DrawerCabinet from "./Cabinets/DrawerCabinet";
 import StorageCabinet from "./Cabinets/StorageCabinet";
+import Person from "./Cabinets/Person";
+
+function PersonPlaceholder(props) {
+  const { position, ...restProps } = props;
+
+  return (
+    <group position={position}>
+      {/* Body */}
+      <mesh {...restProps}>
+        <boxGeometry args={[0.3, 1.8, 0.2]} /> {/* Width, Height, Depth */}
+        <meshStandardMaterial color="blue" />
+      </mesh>
+      {/* Head */}
+      <mesh position={[0, 0.9, 0]}>
+        <sphereGeometry args={[0.15, 32, 32]} />{" "}
+        {/* Radius, WidthSegments, HeightSegments */}
+        <meshStandardMaterial color="pink" />
+      </mesh>
+    </group>
+  );
+}
 
 export default function App() {
   const horizontalAlignment = (count) => {
@@ -45,7 +66,11 @@ export default function App() {
           castShadow
         />
         <pointLight position={[-10, -10, -10]} />
-
+        <Person
+          position={[-9, 0, 0]}
+          scale={[0.05, 0.05, 0.05]}
+          rotation={[-Math.PI / 2, -Math.PI / 24, -Math.PI / 4]}
+        />
         {/* Grouping cabinets and applying rotation to the group */}
         {horizontalAlignment(8)}
 

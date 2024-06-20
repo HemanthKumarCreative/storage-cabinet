@@ -1,26 +1,31 @@
-import StorageCabinetGlb from "../modals/StorageCabinet.gltf";
 import React, { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
+import StorageCabinetGlb from "../modals/StorageCabinet.gltf";
 
 function StorageCabinet(props) {
   const { nodes, materials } = useGLTF(StorageCabinetGlb);
   const doorRef = useRef();
-  const [hovered, setHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useFrame(() => {
     if (doorRef.current) {
       doorRef.current.rotation.y = THREE.MathUtils.lerp(
         doorRef.current.rotation.y,
-        hovered ? Math.PI / 2 : 0,
+        isHovered ? Math.PI / 2 : 0,
         0.1
       );
     }
   });
 
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      onPointerOver={() => setIsHovered(true)}
+      onPointerOut={() => setIsHovered(false)}
+    >
       <mesh
         geometry={nodes.left_plank.geometry}
         material={materials.Material}
@@ -53,8 +58,6 @@ function StorageCabinet(props) {
         material={materials["Material.001"]}
         position={[0.624, 0.033, -1.446]}
         scale={[1.166, 1, 1]}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
       />
       <mesh
         geometry={nodes.hinge_top.geometry}

@@ -7,6 +7,7 @@ import OpenCabinet from "./Cabinets/OpenCabinet";
 import DrawerCabinet from "./Cabinets/DrawerCabinet";
 import StorageCabinet from "./Cabinets/StorageCabinet";
 import Person from "./Cabinets/Person";
+import Floor from "./Cabinets/Floor";
 
 export default function App() {
   const horizontalAlignment = (count) => {
@@ -14,15 +15,15 @@ export default function App() {
 
     for (let i = -8; i < count * 1.5 - 8; i += 1.5) {
       const group = (
-        <group position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
-          <StorageCabinet position={[0, 5, 0]} />
-          <SmallCabinet position={[0, 3, 0]} />
-          <OpenCabinet position={[0, 1.7, 0]} />
-          <OpenCabinet position={[0, 0.4, 0]} />
-          <OpenCabinet position={[0, -0.9, 0]} />
-          <OpenCabinet position={[0, -2.2, 0]} />
-          <DrawerCabinet position={[0, -3.5, 0]} />
-          <StorageCabinet position={[0, -4.8, 0]} />
+        <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
+          <StorageCabinet position={[0, 5, 0]} receiveShadow />
+          <SmallCabinet position={[0, 3, 0]} receiveShadow />
+          <OpenCabinet position={[0, 1.7, 0]} receiveShadow />
+          <OpenCabinet position={[0, 0.4, 0]} receiveShadow />
+          <OpenCabinet position={[0, -0.9, 0]} receiveShadow />
+          <OpenCabinet position={[0, -2.2, 0]} receiveShadow />
+          <DrawerCabinet position={[0, -3.5, 0]} receiveShadow />
+          <StorageCabinet position={[0, -4.8, 0]} receiveShadow />
         </group>
       );
       groups.push(group);
@@ -34,27 +35,34 @@ export default function App() {
   return (
     <div className="canvas-container">
       <Canvas
-        camera={{ position: [0, 0, 15], fov: 60 }} // Adjust camera position to have a better view
+        camera={{ position: [0, 0, 15], fov: 60 }}
         shadows
         gl={{ antialias: true }}
+        shadowMap
       >
-        <ambientLight intensity={0.9} />
+        <ambientLight intensity={1} />
         <spotLight
           position={[10, 10, 10]}
-          angle={0.15}
+          angle={Math.PI / 6}
           penumbra={1}
           castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
         />
-        <pointLight position={[-10, -10, -10]} />
+        <pointLight position={[-10, -10, -10]} intensity={0.5} castShadow />
+
+        <Floor receiveShadow />
+
         <group rotation={[0, Math.PI / 8, 0]}>
           <Person
             position={[-9, -5.5, 0.8]}
             scale={[0.04, 0.03, 0.04]}
             rotation={[-Math.PI / 2, 0, Math.PI / 3]}
+            receiveShadow
           />
-          {/* Grouping cabinets and applying rotation to the group */}
           {horizontalAlignment(8)}
         </group>
+
         <OrbitControls />
       </Canvas>
     </div>

@@ -1,4 +1,5 @@
-import React from "react";
+//App Js desc..
+import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import "./App.css"; // Import the CSS file
@@ -8,6 +9,7 @@ import DrawerCabinet from "./Cabinets/DrawerCabinet";
 import StorageCabinet from "./Cabinets/StorageCabinet";
 import Person from "./Cabinets/Person";
 import Floor from "./Cabinets/Floor";
+import Configurator from "./Configurator";
 
 export default function App() {
   const horizontalAlignment = (count) => {
@@ -38,9 +40,8 @@ export default function App() {
         camera={{ position: [0, 0, 15], fov: 60 }}
         shadows
         gl={{ antialias: true }}
-        shadowMap
       >
-        <ambientLight intensity={1} />
+        <ambientLight intensity={2} />
         <spotLight
           position={[10, 10, 10]}
           angle={Math.PI / 6}
@@ -62,9 +63,9 @@ export default function App() {
           />
           {horizontalAlignment(8)}
         </group>
-
         <OrbitControls />
       </Canvas>
+      <Configurator />
     </div>
   );
 }

@@ -1,4 +1,3 @@
-//App Js desc..
 import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
@@ -12,20 +11,79 @@ import Floor from "./Cabinets/Floor";
 import Configurator from "./Configurator";
 
 export default function App() {
+  const [configuration, setConfiguration] = useState({
+    style: "",
+    density: 31,
+    width: 450,
+    height: 293,
+    depth: "24cm", // Initial depth value
+    backPanel: "ON",
+    finish: "Plywood",
+    color: "",
+  });
+
   const horizontalAlignment = (count) => {
     const groups = [];
 
     for (let i = -8; i < count * 1.5 - 8; i += 1.5) {
       const group = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
-          <StorageCabinet position={[0, 5, 0]} receiveShadow />
-          <SmallCabinet position={[0, 3, 0]} receiveShadow />
-          <OpenCabinet position={[0, 1.7, 0]} receiveShadow />
-          <OpenCabinet position={[0, 0.4, 0]} receiveShadow />
-          <OpenCabinet position={[0, -0.9, 0]} receiveShadow />
-          <OpenCabinet position={[0, -2.2, 0]} receiveShadow />
-          <DrawerCabinet position={[0, -3.5, 0]} receiveShadow />
-          <StorageCabinet position={[0, -4.8, 0]} receiveShadow />
+          <StorageCabinet
+            position={[0, 5, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+          />
+          <SmallCabinet
+            position={[0, 3, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+          />
+          <OpenCabinet
+            position={[0, 1.7, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+          />
+          <OpenCabinet
+            position={[0, 0.4, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+          />
+          <OpenCabinet
+            position={[0, -0.9, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+          />
+          <OpenCabinet
+            position={[0, -2.2, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+          />
+          <DrawerCabinet
+            position={[0, -3.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+          />
+          <StorageCabinet
+            position={[0, -4.8, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+          />
         </group>
       );
       groups.push(group);
@@ -65,7 +123,10 @@ export default function App() {
         </group>
         <OrbitControls />
       </Canvas>
-      <Configurator />
+      <Configurator
+        configuration={configuration}
+        setConfiguration={setConfiguration}
+      />
     </div>
   );
 }

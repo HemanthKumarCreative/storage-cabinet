@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -11,18 +11,7 @@ import {
 } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-function Configurator() {
-  const [configuration, setConfiguration] = useState({
-    style: "",
-    density: 31,
-    width: 450,
-    height: 293,
-    depth: "24cm", // Initial depth value
-    backPanel: "ON",
-    finish: "Plywood",
-    color: "",
-  });
-
+function Configurator({ configuration, setConfiguration }) {
   const handleInputChange = (prop) => (event, newValue) => {
     setConfiguration({ ...configuration, [prop]: newValue });
   };

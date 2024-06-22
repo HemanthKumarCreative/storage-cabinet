@@ -23,6 +23,15 @@ function Configurator({ configuration, setConfiguration }) {
     });
   };
 
+  const marks = [
+    { value: 183, label: "" },
+    { value: 223, label: "" },
+    { value: 253, label: "" },
+    { value: 293, label: "" },
+    { value: 323, label: "" },
+    { value: 363, label: "" },
+  ];
+
   return (
     <Card style={{ width: 550, height: "100%", margin: 10, overflow: "auto" }}>
       <CardContent>
@@ -135,6 +144,8 @@ function Configurator({ configuration, setConfiguration }) {
               aria-labelledby="height-slider"
               min={183}
               max={363}
+              step={null}
+              marks={marks} // Add marks to show stepper behavior
               size="small"
             />
           </Grid>

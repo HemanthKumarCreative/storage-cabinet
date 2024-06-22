@@ -10,7 +10,7 @@ function StorageCabinet(props) {
   const [isHovered, setIsHovered] = useState(false);
 
   // Destructure props to get depth
-  const { depth } = props;
+  const { depth, backPanel } = props;
 
   useFrame(() => {
     if (doorRef.current) {
@@ -48,13 +48,13 @@ function StorageCabinet(props) {
       break;
   }
 
+  const openDoor = (event) => {
+    event.stopPropagation();
+    setIsHovered(!isHovered);
+  };
+
   return (
-    <group
-      {...props}
-      dispose={null}
-      onPointerOver={() => setIsHovered(true)}
-      onPointerOut={() => setIsHovered(false)}
-    >
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.left_plank.geometry}
         material={materials.Material}
@@ -79,18 +79,21 @@ function StorageCabinet(props) {
         position={[-0.008, -1.025, -0.742]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       />
-      <mesh
-        geometry={nodes.back_plank.geometry}
-        material={materials["Material.005"]}
-        position={[depthPositionX, 0.001, -0.746]}
-        scale={[1, 0.958, 0.946]}
-      />
+      {backPanel && (
+        <mesh
+          geometry={nodes.back_plank.geometry}
+          material={materials["Material.005"]}
+          position={[depthPositionX, 0.001, -0.746]}
+          scale={[1, 0.958, 0.946]}
+        />
+      )}
       <mesh
         ref={doorRef}
         geometry={nodes.door.geometry}
         material={materials["Material.001"]}
         position={[doopPositionX, 0.033, -1.446]}
         scale={[1.166, 1, 1]}
+        onPointerUp={openDoor}
       />
       <mesh
         geometry={nodes.hinge_top.geometry}

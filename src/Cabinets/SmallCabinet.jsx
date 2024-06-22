@@ -9,7 +9,7 @@ function SmallCabinet(props) {
   const [isHovered, setIsHovered] = useState(false);
 
   // Destructure props to get depth
-  const { depth } = props;
+  const { depth, backPanel } = props;
 
   useFrame(() => {
     if (doorRef.current) {
@@ -45,13 +45,13 @@ function SmallCabinet(props) {
       break;
   }
 
+  const openDoor = (event) => {
+    event.stopPropagation();
+    setIsHovered(!isHovered);
+  };
+
   return (
-    <group
-      {...props}
-      dispose={null}
-      onPointerOver={() => setIsHovered(true)}
-      onPointerOut={() => setIsHovered(false)}
-    >
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.left_plank001.geometry}
         material={materials.Material}
@@ -76,12 +76,14 @@ function SmallCabinet(props) {
         position={[-0.008, -0.267, -0.742]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       />
-      <mesh
-        geometry={nodes.back_plank001.geometry}
-        material={materials["Material.005"]}
-        position={[depthPositionX, 0.315, -0.746]}
-        scale={[1, 0.958, 0.946]}
-      />
+      {backPanel && (
+        <mesh
+          geometry={nodes.back_plank001.geometry}
+          material={materials["Material.005"]}
+          position={[depthPositionX, 0.315, -0.746]}
+          scale={[1, 0.958, 0.946]}
+        />
+      )}
       <mesh
         ref={doorRef}
         geometry={nodes.door001.geometry}
@@ -89,6 +91,7 @@ function SmallCabinet(props) {
         position={[doopPositionX, 0.386, -1.444]}
         rotation={[0, 0, 0]} // Initial rotation state
         scale={[1.166, 1, 1]}
+        onPointerUp={openDoor}
       />
       <mesh
         geometry={nodes.hinge_top001.geometry}

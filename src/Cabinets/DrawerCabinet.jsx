@@ -10,7 +10,7 @@ function DrawerCabinet(props) {
   const [hovered, setHovered] = useState(false);
 
   // Destructure props to get depth
-  const { depth } = props;
+  const { depth, backPanel } = props;
 
   useFrame(() => {
     if (drawerRef.current) {
@@ -49,13 +49,13 @@ function DrawerCabinet(props) {
       break;
   }
 
+  const openDoor = (event) => {
+    event.stopPropagation();
+    setHovered(!hovered);
+  };
+
   return (
-    <group
-      {...props}
-      dispose={null}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
-    >
+    <group {...props} dispose={null}>
       <mesh
         geometry={nodes.left_plank003.geometry}
         material={materials.Material}
@@ -80,16 +80,19 @@ function DrawerCabinet(props) {
         position={[-0.008, -0.267, -0.742]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       />
-      <mesh
-        geometry={nodes.back_plank003.geometry}
-        material={materials["Material.005"]}
-        position={[depthPositionX, 0.315, -0.746]}
-        scale={[1, 0.958, 0.946]}
-      />
+      {backPanel && (
+        <mesh
+          geometry={nodes.back_plank003.geometry}
+          material={materials["Material.005"]}
+          position={[depthPositionX, 0.315, -0.746]}
+          scale={[1, 0.958, 0.946]}
+        />
+      )}
       <group
         ref={drawerRef}
         position={[0.581, 0.315, -0.754]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        onPointerUp={openDoor}
       >
         <mesh
           geometry={nodes.drawer_back001.geometry}

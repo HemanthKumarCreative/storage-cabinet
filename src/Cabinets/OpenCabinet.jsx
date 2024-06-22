@@ -6,7 +6,7 @@ function OpenCabinet(props) {
   const { nodes, materials } = useGLTF(OpenCabinetGlb);
 
   // Destructure depth from props
-  const { depth } = props;
+  const { depth, backPanel } = props;
 
   // Adjust scales and positions based on depth
   let depthScale = 1;
@@ -59,12 +59,14 @@ function OpenCabinet(props) {
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       />
       {/* Back Plank */}
-      <mesh
-        geometry={nodes.back_plank002.geometry}
-        material={materials["Material.005"]}
-        position={[depthPositionX, 0.315, -0.746]} // Adjusted position based on depth along X-axis
-        scale={[1, 0.958, 0.946]}
-      />
+      {backPanel && (
+        <mesh
+          geometry={nodes.back_plank002.geometry}
+          material={materials["Material.005"]}
+          position={[depthPositionX, 0.315, -0.746]} // Adjusted position based on depth along X-axis
+          scale={[1, 0.958, 0.946]}
+        />
+      )}
     </group>
   );
 }

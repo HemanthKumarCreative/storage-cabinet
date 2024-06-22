@@ -168,6 +168,7 @@ function Configurator({ configuration, setConfiguration }) {
                 aria-label="24cm"
                 size="small"
                 style={{ textTransform: "none" }}
+                disabled={configuration.depth === "24cm"}
               >
                 24cm
               </ToggleButton>
@@ -176,6 +177,7 @@ function Configurator({ configuration, setConfiguration }) {
                 aria-label="32cm"
                 size="small"
                 style={{ textTransform: "none" }}
+                disabled={configuration.depth === "32cm"}
               >
                 32cm
               </ToggleButton>
@@ -184,6 +186,7 @@ function Configurator({ configuration, setConfiguration }) {
                 aria-label="40cm"
                 size="small"
                 style={{ textTransform: "none" }}
+                disabled={configuration.depth === "40cm"}
               >
                 40cm
               </ToggleButton>

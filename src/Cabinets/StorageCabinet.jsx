@@ -24,6 +24,9 @@ function StorageCabinet(props) {
 
   // Adjust scales based on depth
   let depthScale = 1;
+  let depthPositionX = -0.6;
+  let doopPositionX = 0.624;
+  let hingePosX = 0.522;
 
   switch (depth) {
     case "24cm":
@@ -31,9 +34,15 @@ function StorageCabinet(props) {
       break;
     case "32cm":
       depthScale = 1.33;
+      depthPositionX *= 1.4; // Adjust X position for 32cm depth
+      doopPositionX *= 1.33;
+      hingePosX *= 1.4;
       break;
     case "40cm":
       depthScale = 1.66;
+      depthPositionX *= 1.7; // Adjust X position for 40cm depth
+      doopPositionX *= 1.66;
+      hingePosX *= 1.8;
       break;
     default:
       break;
@@ -73,31 +82,31 @@ function StorageCabinet(props) {
       <mesh
         geometry={nodes.back_plank.geometry}
         material={materials["Material.005"]}
-        position={[-0.6, 0.001, -0.746]}
+        position={[depthPositionX, 0.001, -0.746]}
         scale={[1, 0.958, 0.946]}
       />
       <mesh
         ref={doorRef}
         geometry={nodes.door.geometry}
         material={materials["Material.001"]}
-        position={[0.624, 0.033, -1.446]}
+        position={[doopPositionX, 0.033, -1.446]}
         scale={[1.166, 1, 1]}
       />
       <mesh
         geometry={nodes.hinge_top.geometry}
         material={materials["Material.006"]}
-        position={[0.522, 0.743, -1.449]}
+        position={[hingePosX, 0.743, -1.449]}
       />
       <mesh
         geometry={nodes.hinge_bottom.geometry}
         material={materials["Material.006"]}
-        position={[0.522, -0.64, -1.449]}
+        position={[hingePosX, -0.64, -1.449]}
       />
       <mesh
         geometry={nodes.inner_shelf.geometry}
         material={materials.Material}
         position={[-0.039, -0.202, -0.744]}
-        scale={[0.893, 0.71, 0.922]}
+        scale={[depthScale, 0.71, 0.922]}
       />
     </group>
   );

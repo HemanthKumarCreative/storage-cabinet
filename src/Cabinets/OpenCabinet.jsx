@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import * as THREE from "three";
 import OpenCabinetGlb from "../modals/OpenCabinet.glb";
 
 function OpenCabinet(props) {
@@ -9,8 +8,9 @@ function OpenCabinet(props) {
   // Destructure depth from props
   const { depth } = props;
 
-  // Adjust scales based on depth
+  // Adjust scales and positions based on depth
   let depthScale = 1;
+  let depthPositionX = -0.6; // Default position along X-axis for back plank
 
   switch (depth) {
     case "24cm":
@@ -18,9 +18,11 @@ function OpenCabinet(props) {
       break;
     case "32cm":
       depthScale = 1.33;
+      depthPositionX *= 1.4; // Adjust X position for 32cm depth
       break;
     case "40cm":
       depthScale = 1.66;
+      depthPositionX *= 1.7; // Adjust X position for 40cm depth
       break;
     default:
       break;
@@ -56,11 +58,11 @@ function OpenCabinet(props) {
         position={[0.004, 0.148, -1.484]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       />
-      {/* Existing Back Plank */}
+      {/* Back Plank */}
       <mesh
         geometry={nodes.back_plank002.geometry}
         material={materials["Material.005"]}
-        position={[-0.6, 0.315, -0.746]}
+        position={[depthPositionX, 0.315, -0.746]} // Adjusted position based on depth along X-axis
         scale={[1, 0.958, 0.946]}
       />
     </group>

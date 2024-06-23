@@ -10,8 +10,9 @@ function DrawerCabinet(props) {
   const [hovered, setHovered] = useState(false);
 
   // Destructure props to get depth
-  const { depth, backPanel } = props;
+  const { depth, backPanel, specialWidth } = props;
 
+  const width = specialWidth === 0 ? 50 : specialWidth;
   useFrame(() => {
     if (drawerRef.current) {
       drawerRef.current.position.x = THREE.MathUtils.lerp(
@@ -24,6 +25,7 @@ function DrawerCabinet(props) {
 
   // Adjust scales based on depth
   let depthScale = 1;
+  let widthScale = specialWidth ? width / 50 : 1;
   let depthPositionX = -0.595;
   let doorPositionX = 0.1;
   let hingePosX = 0.522;
@@ -60,38 +62,38 @@ function DrawerCabinet(props) {
         geometry={nodes.left_plank003.geometry}
         material={materials.Material}
         position={[0.002, 0.003, -0.006]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
       />
       <mesh
         geometry={nodes.right_plank003.geometry}
         material={materials["Material.003"]}
-        position={[0.004, 0.148, -1.494]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        position={[0.004, 0.148, -1.494 * widthScale]}
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
       />
       <mesh
         geometry={nodes.top_plank003.geometry}
         material={materials["Material.002"]}
-        position={[-0.001, 1.023, -0.744]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        position={[-0.001, 1.023, -0.744 * widthScale]}
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
       />
       <mesh
         geometry={nodes.bottom_plank003.geometry}
         material={materials["Material.004"]}
-        position={[-0.008, -0.267, -0.742]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        position={[-0.008, -0.267, -0.742 * widthScale]}
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
       />
       {backPanel && (
         <mesh
           geometry={nodes.back_plank003.geometry}
           material={materials["Material.005"]}
-          position={[depthPositionX, 0.315, -0.746]}
-          scale={[1, 0.958, 0.946]}
+          position={[depthPositionX, 0.315, -0.746 * widthScale]}
+          scale={[1, 0.958, widthScale]}
         />
       )}
       <group
         ref={drawerRef}
-        position={[0.581, 0.315, -0.754]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        position={[0.581, 0.315, -0.754 * widthScale]}
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
         onPointerUp={openDoor}
       >
         <mesh

@@ -13,7 +13,7 @@ import Configurator from "./Configurator";
 export default function App() {
   const [configuration, setConfiguration] = useState({
     style: "",
-    density: 31,
+    density: 50,
     width: 450,
     height: 293,
     depth: "24cm", // Initial depth value
@@ -24,7 +24,8 @@ export default function App() {
 
   const horizontalAlignment = (count) => {
     const groups = [];
-
+    let specialPosition = null;
+    let specialGroup = null;
     for (let i = -8; i < count * 1.5 - 8; i += 1.5) {
       const group_183_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
@@ -320,28 +321,388 @@ export default function App() {
         </group>
       );
 
+      specialPosition = i;
+
+      const specialGroup_183_cm = (
+        <group
+          key={specialPosition - 6.5}
+          position={[specialPosition + 1.5, 0, 0]}
+          rotation={[0, -Math.PI / 2, 0]}
+        >
+          <StorageCabinet
+            position={[0, -1.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            specialWidth={configuration.width % 50}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+          />
+          <DrawerCabinet
+            position={[0, -3.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <StorageCabinet
+            position={[0, -4.8, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+        </group>
+      );
+
+      const specialGroup_223_cm = (
+        <group
+          key={specialPosition - 6.5}
+          position={[specialPosition + 1.5, 0, 0]}
+          rotation={[0, -Math.PI / 2, 0]}
+        >
+          <StorageCabinet
+            position={[0, 2.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            specialWidth={configuration.width % 50}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+          />
+          <OpenCabinet
+            position={[0, 0.4, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <OpenCabinet
+            position={[0, -0.9, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <OpenCabinet
+            position={[0, -2.2, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <DrawerCabinet
+            position={[0, -3.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <StorageCabinet
+            position={[0, -4.8, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+        </group>
+      );
+
+      const specialGroup_253_cm = (
+        <group
+          key={specialPosition - 6.5}
+          position={[specialPosition + 1.5, 0, 0]}
+          rotation={[0, -Math.PI / 2, 0]}
+        >
+          <StorageCabinet
+            position={[0, 2.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            specialWidth={configuration.width % 50}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+          />
+          <OpenCabinet
+            position={[0, 0.4, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <OpenCabinet
+            position={[0, -0.9, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <OpenCabinet
+            position={[0, -2.2, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <DrawerCabinet
+            position={[0, -3.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <StorageCabinet
+            position={[0, -4.8, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+        </group>
+      );
+
+      const specialGroup_293_cm = (
+        <group
+          key={specialPosition - 6.5}
+          position={[specialPosition + 1.5, 0, 0]}
+          rotation={[0, -Math.PI / 2, 0]}
+        >
+          <StorageCabinet
+            position={[0, 2.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            specialWidth={configuration.width % 50}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+          />
+          <OpenCabinet
+            position={[0, 0.4, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <OpenCabinet
+            position={[0, -0.9, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <OpenCabinet
+            position={[0, -2.2, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <DrawerCabinet
+            position={[0, -3.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <StorageCabinet
+            position={[0, -4.8, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+        </group>
+      );
+
+      const specialGroup_323_cm = (
+        <group
+          key={specialPosition - 6.5}
+          position={[specialPosition + 1.5, 0, 0]}
+          rotation={[0, -Math.PI / 2, 0]}
+        >
+          <StorageCabinet
+            position={[0, 2.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            specialWidth={configuration.width % 50}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+          />
+          <OpenCabinet
+            position={[0, 0.4, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <OpenCabinet
+            position={[0, -0.9, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <OpenCabinet
+            position={[0, -2.2, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <DrawerCabinet
+            position={[0, -3.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <StorageCabinet
+            position={[0, -4.8, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+        </group>
+      );
+
+      const specialGroup_363_cm = (
+        <group
+          key={specialPosition - 6.5}
+          position={[specialPosition + 1.5, 0, 0]}
+          rotation={[0, -Math.PI / 2, 0]}
+        >
+          <StorageCabinet
+            position={[0, 2.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            specialWidth={configuration.width % 50}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+          />
+          <OpenCabinet
+            position={[0, 0.4, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <OpenCabinet
+            position={[0, -0.9, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <OpenCabinet
+            position={[0, -2.2, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <DrawerCabinet
+            position={[0, -3.5, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+          <StorageCabinet
+            position={[0, -4.8, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 50}
+          />
+        </group>
+      );
+
       const height = configuration.height;
       let group = group_293_cm;
-
+      specialGroup = specialGroup_293_cm;
       if (height <= 183) {
         group = group_183_cm;
+        specialGroup = specialGroup_183_cm;
       } else if (height <= 223) {
         group = group_223_cm;
+        specialGroup = specialGroup_223_cm;
       } else if (height <= 253) {
         group = group_253_cm;
+        specialGroup = specialGroup_253_cm;
       } else if (height <= 293) {
         group = group_293_cm;
+        specialGroup = specialGroup_293_cm;
       } else if (height <= 323) {
         group = group_323_cm;
+        specialGroup = specialGroup_323_cm;
       } else if (height <= 363) {
         group = group_363_cm;
+        specialGroup = specialGroup_363_cm;
       } else {
         group = group_293_cm;
+        specialGroup = specialGroup_293_cm;
       }
 
       groups.push(group);
     }
-
+    groups.push(specialGroup);
     return groups;
   };
 
@@ -373,7 +734,7 @@ export default function App() {
             rotation={[-Math.PI / 2, 0, Math.PI / 3]}
             receiveShadow
           />
-          {horizontalAlignment(8)}
+          {horizontalAlignment(Math.floor(configuration.width / 50))}
         </group>
         <OrbitControls />
       </Canvas>

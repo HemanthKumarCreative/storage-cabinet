@@ -9,9 +9,10 @@ function StorageCabinet(props) {
   const doorRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
 
-  // Destructure props to get depth
-  const { depth, backPanel } = props;
+  // Destructure props to get depth and specialWidth
+  const { depth, backPanel, specialWidth } = props;
 
+  const width = specialWidth === 0 ? 50 : specialWidth;
   useFrame(() => {
     if (doorRef.current) {
       doorRef.current.rotation.y = THREE.MathUtils.lerp(
@@ -22,10 +23,11 @@ function StorageCabinet(props) {
     }
   });
 
-  // Adjust scales based on depth
+  // Adjust scales based on depth and width
   let depthScale = 1;
+  let widthScale = specialWidth ? width / 50 : 1;
   let depthPositionX = -0.6;
-  let doopPositionX = 0.624;
+  let doorPositionX = 0.624;
   let hingePosX = 0.522;
 
   switch (depth) {
@@ -35,13 +37,13 @@ function StorageCabinet(props) {
     case "32cm":
       depthScale = 1.33;
       depthPositionX *= 1.4; // Adjust X position for 32cm depth
-      doopPositionX *= 1.33;
+      doorPositionX *= 1.33;
       hingePosX *= 1.4;
       break;
     case "40cm":
       depthScale = 1.66;
       depthPositionX *= 1.7; // Adjust X position for 40cm depth
-      doopPositionX *= 1.66;
+      doorPositionX *= 1.66;
       hingePosX *= 1.8;
       break;
     default:
@@ -59,57 +61,57 @@ function StorageCabinet(props) {
         geometry={nodes.left_plank.geometry}
         material={materials.Material}
         position={[0.002, 0.003, -0.006]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
       />
       <mesh
         geometry={nodes.right_plank.geometry}
         material={materials["Material.003"]}
-        position={[0.004, 0.148, -1.484]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        position={[0.004, 0.148, -1.484 * widthScale]}
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
       />
       <mesh
         geometry={nodes.top_plank.geometry}
         material={materials["Material.002"]}
-        position={[-0.001, 1.023, -0.744]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        position={[-0.001, 1.023, -0.744 * widthScale]}
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
       />
       <mesh
         geometry={nodes.bottom_plank.geometry}
         material={materials["Material.004"]}
-        position={[-0.008, -1.025, -0.742]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        position={[-0.008, -1.025, -0.742 * widthScale]}
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
       />
       {backPanel && (
         <mesh
           geometry={nodes.back_plank.geometry}
           material={materials["Material.005"]}
-          position={[depthPositionX, 0.001, -0.746]}
-          scale={[1, 0.958, 0.946]}
+          position={[depthPositionX, 0.001, -0.746 * widthScale]}
+          scale={[1, 0.958, widthScale]}
         />
       )}
       <mesh
         ref={doorRef}
         geometry={nodes.door.geometry}
         material={materials["Material.001"]}
-        position={[doopPositionX, 0.033, -1.446]}
-        scale={[1.166, 1, 1]}
+        position={[doorPositionX, 0.033, -1.446 * widthScale]}
+        scale={[1.166, 1, widthScale]}
         onPointerUp={openDoor}
       />
       <mesh
         geometry={nodes.hinge_top.geometry}
         material={materials["Material.006"]}
-        position={[hingePosX, 0.743, -1.449]}
+        position={[hingePosX, 0.743, -1.449 * widthScale]}
       />
       <mesh
         geometry={nodes.hinge_bottom.geometry}
         material={materials["Material.006"]}
-        position={[hingePosX, -0.64, -1.449]}
+        position={[hingePosX, -0.64, -1.449 * widthScale]}
       />
       <mesh
         geometry={nodes.inner_shelf.geometry}
         material={materials.Material}
-        position={[-0.039, -0.202, -0.744]}
-        scale={[depthScale, 0.71, 0.922]}
+        position={[-0.039, -0.202, -0.744 * widthScale]}
+        scale={[depthScale, 0.71, widthScale]}
       />
     </group>
   );

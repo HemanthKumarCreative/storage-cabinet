@@ -23,13 +23,29 @@ function Configurator({ configuration, setConfiguration }) {
     });
   };
 
-  const marks = [
+  const heightMap = [
     { value: 183, label: "" },
     { value: 223, label: "" },
     { value: 253, label: "" },
     { value: 293, label: "" },
     { value: 323, label: "" },
     { value: 363, label: "" },
+  ];
+
+  const widthMap = [
+    { value: 50, label: "" },
+    { value: 150, label: "" },
+    { value: 250, label: "" },
+    { value: 350, label: "" },
+    { value: 400, label: "" },
+    { value: 450, label: "" },
+  ];
+
+  const densityMap = [
+    { value: 25, label: "" },
+    { value: 50, label: "" },
+    { value: 75, label: "" },
+    { value: 100, label: "" },
   ];
 
   return (
@@ -92,9 +108,11 @@ function Configurator({ configuration, setConfiguration }) {
               onChange={handleInputChange("density")}
               valueLabelDisplay="auto"
               aria-labelledby="density-slider"
-              min={0}
+              min={25}
               max={100}
               size="small"
+              step={null}
+              marks={densityMap}
             />
           </Grid>
           <Grid item xs={2}>
@@ -121,7 +139,7 @@ function Configurator({ configuration, setConfiguration }) {
               onChange={handleInputChange("width")}
               valueLabelDisplay="auto"
               aria-labelledby="width-slider"
-              min={30}
+              min={50}
               max={450}
               size="small"
             />
@@ -145,7 +163,7 @@ function Configurator({ configuration, setConfiguration }) {
               min={183}
               max={363}
               step={null}
-              marks={marks} // Add marks to show stepper behavior
+              marks={heightMap} // Add marks to show stepper behavior
               size="small"
             />
           </Grid>

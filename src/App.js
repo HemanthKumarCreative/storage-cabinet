@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import "./App.css"; // Import the CSS file
@@ -9,6 +9,7 @@ import StorageCabinet from "./Cabinets/StorageCabinet";
 import Person from "./Cabinets/Person";
 import Floor from "./Cabinets/Floor";
 import Configurator from "./Configurator";
+import * as THREE from "three";
 
 export default function App() {
   const [configuration, setConfiguration] = useState({
@@ -708,6 +709,27 @@ export default function App() {
     return groups;
   };
 
+  const Texture = ({ texture }) => {
+    return (
+      <mesh
+        position={[-9.3, -3, 0.2]}
+        scale={[0.5, 1.5, 0.1]}
+        // rotation={[-Math.PI / 2, 0, Math.PI / 3]}
+        receiveShadow
+      >
+        <planeGeometry attach="geometry" args={[4, 4]} />
+        <meshBasicMaterial attach="material" map={texture} />
+      </mesh>
+    );
+  };
+
+  const Image = ({ url }) => {
+    const texture = useMemo(() => new THREE.TextureLoader().load(url), [url]);
+    return <Texture texture={texture} />;
+  };
+
+  const uri = "https://pics.io/preview/66792a63548394472778ddc6/thumbnail";
+
   return (
     <div className="canvas-container">
       <Canvas
@@ -730,12 +752,7 @@ export default function App() {
         <Floor receiveShadow />
 
         <group rotation={[0, Math.PI / 8, 0]}>
-          <Person
-            position={[-9, -5.5, 0.8]}
-            scale={[0.04, 0.03, 0.04]}
-            rotation={[-Math.PI / 2, 0, Math.PI / 3]}
-            receiveShadow
-          />
+          <Image url={uri} />
           {horizontalAlignment(Math.floor(configuration.width / 50))}
         </group>
         <OrbitControls />

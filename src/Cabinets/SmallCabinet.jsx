@@ -22,7 +22,7 @@ function SmallCabinet(props) {
 
   // Adjust scales based on depth
   let depthScale = 1;
-  let widthScale = specialWidth ? width / 50 : 1;
+  let widthScale = specialWidth ? width / 25 : 1;
   let depthPositionX = -0.6;
   let doopPositionX = 0.618;
   let hingePosX = 0.522;
@@ -78,14 +78,12 @@ function SmallCabinet(props) {
         position={[-0.008, -0.267, -0.742 * widthScale]}
         scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
       />
-      {backPanel && (
-        <mesh
-          geometry={nodes.back_plank001.geometry}
-          material={materials["Material.005"]}
-          position={[depthPositionX, 0.315, -0.746 * widthScale]}
-          scale={[1, 0.958, widthScale]}
-        />
-      )}
+      <mesh
+        geometry={nodes.back_plank001.geometry}
+        material={materials["Material.005"]}
+        position={[depthPositionX, 0.315, -0.746 * widthScale]}
+        scale={[1, 0.958, widthScale]}
+      />
       <mesh
         ref={doorRef}
         geometry={nodes.door001.geometry}

@@ -25,7 +25,7 @@ function DrawerCabinet(props) {
 
   // Adjust scales based on depth
   let depthScale = 1;
-  let widthScale = specialWidth ? width / 50 : 1;
+  let widthScale = specialWidth ? width / 25 : 1;
   let depthPositionX = -0.595;
   let doorPositionX = 0.1;
   let hingePosX = 0.522;
@@ -82,14 +82,12 @@ function DrawerCabinet(props) {
         position={[-0.008, -0.267, -0.742 * widthScale]}
         scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
       />
-      {backPanel && (
-        <mesh
-          geometry={nodes.back_plank003.geometry}
-          material={materials["Material.005"]}
-          position={[depthPositionX, 0.315, -0.746 * widthScale]}
-          scale={[1, 0.958, widthScale]}
-        />
-      )}
+      <mesh
+        geometry={nodes.back_plank003.geometry}
+        material={materials["Material.005"]}
+        position={[depthPositionX, 0.315, -0.746 * widthScale]}
+        scale={[1, 0.958, widthScale]}
+      />
       <group
         ref={drawerRef}
         position={[0.581, 0.315, -0.754 * widthScale]}

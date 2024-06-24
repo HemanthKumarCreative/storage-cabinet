@@ -25,7 +25,7 @@ function StorageCabinet(props) {
 
   // Adjust scales based on depth and width
   let depthScale = 1;
-  let widthScale = specialWidth ? width / 50 : 1;
+  let widthScale = specialWidth ? width / 25 : 1;
   let depthPositionX = -0.6;
   let doorPositionX = 0.624;
   let hingePosX = 0.522;
@@ -60,7 +60,7 @@ function StorageCabinet(props) {
       <mesh
         geometry={nodes.left_plank.geometry}
         material={materials.Material}
-        position={[0.002, 0.003, -0.006]}
+        position={[0.002, 0.003, -0.006 * widthScale]}
         scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
       />
       <mesh
@@ -81,14 +81,12 @@ function StorageCabinet(props) {
         position={[-0.008, -1.025, -0.742 * widthScale]}
         scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
       />
-      {backPanel && (
-        <mesh
-          geometry={nodes.back_plank.geometry}
-          material={materials["Material.005"]}
-          position={[depthPositionX, 0.001, -0.746 * widthScale]}
-          scale={[1, 0.958, widthScale]}
-        />
-      )}
+      <mesh
+        geometry={nodes.back_plank.geometry}
+        material={materials["Material.005"]}
+        position={[depthPositionX, 0.001, -0.746 * widthScale]}
+        scale={[1, 0.958, widthScale]}
+      />
       <mesh
         ref={doorRef}
         geometry={nodes.door.geometry}

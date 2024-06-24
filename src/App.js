@@ -13,7 +13,7 @@ import Configurator from "./Configurator";
 export default function App() {
   const [configuration, setConfiguration] = useState({
     style: "",
-    density: 50,
+    density: 100,
     width: 450,
     height: 293,
     depth: "24cm", // Initial depth value
@@ -35,6 +35,7 @@ export default function App() {
             width={configuration.width}
             height={configuration.height}
             depth={configuration.depth}
+            density={configuration.density}
             backPanel={configuration.backPanel === "ON"}
           />
           <DrawerCabinet
@@ -147,6 +148,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
           />
           <OpenCabinet
             position={[0, 0.4, 0]}
@@ -702,7 +704,7 @@ export default function App() {
 
       groups.push(group);
     }
-    groups.push(specialGroup);
+    if (configuration.width % 50 !== 0) groups.push(specialGroup);
     return groups;
   };
 

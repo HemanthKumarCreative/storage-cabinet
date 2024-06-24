@@ -12,7 +12,7 @@ function OpenCabinet(props) {
   // Adjust scales and positions based on depth
   let depthScale = 1;
   let depthPositionX = -0.6; // Default position along X-axis for back plank
-  let widthScale = specialWidth ? width / 50 : 1;
+  let widthScale = specialWidth ? width / 25 : 1;
 
   switch (depth) {
     case "24cm":

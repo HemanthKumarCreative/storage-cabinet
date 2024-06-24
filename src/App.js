@@ -27,6 +27,24 @@ export default function App() {
     const groups = [];
     let specialPosition = null;
     let specialGroup = null;
+    let multiplier = null;
+    switch (configuration.density) {
+      case 25:
+        multiplier = 6;
+        break;
+      case 50:
+        multiplier = 4.5;
+        break;
+      case 75:
+        multiplier = 3;
+        break;
+      case 100:
+        multiplier = 1.5;
+        break;
+      default:
+        multiplier = 1.5;
+    }
+
     for (let i = -8; i < count * 1.5 - 8; i += 1.5) {
       const group_183_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
@@ -158,6 +176,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -166,6 +185,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -174,6 +194,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -182,6 +203,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -190,6 +212,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
           />
         </group>
       );

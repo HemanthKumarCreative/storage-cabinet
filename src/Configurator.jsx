@@ -142,6 +142,8 @@ function Configurator({ configuration, setConfiguration }) {
               min={50}
               max={450}
               size="small"
+              step={null}
+              marks={widthMap}
             />
           </Grid>
           <Grid item xs={2}>

@@ -10,7 +10,14 @@ function DrawerCabinet(props) {
   const [hovered, setHovered] = useState(false);
 
   // Destructure props to get depth
-  const { depth, backPanel, specialWidth } = props;
+  const {
+    depth,
+    backPanel,
+    specialWidth,
+    densityFactor,
+    configWidth,
+    density,
+  } = props;
 
   const width = specialWidth === 0 ? 50 : specialWidth;
   useFrame(() => {
@@ -25,7 +32,9 @@ function DrawerCabinet(props) {
 
   // Adjust scales based on depth
   let depthScale = 1;
-  let widthScale = specialWidth ? width / 25 : 1;
+  let widthScale = specialWidth
+    ? width / 25
+    : densityFactor[configWidth][density] / 50;
   let depthPositionX = -0.595;
   let doorPositionX = 0.1;
   let hingePosX = 0.522;

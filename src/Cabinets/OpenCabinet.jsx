@@ -6,13 +6,22 @@ function OpenCabinet(props) {
   const { nodes, materials } = useGLTF(OpenCabinetGlb);
 
   // Destructure depth from props
-  const { depth, backPanel, specialWidth, density } = props;
+  const {
+    depth,
+    backPanel,
+    specialWidth,
+    density,
+    densityFactor,
+    configWidth,
+  } = props;
   const width = specialWidth === 0 ? 50 : specialWidth;
 
   // Adjust scales and positions based on depth
   let depthScale = 1;
   let depthPositionX = -0.6; // Default position along X-axis for back plank
-  let widthScale = specialWidth ? width / 25 : 1;
+  let widthScale = specialWidth
+    ? width / 25
+    : densityFactor[configWidth][density] / 50;
 
   // switch (density) {
   //   case 25:

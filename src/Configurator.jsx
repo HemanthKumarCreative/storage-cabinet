@@ -248,10 +248,20 @@ function Configurator({ configuration, setConfiguration }) {
               aria-label="backPanel"
               fullWidth
             >
-              <ToggleButton value="OFF" aria-label="OFF" size="small">
+              <ToggleButton
+                value="OFF"
+                aria-label="OFF"
+                size="small"
+                disabled={configuration.backPanel === "OFF"}
+              >
                 OFF
               </ToggleButton>
-              <ToggleButton value="ON" aria-label="ON" size="small">
+              <ToggleButton
+                value="ON"
+                aria-label="ON"
+                size="small"
+                disabled={configuration.backPanel === "ON"}
+              >
                 ON
               </ToggleButton>
             </ToggleButtonGroup>

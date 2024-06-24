@@ -23,6 +23,15 @@ export default function App() {
     color: "",
   });
 
+  const densityFactor = {
+    450: { 100: 50, 75: 75, 50: 150, 25: 225 },
+    400: { 100: 50, 75: 100, 50: 200, 25: 200 },
+    350: { 100: 50, 75: 70, 50: 175, 25: 175 },
+    250: { 100: 50, 75: 50, 50: 125, 25: 125 },
+    150: { 100: 50, 75: 50, 50: 75, 25: 75 },
+    50: { 100: 50, 75: 50, 50: 50, 25: 50 },
+  };
+
   const horizontalAlignment = (count) => {
     const groups = [];
     let specialPosition = null;
@@ -45,7 +54,51 @@ export default function App() {
         multiplier = 1.5;
     }
 
-    for (let i = -8; i < count * 1.5 - 8; i += 1.5) {
+    const densityMultiplier = {
+      450: {
+        100: 1.5,
+        75: 2.2,
+        50: 4.4,
+        25: 6.7,
+      },
+      400: {
+        100: 1.5,
+        75: 3,
+        50: 6,
+        25: 6,
+      },
+      350: {
+        100: 1.5,
+        75: 2.1,
+        50: 5.2,
+        25: 5.2,
+      },
+      250: {
+        100: 1.5,
+        75: 1.5,
+        50: 3.75,
+        25: 3.75,
+      },
+      150: {
+        100: 1.5,
+        75: 1.5,
+        50: 2.2,
+        25: 2.2,
+      },
+      50: {
+        100: 1,
+        75: 1,
+        50: 1,
+        25: 1,
+      },
+    };
+
+    for (
+      let i = -8;
+      i <
+      count * densityMultiplier[configuration.width][configuration.density] - 8;
+      i += densityMultiplier[configuration.width][configuration.density]
+    ) {
       const group_183_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
           <StorageCabinet
@@ -56,6 +109,8 @@ export default function App() {
             depth={configuration.depth}
             density={configuration.density}
             backPanel={configuration.backPanel === "ON"}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -64,6 +119,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -72,6 +130,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -85,6 +146,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -93,6 +157,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -101,6 +168,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -109,6 +179,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -122,6 +195,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -130,6 +206,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -138,6 +217,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -146,6 +228,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -154,6 +239,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -168,33 +256,38 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, 0.4, 0]}
             receiveShadow
-            width={configuration.width}
+            configWidth={configuration.width}
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             density={configuration.density}
+            densityFactor={densityFactor}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
             receiveShadow
-            width={configuration.width}
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
             receiveShadow
-            width={configuration.width}
+            configWidth={configuration.width}
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             density={configuration.density}
+            densityFactor={densityFactor}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -204,6 +297,8 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -213,6 +308,8 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -226,6 +323,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, 1.7, 0]}
@@ -234,6 +334,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, 0.4, 0]}
@@ -242,6 +345,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -250,6 +356,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -258,6 +367,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -266,6 +378,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -274,6 +389,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -287,6 +405,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <SmallCabinet
             position={[0, 3, 0]}
@@ -295,6 +416,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, 1.7, 0]}
@@ -303,6 +427,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, 0.4, 0]}
@@ -311,6 +438,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -319,6 +449,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -327,6 +460,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -335,6 +471,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -343,6 +482,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -363,6 +505,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -372,6 +517,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -381,6 +529,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -399,6 +550,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -408,6 +562,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -417,6 +574,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -426,6 +586,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -444,6 +607,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -453,6 +619,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -462,6 +631,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -471,6 +643,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -480,6 +655,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -498,6 +676,9 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, 0.4, 0]}
@@ -507,6 +688,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -516,6 +700,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -525,6 +712,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -534,6 +724,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -543,6 +736,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -561,6 +757,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, 1.7, 0]}
@@ -570,6 +769,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            densityFactor={densityFactor}
+            density={configuration.density}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, 0.4, 0]}
@@ -579,6 +781,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            densityFactor={densityFactor}
+            density={configuration.density}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -588,6 +793,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            densityFactor={densityFactor}
+            density={configuration.density}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -597,6 +805,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            densityFactor={densityFactor}
+            density={configuration.density}
+            configWidth={configuration.width}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -606,6 +817,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -615,6 +829,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -633,6 +850,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <SmallCabinet
             position={[0, 3, 0]}
@@ -642,6 +862,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, 1.7, 0]}
@@ -651,6 +874,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, 0.4, 0]}
@@ -660,6 +886,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -669,15 +898,20 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
             receiveShadow
-            width={configuration.width}
+            configWidth={configuration.width}
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -687,6 +921,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -696,6 +933,9 @@ export default function App() {
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
             specialWidth={configuration.width % 25}
+            density={configuration.density}
+            densityFactor={densityFactor}
+            configWidth={configuration.width}
           />
         </group>
       );
@@ -779,7 +1019,12 @@ export default function App() {
 
         <group rotation={[0, Math.PI / 8, 0]}>
           <Person url={uri} />
-          {horizontalAlignment(Math.floor(configuration.width / 50))}
+          {horizontalAlignment(
+            Math.floor(
+              configuration.width /
+                densityFactor[configuration.width][configuration.density]
+            )
+          )}
         </group>
         <OrbitControls />
       </Canvas>

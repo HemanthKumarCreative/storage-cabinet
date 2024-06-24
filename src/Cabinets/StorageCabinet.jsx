@@ -10,7 +10,14 @@ function StorageCabinet(props) {
   const [isHovered, setIsHovered] = useState(false);
 
   // Destructure props to get depth and specialWidth
-  const { depth, backPanel, specialWidth } = props;
+  const {
+    depth,
+    backPanel,
+    specialWidth,
+    densityFactor,
+    configWidth,
+    density,
+  } = props;
 
   const width = specialWidth === 0 ? 50 : specialWidth;
   useFrame(() => {
@@ -25,7 +32,9 @@ function StorageCabinet(props) {
 
   // Adjust scales based on depth and width
   let depthScale = 1;
-  let widthScale = specialWidth ? width / 25 : 1;
+  let widthScale = specialWidth
+    ? width / 25
+    : densityFactor[configWidth][density] / 50;
   let depthPositionX = -0.6;
   let doorPositionX = 0.624;
   let hingePosX = 0.522;

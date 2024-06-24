@@ -754,7 +754,10 @@ export default function App() {
   const uri = "https://pics.io/preview/66792a63548394472778ddc6/thumbnail";
 
   return (
-    <div className="canvas-container">
+    <div
+      className="canvas-container"
+      style={{ backgroundColor: "rgb(218,218,218)" }}
+    >
       <Canvas
         camera={{ position: [0, 0, 15], fov: 60 }}
         shadows
@@ -772,10 +775,10 @@ export default function App() {
         />
         <pointLight position={[-10, -10, -10]} intensity={0.5} castShadow />
 
-        <Floor receiveShadow />
+        {/* <Floor receiveShadow style={{ backgroundColor: "rgb(218,218,218)" }} /> */}
 
         <group rotation={[0, Math.PI / 8, 0]}>
-          <Image url={uri} />
+          <Person url={uri} />
           {horizontalAlignment(Math.floor(configuration.width / 50))}
         </group>
         <OrbitControls />

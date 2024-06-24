@@ -333,7 +333,7 @@ export default function App() {
             position={[0, -1.5, 0]}
             receiveShadow
             width={configuration.width}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
@@ -345,7 +345,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -354,7 +354,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
         </group>
       );
@@ -366,31 +366,13 @@ export default function App() {
           rotation={[0, -Math.PI / 2, 0]}
         >
           <StorageCabinet
-            position={[0, 2.5, 0]}
+            position={[0, -0.1, 0]}
             receiveShadow
             width={configuration.width}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-          />
-          <OpenCabinet
-            position={[0, 0.4, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
-          />
-          <OpenCabinet
-            position={[0, -0.9, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -399,7 +381,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -408,7 +390,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -417,7 +399,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
         </group>
       );
@@ -429,22 +411,13 @@ export default function App() {
           rotation={[0, -Math.PI / 2, 0]}
         >
           <StorageCabinet
-            position={[0, 2.5, 0]}
+            position={[0, 1.2, 0]}
             receiveShadow
             width={configuration.width}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-          />
-          <OpenCabinet
-            position={[0, 0.4, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -453,7 +426,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -462,7 +435,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -471,7 +444,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -480,7 +453,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
         </group>
       );
@@ -495,7 +468,7 @@ export default function App() {
             position={[0, 2.5, 0]}
             receiveShadow
             width={configuration.width}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
@@ -507,7 +480,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -516,7 +489,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -525,7 +498,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -534,7 +507,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -543,7 +516,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
         </group>
       );
@@ -555,13 +528,22 @@ export default function App() {
           rotation={[0, -Math.PI / 2, 0]}
         >
           <StorageCabinet
-            position={[0, 2.5, 0]}
+            position={[0, 3.8, 0]}
             receiveShadow
             width={configuration.width}
-            specialWidth={configuration.width % 50}
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 25}
+          />
+          <OpenCabinet
+            position={[0, 1.7, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 25}
           />
           <OpenCabinet
             position={[0, 0.4, 0]}
@@ -570,7 +552,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -579,7 +561,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -588,7 +570,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -597,7 +579,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -606,7 +588,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
         </group>
       );
@@ -618,13 +600,31 @@ export default function App() {
           rotation={[0, -Math.PI / 2, 0]}
         >
           <StorageCabinet
-            position={[0, 2.5, 0]}
+            position={[0, 5, 0]}
             receiveShadow
             width={configuration.width}
-            specialWidth={configuration.width % 50}
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 25}
+          />
+          <SmallCabinet
+            position={[0, 3, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 25}
+          />
+          <OpenCabinet
+            position={[0, 1.7, 0]}
+            receiveShadow
+            width={configuration.width}
+            height={configuration.height}
+            depth={configuration.depth}
+            backPanel={configuration.backPanel === "ON"}
+            specialWidth={configuration.width % 25}
           />
           <OpenCabinet
             position={[0, 0.4, 0]}
@@ -633,7 +633,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <OpenCabinet
             position={[0, -0.9, 0]}
@@ -642,7 +642,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -651,7 +651,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -660,7 +660,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -669,7 +669,7 @@ export default function App() {
             height={configuration.height}
             depth={configuration.depth}
             backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 50}
+            specialWidth={configuration.width % 25}
           />
         </group>
       );

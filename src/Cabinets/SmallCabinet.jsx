@@ -70,7 +70,7 @@ function SmallCabinet(props) {
         geometry={nodes.left_plank001.geometry}
         material={materials.Material}
         position={[0.002, 0.003, -0.006]}
-        scale={[depthScale, 1, 2]} // Adjusted scale based on depth
+        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       >
         <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
       </mesh>
@@ -78,7 +78,7 @@ function SmallCabinet(props) {
         geometry={nodes.right_plank001.geometry}
         material={materials["Material.003"]}
         position={[0.004, 0.148, -1.484 * widthScale]}
-        scale={[depthScale, 1, 2]} // Adjusted scale based on depth
+        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       >
         <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
       </mesh>

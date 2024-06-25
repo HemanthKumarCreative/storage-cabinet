@@ -73,7 +73,7 @@ function StorageCabinet(props) {
         geometry={nodes.left_plank.geometry}
         material={materials.Material}
         position={[0.002, 0.003, -0.006 * widthScale]}
-        scale={[depthScale, 1, 2]} // Adjusted scale based on depth and width
+        scale={[depthScale, 1, 1]} // Adjusted scale based on depth and width
         map={texture}
       >
         <meshStandardMaterial map={texture} color="#E2DFD2" attach="material" />
@@ -82,7 +82,7 @@ function StorageCabinet(props) {
         geometry={nodes.right_plank.geometry}
         material={materials["Material.003"]}
         position={[0.004, 0.148, -1.484 * widthScale]}
-        scale={[depthScale, 1, 2]} // Adjusted scale based on depth and width
+        scale={[depthScale, 1, 1]} // Adjusted scale based on depth and width
       >
         <meshStandardMaterial map={texture} color="#E2DFD2" attach="material" />
       </mesh>
@@ -134,7 +134,7 @@ function StorageCabinet(props) {
         geometry={nodes.inner_shelf.geometry}
         material={materials.Material}
         position={[0, -0.202, -0.744 * widthScale]}
-        scale={[depthScale - 0.05, 2, widthScale]}
+        scale={[depthScale - 0.05, 2, widthScale - 0.05]}
       >
         <meshStandardMaterial map={texture} attach="material" />
       </mesh>

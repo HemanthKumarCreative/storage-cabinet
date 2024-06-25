@@ -10,6 +10,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import ColorConfig from "./ColorConfig";
 
 function Configurator({ configuration, setConfiguration }) {
   const handleInputChange = (prop) => (event, newValue) => {
@@ -310,32 +311,17 @@ function Configurator({ configuration, setConfiguration }) {
           </Grid>
 
           {/* Color */}
-          <Grid item xs={4}>
+          {/* <Grid item xs={4}>
             <Typography variant="subtitle1">Colour</Typography>
+          </Grid> */}
+          <Grid item xs={12}>
+            <ColorConfig />
           </Grid>
-          <Grid item xs={6}>
-            <ToggleButtonGroup
-              value={configuration.color}
-              onChange={handleSelectChange("color")}
-              aria-label="color"
-              fullWidth
-            >
-              <ToggleButton value="White" aria-label="White" size="small">
-                White
-              </ToggleButton>
-              <ToggleButton value="Black" aria-label="Black" size="small">
-                Black
-              </ToggleButton>
-              <ToggleButton value="Brown" aria-label="Brown" size="small">
-                Brown
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </Grid>
-          <Grid item xs={2}>
+          {/* <Grid item xs={2}>
             <Tooltip title="Select the color of the cabinet">
               <HelpOutlineIcon fontSize="small" style={{ cursor: "pointer" }} />
             </Tooltip>
-          </Grid>
+          </Grid> */}
         </Grid>
       </CardContent>
     </Card>

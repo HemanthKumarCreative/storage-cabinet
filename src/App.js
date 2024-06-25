@@ -150,7 +150,7 @@ export default function App() {
       const group_223_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
           <StorageCabinet
-            position={[0, -0.15, 0]}
+            position={[0, -0.34, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -162,7 +162,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, -2.2, 0]}
+            position={[0, -2.3, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -203,7 +203,7 @@ export default function App() {
       const group_253_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
           <StorageCabinet
-            position={[0, 1.13, 0]}
+            position={[0, 0.8, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -215,7 +215,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, -0.95, 0]}
+            position={[0, -1.1, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -227,7 +227,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, -2.2, 0]}
+            position={[0, -2.3, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -268,7 +268,7 @@ export default function App() {
       const group_293_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
           <StorageCabinet
-            position={[0, 2.35, 0]}
+            position={[0, 2.1, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -280,7 +280,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, 0.3, 0]}
+            position={[0, 0.15, 0]}
             receiveShadow
             configWidth={configuration.width}
             height={configuration.height}
@@ -291,7 +291,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, -0.95, 0]}
+            position={[0, -1, 0]}
             receiveShadow
             height={configuration.height}
             depth={configuration.depth}
@@ -342,7 +342,7 @@ export default function App() {
       const group_323_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
           <StorageCabinet
-            position={[0, 3.575, 0]}
+            position={[0, 3.3, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -354,7 +354,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, 1.5, 0]}
+            position={[0, 1.4, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -366,7 +366,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, 0.3, 0]}
+            position={[0, 0.2, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -378,7 +378,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, -0.95, 0]}
+            position={[0, -1.0, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -431,7 +431,7 @@ export default function App() {
       const group_363_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
           <StorageCabinet
-            position={[0, 5, 0]}
+            position={[0, 4.35, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -443,7 +443,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <SmallCabinet
-            position={[0, 2.85, 0]}
+            position={[0, 2.4, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -455,7 +455,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, 1.55, 0]}
+            position={[0, 1.15, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -467,7 +467,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, 0.3, 0]}
+            position={[0, 0, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -479,7 +479,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, -0.95, 0]}
+            position={[0, -1.15, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -491,7 +491,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, -2.2, 0]}
+            position={[0, -2.3, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}

@@ -3,11 +3,15 @@ import { useFrame } from "@react-three/fiber";
 import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import DrawerCabinetGlb from "../modals/DrawerCabinetUpdated.glb";
+import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
 
 function DrawerCabinet(props) {
   const { nodes, materials } = useGLTF(DrawerCabinetGlb);
   const drawerRef = useRef();
   const [hovered, setHovered] = useState(false);
+  const StorageCabinetNode = useGLTF(StorageCabinetGlb);
+  const storageCabinetNodes = StorageCabinetNode.nodes;
+  const storageCabinetMaterials = StorageCabinetNode.materials;
 
   // Destructure props to get depth
   const {
@@ -98,7 +102,7 @@ function DrawerCabinet(props) {
         geometry={nodes.bottom_plank003.geometry}
         material={materials["Material.004"]}
         position={[-0.008, -0.267, -0.742 * widthScale]}
-        scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
       >
         <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
       </mesh>
@@ -191,6 +195,15 @@ function DrawerCabinet(props) {
               scale={[0.397, 0.025, 0.02]}
             />
           </mesh>
+          {/* <mesh
+            geometry={storageCabinetNodes.edges.geometry}
+            material={storageCabinetMaterials["Material.012"]}
+            position={[0.69 * widthScale, -0.02, -0.8 * depthScale]}
+            rotation={[0, 0, -Math.PI]}
+            scale={[-0.02 * widthScale, -0.5, -0.009 * depthScale]}
+          >
+            <meshStandardMaterial color="white" attach="material" />
+          </mesh> */}
         </mesh>
       </group>
     </group>

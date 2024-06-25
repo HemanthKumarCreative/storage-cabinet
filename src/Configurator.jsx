@@ -315,7 +315,7 @@ function Configurator({ configuration, setConfiguration }) {
             <Typography variant="subtitle1">Colour</Typography>
           </Grid> */}
           <Grid item xs={12}>
-            <ColorConfig />
+            <ColorConfig finish={configuration.finish} />
           </Grid>
           {/* <Grid item xs={2}>
             <Tooltip title="Select the color of the cabinet">

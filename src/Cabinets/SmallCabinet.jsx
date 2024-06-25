@@ -2,9 +2,14 @@ import React, { useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useGLTF, useTexture } from "@react-three/drei";
 import SmallCabinetGlb from "../modals/SmallCabinet.glb";
+import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
 
 function SmallCabinet(props) {
   const { nodes, materials } = useGLTF(SmallCabinetGlb);
+  const StorageCabinetNode = useGLTF(StorageCabinetGlb);
+  const storageCabinetNodes = StorageCabinetNode.nodes;
+  const storageCabinetMaterials = StorageCabinetNode.materials;
+
   const doorRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
 
@@ -82,19 +87,19 @@ function SmallCabinet(props) {
       >
         <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
       </mesh>
-      <mesh
+      {/* <mesh
         geometry={nodes.top_plank001.geometry}
         material={materials["Material.002"]}
         position={[-0.001, 1.023, -0.744 * widthScale]}
         scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth
       >
         <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
-      </mesh>
+      </mesh> */}
       <mesh
         geometry={nodes.bottom_plank001.geometry}
         material={materials["Material.004"]}
         position={[-0.008, -0.267, -0.742 * widthScale]}
-        scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
       >
         <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
       </mesh>
@@ -127,6 +132,15 @@ function SmallCabinet(props) {
         material={materials["Material.006"]}
         position={[hingePosX, -0.014, -1.449 * widthScale]}
       />
+      <mesh
+        geometry={storageCabinetNodes.edges.geometry}
+        material={storageCabinetMaterials["Material.012"]}
+        position={[0.68 * depthScale, 0.35, -1.484 * widthScale]}
+        rotation={[0, 0, -Math.PI]}
+        scale={[-0.019 * depthScale, -0.6, -0.027 * widthScale]}
+      >
+        <meshStandardMaterial color="white" attach="material" />
+      </mesh>
     </group>
   );
 }

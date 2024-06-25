@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from "three";
-import StorageCabinetGlb from "../modals/StorageCabinet.gltf";
+import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
 
 function StorageCabinet(props) {
   const { nodes, materials } = useGLTF(StorageCabinetGlb);
@@ -98,7 +98,7 @@ function StorageCabinet(props) {
         geometry={nodes.bottom_plank.geometry}
         material={materials["Material.004"]}
         position={[-0.008, -1.025, -0.742 * widthScale]}
-        scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth and width
+        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
       >
         <meshStandardMaterial map={texture} color="#E2DFD2" attach="material" />
       </mesh>
@@ -137,6 +137,15 @@ function StorageCabinet(props) {
         scale={[depthScale - 0.05, 2, widthScale - 0.05]}
       >
         <meshStandardMaterial map={texture} attach="material" />
+      </mesh>
+      <mesh
+        geometry={nodes.edges.geometry}
+        material={materials["Material.012"]}
+        position={[0.68 * depthScale, -0.02, -1.484 * widthScale]}
+        rotation={[0, 0, -Math.PI]}
+        scale={[-0.019 * depthScale, -0.9, -0.027 * widthScale]}
+      >
+        <meshStandardMaterial color="white" attach="material" />
       </mesh>
     </group>
   );

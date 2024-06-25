@@ -1,9 +1,13 @@
 import React, { useRef } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
 import OpenCabinetGlb from "../modals/OpenCabinet.glb";
+import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
 
 function OpenCabinet(props) {
   const { nodes, materials } = useGLTF(OpenCabinetGlb);
+  const StorageCabinetNode = useGLTF(StorageCabinetGlb);
+  const storageCabinetNodes = StorageCabinetNode.nodes;
+  const storageCabinetMaterials = StorageCabinetNode.materials;
 
   // Destructure depth from props
   const {
@@ -88,7 +92,7 @@ function OpenCabinet(props) {
         geometry={nodes.bottom_plank002.geometry}
         material={materials["Material.004"]}
         position={[0, -0.267, -0.742 * widthScale]}
-        scale={[depthScale, 2, widthScale - 0.15]} // Adjusted scale based on depth
+        scale={[depthScale - 0.1, 1, widthScale - 0.1]} // Adjusted scale based on depth
       >
         <meshStandardMaterial
           map={texture}
@@ -120,6 +124,15 @@ function OpenCabinet(props) {
           />
         </mesh>
       )}
+      <mesh
+        geometry={storageCabinetNodes.edges.geometry}
+        material={storageCabinetMaterials["Material.012"]}
+        position={[0.68 * depthScale, 0.43, -1.484 * widthScale]}
+        rotation={[0, 0, -Math.PI]}
+        scale={[-0.019 * depthScale, 0.55, -0.027 * widthScale]}
+      >
+        <meshStandardMaterial color="white" attach="material" />
+      </mesh>
     </group>
   );
 }

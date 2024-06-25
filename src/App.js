@@ -10,6 +10,8 @@ import Person from "./Cabinets/Person";
 import Floor from "./Cabinets/Floor";
 import Configurator from "./Configurator";
 import * as THREE from "three";
+import PlywoodTexture from "./textures/plywood02.jpg";
+import VeneerTexture from "./textures/Veneer02.png";
 
 export default function App() {
   const [configuration, setConfiguration] = useState({
@@ -19,9 +21,14 @@ export default function App() {
     height: 293,
     depth: "24cm", // Initial depth value
     backPanel: "ON",
-    finish: "Plywood",
+    finish: "Veneer",
     color: "",
   });
+
+  const textureUrl = {
+    Plywood: PlywoodTexture,
+    Veneer: VeneerTexture,
+  };
 
   const densityFactor = {
     450: { 100: 50, 75: 75, 50: 150, 25: 225 },
@@ -111,6 +118,7 @@ export default function App() {
             backPanel={configuration.backPanel === "ON"}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -122,6 +130,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -133,6 +142,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
         </group>
       );
@@ -140,7 +150,7 @@ export default function App() {
       const group_223_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
           <StorageCabinet
-            position={[0, -0.1, 0]}
+            position={[0, -0.15, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -149,6 +159,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -160,6 +171,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -171,6 +183,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -182,6 +195,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
         </group>
       );
@@ -189,7 +203,7 @@ export default function App() {
       const group_253_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
           <StorageCabinet
-            position={[0, 1.2, 0]}
+            position={[0, 1.13, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -198,9 +212,10 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, -0.9, 0]}
+            position={[0, -0.95, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -209,6 +224,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -220,6 +236,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -231,6 +248,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -242,6 +260,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
         </group>
       );
@@ -249,7 +268,7 @@ export default function App() {
       const group_293_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
           <StorageCabinet
-            position={[0, 2.5, 0]}
+            position={[0, 2.35, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -258,9 +277,10 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, 0.4, 0]}
+            position={[0, 0.3, 0]}
             receiveShadow
             configWidth={configuration.width}
             height={configuration.height}
@@ -268,9 +288,10 @@ export default function App() {
             backPanel={configuration.backPanel === "ON"}
             density={configuration.density}
             densityFactor={densityFactor}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, -0.9, 0]}
+            position={[0, -0.95, 0]}
             receiveShadow
             height={configuration.height}
             depth={configuration.depth}
@@ -278,6 +299,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -288,6 +310,7 @@ export default function App() {
             backPanel={configuration.backPanel === "ON"}
             density={configuration.density}
             densityFactor={densityFactor}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -299,6 +322,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -310,6 +334,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
         </group>
       );
@@ -317,7 +342,7 @@ export default function App() {
       const group_323_cm = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
           <StorageCabinet
-            position={[0, 3.8, 0]}
+            position={[0, 3.575, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -326,9 +351,10 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, 1.7, 0]}
+            position={[0, 1.5, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -337,9 +363,10 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, 0.4, 0]}
+            position={[0, 0.3, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -348,9 +375,10 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, -0.9, 0]}
+            position={[0, -0.95, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -359,6 +387,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -370,6 +399,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -381,6 +411,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -392,6 +423,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
         </group>
       );
@@ -408,9 +440,10 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <SmallCabinet
-            position={[0, 3, 0]}
+            position={[0, 2.85, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -419,9 +452,10 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, 1.7, 0]}
+            position={[0, 1.55, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -430,9 +464,10 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, 0.4, 0]}
+            position={[0, 0.3, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -441,9 +476,10 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
-            position={[0, -0.9, 0]}
+            position={[0, -0.95, 0]}
             receiveShadow
             width={configuration.width}
             height={configuration.height}
@@ -452,6 +488,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -463,6 +500,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -474,6 +512,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -485,6 +524,7 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             configWidth={configuration.width}
+            textureUrl={textureUrl[configuration.finish]}
           />
         </group>
       );

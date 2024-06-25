@@ -288,6 +288,7 @@ function Configurator({ configuration, setConfiguration }) {
                 aria-label="Plywood"
                 size="small"
                 style={{ textTransform: "none" }}
+                disabled={configuration.finish === "Plywood"}
               >
                 Plywood
               </ToggleButton>
@@ -296,6 +297,7 @@ function Configurator({ configuration, setConfiguration }) {
                 aria-label="Veneer"
                 size="small"
                 style={{ textTransform: "none" }}
+                disabled={configuration.finish === "Veneer"}
               >
                 Veneer
               </ToggleButton>

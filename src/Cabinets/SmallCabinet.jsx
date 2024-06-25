@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import SmallCabinetGlb from "../modals/SmallCabinet.glb";
 
 function SmallCabinet(props) {
@@ -16,7 +16,10 @@ function SmallCabinet(props) {
     densityFactor,
     configWidth,
     density,
+    textureUrl,
   } = props;
+
+  const texture = useTexture(textureUrl);
 
   const width = specialWidth === 0 ? 50 : specialWidth;
   useFrame(() => {
@@ -67,41 +70,53 @@ function SmallCabinet(props) {
         geometry={nodes.left_plank001.geometry}
         material={materials.Material}
         position={[0.002, 0.003, -0.006]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
-      />
+        scale={[depthScale, 1, 2]} // Adjusted scale based on depth
+      >
+        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+      </mesh>
       <mesh
         geometry={nodes.right_plank001.geometry}
         material={materials["Material.003"]}
         position={[0.004, 0.148, -1.484 * widthScale]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
-      />
+        scale={[depthScale, 1, 2]} // Adjusted scale based on depth
+      >
+        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+      </mesh>
       <mesh
         geometry={nodes.top_plank001.geometry}
         material={materials["Material.002"]}
         position={[-0.001, 1.023, -0.744 * widthScale]}
-        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
-      />
+        scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth
+      >
+        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+      </mesh>
       <mesh
         geometry={nodes.bottom_plank001.geometry}
         material={materials["Material.004"]}
         position={[-0.008, -0.267, -0.742 * widthScale]}
-        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
-      />
+        scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth
+      >
+        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+      </mesh>
       <mesh
         geometry={nodes.back_plank001.geometry}
         material={materials["Material.005"]}
         position={[depthPositionX, 0.315, -0.746 * widthScale]}
         scale={[1, 0.958, widthScale]}
-      />
+      >
+        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+      </mesh>
       <mesh
         ref={doorRef}
         geometry={nodes.door001.geometry}
         material={materials["Material.001"]}
         position={[doopPositionX, 0.386, -1.444 * widthScale]}
         rotation={[0, 0, 0]} // Initial rotation state
-        scale={[1.166, 1, widthScale]}
+        scale={[2, 1, widthScale]}
         onPointerUp={openDoor}
-      />
+      >
+        <meshStandardMaterial map={texture} attach="material" />
+      </mesh>
       <mesh
         geometry={nodes.hinge_top001.geometry}
         material={materials["Material.006"]}

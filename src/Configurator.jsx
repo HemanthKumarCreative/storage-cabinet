@@ -114,6 +114,7 @@ function Configurator({ configuration, setConfiguration }) {
               size="small"
               step={null}
               marks={densityMap}
+              disabled={true}
             />
           </Grid>
           <Grid item xs={2}>

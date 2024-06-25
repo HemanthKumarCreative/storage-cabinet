@@ -70,13 +70,13 @@ function StorageCabinet(props) {
         geometry={nodes.left_plank.geometry}
         material={materials.Material}
         position={[0.002, 0.003, -0.006 * widthScale]}
-        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
+        scale={[depthScale, 1, 1]} // Adjusted scale based on depth and width
       />
       <mesh
         geometry={nodes.right_plank.geometry}
         material={materials["Material.003"]}
         position={[0.004, 0.148, -1.484 * widthScale]}
-        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
+        scale={[depthScale, 1, 1]} // Adjusted scale based on depth and width
       />
       <mesh
         geometry={nodes.top_plank.geometry}

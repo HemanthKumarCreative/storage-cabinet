@@ -71,13 +71,13 @@ function DrawerCabinet(props) {
         geometry={nodes.left_plank003.geometry}
         material={materials.Material}
         position={[0.002, 0.003, -0.006]}
-        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
+        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       />
       <mesh
         geometry={nodes.right_plank003.geometry}
         material={materials["Material.003"]}
         position={[0.004, 0.148, -1.494 * widthScale]}
-        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
+        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       />
       <mesh
         geometry={nodes.top_plank003.geometry}

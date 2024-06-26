@@ -323,6 +323,42 @@ function Configurator({ configuration, setConfiguration }) {
               <HelpOutlineIcon fontSize="small" style={{ cursor: "pointer" }} />
             </Tooltip>
           </Grid> */}
+          <Grid
+            item
+            xs={4}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="subtitle1">Books Visibility</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <ToggleButtonGroup
+              value={configuration.books}
+              onChange={handleSelectChange("books")}
+              aria-label="books"
+              fullWidth
+            >
+              <ToggleButton
+                value="OFF"
+                aria-label="OFF"
+                size="small"
+                disabled={configuration.books === "OFF"}
+              >
+                OFF
+              </ToggleButton>
+              <ToggleButton
+                value="ON"
+                aria-label="ON"
+                size="small"
+                disabled={configuration.books === "ON"}
+              >
+                ON
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Grid>
         </Grid>
       </CardContent>
     </Card>

@@ -23,6 +23,7 @@ export default function App() {
     backPanel: "ON",
     finish: "Plywood",
     color: "green",
+    books: "OFF",
   });
 
   const textureUrl = {
@@ -196,6 +197,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -257,6 +259,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <OpenCabinet
             position={[0, -2.3, 0]}
@@ -271,6 +274,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -331,6 +335,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <OpenCabinet
             position={[0, -1, 0]}
@@ -344,6 +349,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -357,6 +363,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -418,6 +425,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <OpenCabinet
             position={[0, 0.2, 0]}
@@ -432,6 +440,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <OpenCabinet
             position={[0, -1.0, 0]}
@@ -446,6 +455,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -460,6 +470,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -535,6 +546,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <OpenCabinet
             position={[0, 0, 0]}
@@ -549,6 +561,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <OpenCabinet
             position={[0, -1.15, 0]}
@@ -563,6 +576,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <OpenCabinet
             position={[0, -2.3, 0]}
@@ -577,6 +591,7 @@ export default function App() {
             textureUrl={textureUrl[configuration.finish]}
             color={configuration.color}
             colorCodes={colorCodes}
+            books={configuration.books === "ON"}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}

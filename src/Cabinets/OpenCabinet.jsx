@@ -3,6 +3,7 @@ import { useGLTF, useTexture } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import OpenCabinetGlb from "../modals/OpenCabinet.glb";
 import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
+import Book from "./Book";
 
 function OpenCabinet(props) {
   const { nodes, materials } = useGLTF(OpenCabinetGlb);
@@ -21,6 +22,7 @@ function OpenCabinet(props) {
     textureUrl,
     color,
     colorCodes,
+    books,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -132,6 +134,7 @@ function OpenCabinet(props) {
       >
         <meshStandardMaterial color="white" attach="material" />
       </mesh>
+      {books && <Book />}
     </group>
   );
 }

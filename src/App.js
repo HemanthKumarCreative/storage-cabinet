@@ -10,7 +10,7 @@ import Person from "./Cabinets/Person";
 import Floor from "./Cabinets/Floor";
 import Configurator from "./Configurator";
 import * as THREE from "three";
-import VeneerTexture from "./textures/plywood02.jpg";
+import VeneerTexture from "./textures/Veneer02.png";
 import PlywoodTexture from "./textures/Veneer01.png";
 
 export default function App() {
@@ -32,9 +32,9 @@ export default function App() {
 
   const colorCodes = {
     green: "#9da18f",
-    black: "#2e2727",
+    grey: "#808080",
     "dusty pink": "#AA644B",
-    grey: "#6F595D",
+    brown: "#6F595D",
     yellow: "#DFA967",
     violet: "#886A8E",
     "classic red": "#b84b4a",

@@ -12,7 +12,7 @@ export default function RowRadioButtonsGroup({
 }) {
   const plywoodColors = [
     "green",
-    "black",
+    "brown",
     "dusty pink",
     "grey",
     "yellow",

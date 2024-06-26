@@ -72,7 +72,7 @@ function OpenCabinet(props) {
         geometry={nodes.top_plank002.geometry}
         material={materials["Material.002"]}
         position={[0, 1.023, -0.744 * widthScale]}
-        scale={[depthScale - 0.05, 2, widthScale - 0.15]} // Adjusted scale based on depth
+        scale={[depthScale - 0.05, 1, widthScale - 0.15]} // Adjusted scale based on depth
       >
         <meshStandardMaterial
           map={texture}

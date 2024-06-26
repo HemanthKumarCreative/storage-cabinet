@@ -12,6 +12,7 @@ import {
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ColorConfig from "./ColorConfig";
 import { color } from "three/examples/jsm/nodes/Nodes.js";
+import { BsGrid3X3 } from "react-icons/bs";
 
 function Configurator({ configuration, setConfiguration }) {
   const handleInputChange = (prop) => (event, newValue) => {
@@ -74,20 +75,14 @@ function Configurator({ configuration, setConfiguration }) {
               value={configuration.style}
               onChange={handleSelectChange("style")}
               aria-label="style"
-              fullWidth
             >
-              <ToggleButton value="Modern" aria-label="Modern" size="small">
-                Modern
-              </ToggleButton>
-              <ToggleButton value="Vintage" aria-label="Vintage" size="small">
-                Vintage
-              </ToggleButton>
               <ToggleButton
-                value="Minimalist"
-                aria-label="Minimalist"
+                value="grid"
+                aria-label="Grid"
                 size="small"
+                disabled={configuration.style === "grid"}
               >
-                Minimalist
+                <BsGrid3X3 style={{ fontSize: "10px", color: "#b84b4a" }} />
               </ToggleButton>
             </ToggleButtonGroup>
           </Grid>

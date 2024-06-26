@@ -15,7 +15,7 @@ import PlywoodTexture from "./textures/Veneer01.png";
 
 export default function App() {
   const [configuration, setConfiguration] = useState({
-    style: "",
+    style: "grid",
     density: 100,
     width: 450,
     height: 293,

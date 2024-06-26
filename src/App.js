@@ -12,6 +12,7 @@ import Configurator from "./Configurator";
 import * as THREE from "three";
 import VeneerTexture from "./textures/Veneer02.png";
 import PlywoodTexture from "./textures/Veneer01.png";
+import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter";
 
 export default function App() {
   const [configuration, setConfiguration] = useState({

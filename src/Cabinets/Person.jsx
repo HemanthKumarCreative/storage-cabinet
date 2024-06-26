@@ -4,7 +4,7 @@ import * as THREE from "three";
 const Texture = ({ texture }) => {
   return (
     <mesh
-      position={[-9.9, -3, 1]}
+      position={[-9.9, -2.8, 1]}
       scale={[0.5, 1.5, 0.1]}
       receiveShadow={false}
     >

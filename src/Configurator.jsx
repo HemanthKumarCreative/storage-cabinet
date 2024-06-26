@@ -13,6 +13,7 @@ import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ColorConfig from "./ColorConfig";
 import { color } from "three/examples/jsm/nodes/Nodes.js";
 import { BsGrid3X3 } from "react-icons/bs";
+import { FcExport } from "react-icons/fc";
 
 function Configurator({ configuration, setConfiguration }) {
   const handleInputChange = (prop) => (event, newValue) => {
@@ -59,7 +60,7 @@ function Configurator({ configuration, setConfiguration }) {
         </Typography>
         <Grid container spacing={2}>
           {/* Style */}
-          <Grid
+          {/* <Grid
             item
             xs={3}
             style={{
@@ -69,8 +70,8 @@ function Configurator({ configuration, setConfiguration }) {
             }}
           >
             <Typography variant="subtitle1">Style</Typography>
-          </Grid>
-          <Grid item xs={6}>
+          </Grid> */}
+          <Grid item xs={10}>
             <ToggleButtonGroup
               value={configuration.style}
               onChange={handleSelectChange("style")}
@@ -85,6 +86,9 @@ function Configurator({ configuration, setConfiguration }) {
                 <BsGrid3X3 style={{ fontSize: "10px", color: "#b84b4a" }} />
               </ToggleButton>
             </ToggleButtonGroup>
+            <ToggleButton value="export" aria-label="Export" size="small">
+              <FcExport style={{ fontSize: "10px", color: "#b84b4a" }} />
+            </ToggleButton>
           </Grid>
 
           {/* Density */}

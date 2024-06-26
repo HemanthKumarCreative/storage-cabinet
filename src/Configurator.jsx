@@ -60,17 +60,19 @@ function Configurator({ configuration, setConfiguration }) {
         </Typography>
         <Grid container spacing={2}>
           {/* Style */}
-          {/* <Grid
+          <Grid
             item
-            xs={3}
+            xs={2}
             style={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
             }}
           >
-            <Typography variant="subtitle1">Style</Typography>
-          </Grid> */}
+            <ToggleButton value="export" aria-label="Export" size="small">
+              <FcExport style={{ fontSize: "20px", color: "#b84b4a" }} />
+            </ToggleButton>{" "}
+          </Grid>
           <Grid item xs={10}>
             <ToggleButtonGroup
               value={configuration.style}
@@ -83,12 +85,9 @@ function Configurator({ configuration, setConfiguration }) {
                 size="small"
                 disabled={configuration.style === "grid"}
               >
-                <BsGrid3X3 style={{ fontSize: "10px", color: "#b84b4a" }} />
+                <BsGrid3X3 style={{ fontSize: "20px", color: "#b84b4a" }} />
               </ToggleButton>
             </ToggleButtonGroup>
-            <ToggleButton value="export" aria-label="Export" size="small">
-              <FcExport style={{ fontSize: "10px", color: "#b84b4a" }} />
-            </ToggleButton>
           </Grid>
 
           {/* Density */}

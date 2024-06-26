@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useGLTF, useTexture } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 import OpenCabinetGlb from "../modals/OpenCabinet.glb";
 import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
 
@@ -32,23 +33,6 @@ function OpenCabinet(props) {
     ? width / 25
     : densityFactor[configWidth][density] / 50;
 
-  // switch (density) {
-  //   case 25:
-  //     widthScale = 4;
-  //     break;
-  //   case 50:
-  //     widthScale = 3;
-  //     break;
-  //   case 75:
-  //     widthScale = 2;
-  //     break;
-  //   case 100:
-  //     widthScale = 1;
-  //     break;
-  //   default:
-  //     widthScale = 1;
-  // }
-
   switch (depth) {
     case "24cm":
       depthScale = 1;
@@ -65,6 +49,18 @@ function OpenCabinet(props) {
       break;
   }
 
+  const { gl, scene } = useThree();
+
+  useEffect(() => {
+    gl.shadowMap.enabled = true;
+    scene.traverse((object) => {
+      if (object.isMesh) {
+        object.castShadow = true;
+        object.receiveShadow = true;
+      }
+    });
+  }, [gl, scene]);
+
   return (
     <group {...props} dispose={null}>
       {/* Top Plank */}
@@ -73,12 +69,10 @@ function OpenCabinet(props) {
         material={materials["Material.002"]}
         position={[0, 1.023, -0.744 * widthScale]}
         scale={[depthScale - 0.05, 1, widthScale - 0.15]} // Adjusted scale based on depth
+        castShadow
+        receiveShadow
       >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          // color="#E2DFD2"
-        />
+        <meshStandardMaterial map={texture} attach="material" />
       </mesh>
       {/* Left Plank */}
       <mesh
@@ -86,6 +80,8 @@ function OpenCabinet(props) {
         material={materials.Material}
         position={[0.002, 0.003, -0.006]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -93,25 +89,14 @@ function OpenCabinet(props) {
           color={colorCodes[color]}
         />
       </mesh>
-      {/* Bottom Plank */}
-      {/* <mesh
-        geometry={nodes.bottom_plank002.geometry}
-        material={materials["Material.004"]}
-        position={[0, -0.267, -0.742 * widthScale]}
-        scale={[depthScale - 0.1, 1, widthScale - 0.1]} // Adjusted scale based on depth
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          // color="#E2DFD2"
-        />
-      </mesh> */}
       {/* Right Plank */}
       <mesh
         geometry={nodes.right_plank002.geometry}
         material={materials["Material.003"]}
         position={[0.004, 0.148, -1.484 * widthScale]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -126,6 +111,8 @@ function OpenCabinet(props) {
           material={materials["Material.005"]}
           position={[depthPositionX, 0.315, -0.746 * widthScale]} // Adjusted position based on depth along X-axis
           scale={[1, 0.958, widthScale]}
+          castShadow
+          receiveShadow
         >
           <meshStandardMaterial
             map={texture}
@@ -140,6 +127,8 @@ function OpenCabinet(props) {
         position={[0.68 * depthScale, 0.43, -1.484 * widthScale]}
         rotation={[0, 0, -Math.PI]}
         scale={[-0.019 * depthScale, 0.55, -0.027 * widthScale]}
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial color="white" attach="material" />
       </mesh>

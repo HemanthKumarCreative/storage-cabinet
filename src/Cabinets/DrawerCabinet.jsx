@@ -81,6 +81,8 @@ function DrawerCabinet(props) {
         material={materials.Material}
         position={[0.002, 0.003, -0.006]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -93,6 +95,8 @@ function DrawerCabinet(props) {
         material={materials["Material.003"]}
         position={[0.004, 0.148, -1.494 * widthScale]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -105,6 +109,8 @@ function DrawerCabinet(props) {
         material={materials["Material.002"]}
         position={[-0.001, 1.023, -0.744 * widthScale]}
         scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -117,6 +123,8 @@ function DrawerCabinet(props) {
         material={materials["Material.004"]}
         position={[-0.008, -0.267, -0.742 * widthScale]}
         scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -129,6 +137,8 @@ function DrawerCabinet(props) {
         material={materials["Material.005"]}
         position={[depthPositionX, 0.315, -0.746 * widthScale]}
         scale={[1, 0.958, widthScale]}
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -141,6 +151,8 @@ function DrawerCabinet(props) {
         position={[0.581, 0.315, -0.754 * widthScale]}
         scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
         onPointerUp={openDoor}
+        castShadow
+        receiveShadow
       >
         <mesh
           geometry={nodes.drawer_back001.geometry}
@@ -148,6 +160,8 @@ function DrawerCabinet(props) {
           rotation={[0, 1.571, 0]}
           scale={[0.924, 0.863, widthScale]}
           position={[doorPositionX, 0, 0]}
+          castShadow
+          receiveShadow
         >
           <meshStandardMaterial map={texture} attach="material" color="white" />
           <mesh
@@ -156,6 +170,8 @@ function DrawerCabinet(props) {
             position={[-0.687, -0.038, -0.697]}
             rotation={[0, -1.571, 0]}
             scale={[0.924, 1, 1.082]}
+            castShadow
+            receiveShadow
           >
             <meshStandardMaterial
               map={texture}
@@ -168,12 +184,16 @@ function DrawerCabinet(props) {
               position={[0.077, -0.435, 0.057]}
               rotation={[-Math.PI, 0, 0]}
               scale={[0.397, 0.025, 0.02]}
+              castShadow
+              receiveShadow
             />
           </mesh>
           <mesh
             geometry={nodes.drawer_back.geometry}
             material={materials["Material.010"]}
             position={[-0.134, -0.031, -1.125]}
+            castShadow
+            receiveShadow
           >
             <meshStandardMaterial
               map={texture}
@@ -187,6 +207,8 @@ function DrawerCabinet(props) {
             position={[-0.134, -0.568, -0.691]}
             rotation={[Math.PI / 2, 0, 0]}
             scale={[1, 0.863, 0.743]}
+            castShadow
+            receiveShadow
           >
             <meshStandardMaterial
               map={texture}
@@ -200,6 +222,8 @@ function DrawerCabinet(props) {
             position={[0.673, -0.038, -0.697]}
             rotation={[0, -1.571, 0]}
             scale={[0.924, 1, 1.082]}
+            castShadow
+            receiveShadow
           >
             <meshStandardMaterial
               map={texture}

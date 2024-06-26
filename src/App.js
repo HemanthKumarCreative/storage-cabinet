@@ -1116,7 +1116,7 @@ export default function App() {
   return (
     <div
       className="canvas-container"
-      style={{ backgroundColor: "rgb(218,218,218)" }}
+      style={{ backgroundColor: "rgb(217,217,217)" }}
     >
       <Canvas
         camera={{ position: [0, 0, 15], fov: 60 }}
@@ -1124,20 +1124,23 @@ export default function App() {
         gl={{ antialias: true }}
         style={{ cursor: "grabbing" }}
       >
-        <ambientLight intensity={2} />
-        <spotLight
-          position={[10, 10, 10]}
-          angle={Math.PI / 6}
-          penumbra={1}
+        <ambientLight intensity={0.5} />
+        <directionalLight
+          position={[5, 5, 5]}
+          intensity={0.5}
           castShadow
           shadow-mapSize-width={1024}
           shadow-mapSize-height={1024}
+          shadow-camera-far={50}
+          shadow-camera-left={-10}
+          shadow-camera-right={10}
+          shadow-camera-top={10}
+          shadow-camera-bottom={-10}
         />
-        <pointLight position={[-10, -10, -10]} intensity={0.5} castShadow />
 
-        {/* <Floor receiveShadow style={{ backgroundColor: "rgb(218,218,218)" }} /> */}
+        <Floor receiveShadow style={{ backgroundColor: "rgb(215,215,214)" }} />
 
-        <group rotation={[0, Math.PI / 8, 0]}>
+        <group rotation={[0, 0, 0]} position={[1, 0, 1]}>
           <Person url={uri} />
           {horizontalAlignment(
             Math.floor(

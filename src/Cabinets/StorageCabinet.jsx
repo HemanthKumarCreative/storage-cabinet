@@ -77,6 +77,8 @@ function StorageCabinet(props) {
         position={[0.002, 0.003, -0.006 * widthScale]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth and width
         map={texture}
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -89,6 +91,8 @@ function StorageCabinet(props) {
         material={materials["Material.003"]}
         position={[0.004, 0.148, -1.484 * widthScale]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth and width
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -101,6 +105,8 @@ function StorageCabinet(props) {
         material={materials["Material.002"]}
         position={[-0.001, 1.023, -0.744 * widthScale]}
         scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth and width
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -113,6 +119,8 @@ function StorageCabinet(props) {
         material={materials["Material.004"]}
         position={[-0.008, -1.025, -0.742 * widthScale]}
         scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -125,6 +133,8 @@ function StorageCabinet(props) {
         material={materials["Material.005"]}
         position={[depthPositionX, 0.001, -0.746 * widthScale]}
         scale={[1, 0.958, widthScale]}
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -139,6 +149,8 @@ function StorageCabinet(props) {
         position={[doorPositionX, 0.033, -1.446 * widthScale]}
         scale={[2, 1, widthScale]}
         onPointerUp={openDoor}
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           color={colorCodes[color]}
@@ -170,6 +182,8 @@ function StorageCabinet(props) {
         position={[0.68 * depthScale, -0.02, -1.484 * widthScale]}
         rotation={[0, 0, -Math.PI]}
         scale={[-0.019 * depthScale, -0.9, -0.027 * widthScale]}
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial color="white" attach="material" />
       </mesh>

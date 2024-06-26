@@ -78,6 +78,8 @@ function SmallCabinet(props) {
         material={materials.Material}
         position={[0.002, 0.003, -0.006]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -90,6 +92,8 @@ function SmallCabinet(props) {
         material={materials["Material.003"]}
         position={[0.004, 0.148, -1.484 * widthScale]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -110,6 +114,8 @@ function SmallCabinet(props) {
         material={materials["Material.004"]}
         position={[-0.008, -0.267, -0.742 * widthScale]}
         scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -122,6 +128,8 @@ function SmallCabinet(props) {
         material={materials["Material.005"]}
         position={[depthPositionX, 0.315, -0.746 * widthScale]}
         scale={[1, 0.958, widthScale]}
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}
@@ -137,6 +145,8 @@ function SmallCabinet(props) {
         rotation={[0, 0, 0]} // Initial rotation state
         scale={[2, 1, widthScale]}
         onPointerUp={openDoor}
+        castShadow
+        receiveShadow
       >
         <meshStandardMaterial
           map={texture}

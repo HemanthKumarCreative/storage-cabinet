@@ -22,6 +22,8 @@ function DrawerCabinet(props) {
     configWidth,
     density,
     textureUrl,
+    color,
+    colorCodes,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -80,7 +82,11 @@ function DrawerCabinet(props) {
         position={[0.002, 0.003, -0.006]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       >
-        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       <mesh
         geometry={nodes.right_plank003.geometry}
@@ -88,7 +94,11 @@ function DrawerCabinet(props) {
         position={[0.004, 0.148, -1.494 * widthScale]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       >
-        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       <mesh
         geometry={nodes.top_plank003.geometry}
@@ -96,7 +106,11 @@ function DrawerCabinet(props) {
         position={[-0.001, 1.023, -0.744 * widthScale]}
         scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth
       >
-        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       <mesh
         geometry={nodes.bottom_plank003.geometry}
@@ -104,7 +118,11 @@ function DrawerCabinet(props) {
         position={[-0.008, -0.267, -0.742 * widthScale]}
         scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
       >
-        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       <mesh
         geometry={nodes.back_plank003.geometry}
@@ -112,7 +130,11 @@ function DrawerCabinet(props) {
         position={[depthPositionX, 0.315, -0.746 * widthScale]}
         scale={[1, 0.958, widthScale]}
       >
-        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       <group
         ref={drawerRef}
@@ -127,11 +149,7 @@ function DrawerCabinet(props) {
           scale={[0.924, 0.863, widthScale]}
           position={[doorPositionX, 0, 0]}
         >
-          <meshStandardMaterial
-            map={texture}
-            attach="material"
-            // color="#E2DFD2"
-          />
+          <meshStandardMaterial map={texture} attach="material" color="white" />
           <mesh
             geometry={nodes.drawe_left.geometry}
             material={materials["Material.009"]}
@@ -160,7 +178,7 @@ function DrawerCabinet(props) {
             <meshStandardMaterial
               map={texture}
               attach="material"
-              color="#E2DFD2"
+              color={colorCodes[color]}
             />
           </mesh>
           <mesh

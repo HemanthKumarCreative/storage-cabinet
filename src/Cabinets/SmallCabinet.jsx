@@ -22,6 +22,8 @@ function SmallCabinet(props) {
     configWidth,
     density,
     textureUrl,
+    color,
+    colorCodes,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -77,7 +79,11 @@ function SmallCabinet(props) {
         position={[0.002, 0.003, -0.006]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       >
-        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       <mesh
         geometry={nodes.right_plank001.geometry}
@@ -85,7 +91,11 @@ function SmallCabinet(props) {
         position={[0.004, 0.148, -1.484 * widthScale]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       >
-        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       {/* <mesh
         geometry={nodes.top_plank001.geometry}
@@ -101,7 +111,11 @@ function SmallCabinet(props) {
         position={[-0.008, -0.267, -0.742 * widthScale]}
         scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
       >
-        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       <mesh
         geometry={nodes.back_plank001.geometry}
@@ -109,7 +123,11 @@ function SmallCabinet(props) {
         position={[depthPositionX, 0.315, -0.746 * widthScale]}
         scale={[1, 0.958, widthScale]}
       >
-        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       <mesh
         ref={doorRef}
@@ -120,7 +138,11 @@ function SmallCabinet(props) {
         scale={[2, 1, widthScale]}
         onPointerUp={openDoor}
       >
-        <meshStandardMaterial map={texture} attach="material" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       <mesh
         geometry={nodes.hinge_top001.geometry}

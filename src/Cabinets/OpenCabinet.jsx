@@ -18,6 +18,8 @@ function OpenCabinet(props) {
     densityFactor,
     configWidth,
     textureUrl,
+    color,
+    colorCodes,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -85,10 +87,14 @@ function OpenCabinet(props) {
         position={[0.002, 0.003, -0.006]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       >
-        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       {/* Bottom Plank */}
-      <mesh
+      {/* <mesh
         geometry={nodes.bottom_plank002.geometry}
         material={materials["Material.004"]}
         position={[0, -0.267, -0.742 * widthScale]}
@@ -99,7 +105,7 @@ function OpenCabinet(props) {
           attach="material"
           // color="#E2DFD2"
         />
-      </mesh>
+      </mesh> */}
       {/* Right Plank */}
       <mesh
         geometry={nodes.right_plank002.geometry}
@@ -107,7 +113,11 @@ function OpenCabinet(props) {
         position={[0.004, 0.148, -1.484 * widthScale]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
       >
-        <meshStandardMaterial map={texture} attach="material" color="#E2DFD2" />
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
       </mesh>
       {/* Back Plank */}
       {backPanel && (
@@ -120,7 +130,7 @@ function OpenCabinet(props) {
           <meshStandardMaterial
             map={texture}
             attach="material"
-            color="#E2DFD2"
+            color={colorCodes[color]}
           />
         </mesh>
       )}

@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ColorConfig from "./ColorConfig";
+import { color } from "three/examples/jsm/nodes/Nodes.js";
 
 function Configurator({ configuration, setConfiguration }) {
   const handleInputChange = (prop) => (event, newValue) => {
@@ -316,7 +317,11 @@ function Configurator({ configuration, setConfiguration }) {
             <Typography variant="subtitle1">Colour</Typography>
           </Grid> */}
           <Grid item xs={12}>
-            <ColorConfig finish={configuration.finish} />
+            <ColorConfig
+              finish={configuration.finish}
+              handleSelectChange={handleSelectChange}
+              color={configuration.color}
+            />
           </Grid>
           {/* <Grid item xs={2}>
             <Tooltip title="Select the color of the cabinet">

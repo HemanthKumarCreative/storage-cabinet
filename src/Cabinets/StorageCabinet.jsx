@@ -18,6 +18,8 @@ function StorageCabinet(props) {
     configWidth,
     density,
     textureUrl,
+    color,
+    colorCodes,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -76,7 +78,11 @@ function StorageCabinet(props) {
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth and width
         map={texture}
       >
-        <meshStandardMaterial map={texture} color="#E2DFD2" attach="material" />
+        <meshStandardMaterial
+          map={texture}
+          color={colorCodes[color]}
+          attach="material"
+        />
       </mesh>
       <mesh
         geometry={nodes.right_plank.geometry}
@@ -84,7 +90,11 @@ function StorageCabinet(props) {
         position={[0.004, 0.148, -1.484 * widthScale]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth and width
       >
-        <meshStandardMaterial map={texture} color="#E2DFD2" attach="material" />
+        <meshStandardMaterial
+          map={texture}
+          color={colorCodes[color]}
+          attach="material"
+        />
       </mesh>
       <mesh
         geometry={nodes.top_plank.geometry}
@@ -92,7 +102,11 @@ function StorageCabinet(props) {
         position={[-0.001, 1.023, -0.744 * widthScale]}
         scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth and width
       >
-        <meshStandardMaterial map={texture} color="#E2DFD2" attach="material" />
+        <meshStandardMaterial
+          map={texture}
+          color={colorCodes[color]}
+          attach="material"
+        />
       </mesh>
       <mesh
         geometry={nodes.bottom_plank.geometry}
@@ -100,7 +114,11 @@ function StorageCabinet(props) {
         position={[-0.008, -1.025, -0.742 * widthScale]}
         scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
       >
-        <meshStandardMaterial map={texture} color="#E2DFD2" attach="material" />
+        <meshStandardMaterial
+          map={texture}
+          color={colorCodes[color]}
+          attach="material"
+        />
       </mesh>
       <mesh
         geometry={nodes.back_plank.geometry}
@@ -108,7 +126,11 @@ function StorageCabinet(props) {
         position={[depthPositionX, 0.001, -0.746 * widthScale]}
         scale={[1, 0.958, widthScale]}
       >
-        <meshStandardMaterial map={texture} color="#E2DFD2" attach="material" />
+        <meshStandardMaterial
+          map={texture}
+          color={colorCodes[color]}
+          attach="material"
+        />
       </mesh>
       <mesh
         ref={doorRef}
@@ -118,7 +140,11 @@ function StorageCabinet(props) {
         scale={[2, 1, widthScale]}
         onPointerUp={openDoor}
       >
-        <meshStandardMaterial map={texture} attach="material" />
+        <meshStandardMaterial
+          color={colorCodes[color]}
+          map={texture}
+          attach="material"
+        />
       </mesh>
       <mesh
         geometry={nodes.hinge_top.geometry}

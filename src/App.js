@@ -10,8 +10,8 @@ import Person from "./Cabinets/Person";
 import Floor from "./Cabinets/Floor";
 import Configurator from "./Configurator";
 import * as THREE from "three";
-import PlywoodTexture from "./textures/plywood02.jpg";
-import VeneerTexture from "./textures/Veneer02.png";
+import VeneerTexture from "./textures/plywood02.jpg";
+import PlywoodTexture from "./textures/Veneer01.png";
 
 export default function App() {
   const [configuration, setConfiguration] = useState({
@@ -21,13 +21,27 @@ export default function App() {
     height: 293,
     depth: "24cm", // Initial depth value
     backPanel: "ON",
-    finish: "Veneer",
-    color: "",
+    finish: "Plywood",
+    color: "green",
   });
 
   const textureUrl = {
     Plywood: PlywoodTexture,
     Veneer: VeneerTexture,
+  };
+
+  const colorCodes = {
+    green: "#9da18f",
+    black: "#2e2727",
+    "dusty pink": "#AA644B",
+    grey: "#6F595D",
+    yellow: "#DFA967",
+    violet: "#886A8E",
+    "classic red": "#b84b4a",
+    "dark brown": "#67272A",
+    Walnut: "#957b63",
+    Oak: "#ce9f6f",
+    "White oak": "#D8B589",
   };
 
   const densityFactor = {
@@ -119,6 +133,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -131,6 +147,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -143,6 +161,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
         </group>
       );
@@ -160,6 +180,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, -2.3, 0]}
@@ -172,6 +194,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -184,6 +208,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -196,6 +222,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
         </group>
       );
@@ -213,6 +241,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, -1.1, 0]}
@@ -225,6 +255,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, -2.3, 0]}
@@ -237,6 +269,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -249,6 +283,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -261,6 +297,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
         </group>
       );
@@ -278,6 +316,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, 0.15, 0]}
@@ -289,6 +329,8 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, -1, 0]}
@@ -300,6 +342,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -311,6 +355,8 @@ export default function App() {
             density={configuration.density}
             densityFactor={densityFactor}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -323,6 +369,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -335,6 +383,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
         </group>
       );
@@ -352,6 +402,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, 1.4, 0]}
@@ -364,6 +416,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, 0.2, 0]}
@@ -376,6 +430,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, -1.0, 0]}
@@ -388,6 +444,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, -2.2, 0]}
@@ -400,6 +458,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -412,6 +472,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -424,6 +486,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
         </group>
       );
@@ -441,6 +505,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <SmallCabinet
             position={[0, 2.4, 0]}
@@ -453,6 +519,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, 1.15, 0]}
@@ -465,6 +533,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, 0, 0]}
@@ -477,6 +547,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, -1.15, 0]}
@@ -489,6 +561,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <OpenCabinet
             position={[0, -2.3, 0]}
@@ -501,6 +575,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <DrawerCabinet
             position={[0, -3.5, 0]}
@@ -513,6 +589,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
           <StorageCabinet
             position={[0, -4.8, 0]}
@@ -525,6 +603,8 @@ export default function App() {
             densityFactor={densityFactor}
             configWidth={configuration.width}
             textureUrl={textureUrl[configuration.finish]}
+            color={configuration.color}
+            colorCodes={colorCodes}
           />
         </group>
       );

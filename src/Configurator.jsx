@@ -150,6 +150,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
               size="small"
               step={null}
               marks={widthMap}
+              color="warning"
             />
           </Grid>
           <Grid item xs={2}>
@@ -173,6 +174,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
               step={null}
               marks={heightMap} // Add marks to show stepper behavior
               size="small"
+              color="warning"
             />
           </Grid>
           <Grid item xs={2}>

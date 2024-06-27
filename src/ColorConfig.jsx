@@ -32,13 +32,15 @@ export default function RowRadioButtonsGroup({
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
         onChange={handleSelectChange("color")}
+        color="warning"
       >
         {colors.map((c) => (
           <FormControlLabel
             value={c}
-            control={<Radio />}
+            control={<Radio color="warning" />}
             label={c}
             checked={color === c}
+            color="warning"
           />
         ))}
       </RadioGroup>

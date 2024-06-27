@@ -366,7 +366,13 @@ export default function App() {
   return (
     <div
       className="canvas-container"
-      style={{ backgroundColor: "rgb(217,217,217)", position: "relative" }}
+      style={{
+        backgroundColor: "rgb(217,217,217)",
+        position: "relative",
+        width: "100%",
+        maxWidth: "1536px",
+        maxHeight: "728px",
+      }}
     >
       <Canvas
         camera={{ position: [0, 0, 15], fov: 60 }}

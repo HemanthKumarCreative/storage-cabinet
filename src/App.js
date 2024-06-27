@@ -1152,7 +1152,7 @@ export default function App() {
         (gltf) => {
           console.log(gltf);
           // downloadJSON(gltf);
-          saveArrayBuffer(gltf, "samuham.glb");
+          saveArrayBuffer(gltf, "cabinet.glb");
         },
         (err) => {
           console.log(err);

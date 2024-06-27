@@ -16,6 +16,7 @@ const Texture = ({ texture }) => {
 
 const Image = ({ url }) => {
   const texture = useMemo(() => new THREE.TextureLoader().load(url), [url]);
+
   return (
     <group style={{ background: "rgb(209,209,209)" }} receiveShadow={false}>
       <ambientLight intensity={1} />

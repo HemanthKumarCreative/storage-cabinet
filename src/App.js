@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from "react";
-import { Canvas } from "@react-three/fiber";
+import React, { useState, useMemo, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import "./App.css"; // Import the CSS file
 import SmallCabinet from "./Cabinets/SmallCabinet";
@@ -1129,6 +1129,40 @@ export default function App() {
 
   const uri = "https://pics.io/preview/66792a63548394472778ddc6/thumbnail";
 
+  const sceneRef = useRef();
+
+  console.log({ sceneRef });
+  function save(blob, fileName) {
+    const link = document.createElement("a");
+    document.body.appendChild(link);
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
+  }
+
+  function saveArrayBuffer(buffer, fileName) {
+    save(new Blob([buffer], { type: "application/octet-stream" }), fileName);
+  }
+
+  const exportGLTF = () => {
+    const exporter = new GLTFExporter();
+    if (sceneRef.current) {
+      exporter.parse(
+        sceneRef.current,
+        (gltf) => {
+          console.log(gltf);
+          // downloadJSON(gltf);
+          saveArrayBuffer(gltf, "samuham.glb");
+        },
+        (err) => {
+          console.log(err);
+        },
+        { binary: true }
+      );
+    }
+  };
+
+  console.log({ sceneRef });
   return (
     <div
       className="canvas-container"
@@ -1139,6 +1173,7 @@ export default function App() {
         shadows
         gl={{ antialias: true }}
         style={{ cursor: "grabbing" }}
+        ref={sceneRef}
       >
         <ambientLight intensity={0.5} />
         <directionalLight
@@ -1170,6 +1205,7 @@ export default function App() {
       <Configurator
         configuration={configuration}
         setConfiguration={setConfiguration}
+        exportGLTF={exportGLTF}
       />
     </div>
   );

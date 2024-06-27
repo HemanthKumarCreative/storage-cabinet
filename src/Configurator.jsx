@@ -15,7 +15,7 @@ import { color } from "three/examples/jsm/nodes/Nodes.js";
 import { BsGrid3X3 } from "react-icons/bs";
 import { FcExport } from "react-icons/fc";
 
-function Configurator({ configuration, setConfiguration }) {
+function Configurator({ configuration, setConfiguration, exportGLTF }) {
   const handleInputChange = (prop) => (event, newValue) => {
     setConfiguration({ ...configuration, [prop]: newValue });
   };
@@ -69,11 +69,16 @@ function Configurator({ configuration, setConfiguration }) {
               alignItems: "center",
             }}
           >
-            <ToggleButton value="export" aria-label="Export" size="small">
+            <ToggleButton
+              value="export"
+              aria-label="Export"
+              size="small"
+              onClick={exportGLTF}
+            >
               <FcExport style={{ fontSize: "20px", color: "#b84b4a" }} />
-            </ToggleButton>{" "}
+            </ToggleButton>
           </Grid>
-          <Grid item xs={10}>
+          <Grid item xs={8}>
             <ToggleButtonGroup
               value={configuration.style}
               onChange={handleSelectChange("style")}

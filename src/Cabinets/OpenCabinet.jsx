@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF, useTexture, Text } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import OpenCabinetGlb from "../modals/OpenCabinet.glb";
 import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
@@ -23,6 +23,7 @@ function OpenCabinet(props) {
     color,
     colorCodes,
     books,
+    dimensions,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -62,6 +63,24 @@ function OpenCabinet(props) {
       }
     });
   }, [gl, scene]);
+
+  // Calculate text sizes function
+  const textSize = (text, fontSize) => {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    context.font = `${fontSize}px Arial`;
+    const metrics = context.measureText(text);
+    return { width: metrics.width, height: fontSize };
+  };
+
+  const heightText = `H : ${(depthScale / 2) * 100}`;
+  const heightSize = textSize(heightText, 24);
+
+  const widthText = `W : ${widthScale * 50}`;
+  const widthSize = textSize(widthText, 24);
+
+  const depthText = `D : ${depthScale * 40}`;
+  const depthSize = textSize(depthText, 24);
 
   return (
     <group {...props} dispose={null}>
@@ -123,6 +142,7 @@ function OpenCabinet(props) {
           />
         </mesh>
       )}
+      {/* Additional Cabinet Component */}
       {density > 50 && (
         <mesh
           geometry={storageCabinetNodes.edges.geometry}
@@ -136,11 +156,77 @@ function OpenCabinet(props) {
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
       )}
+      {/* Display Books */}
       {books && <Book />}
+      {/* Dimensions */}
+      {/* Height */}
+      {dimensions && (
+        <group position={[0, 0.6, -0.8]}>
+          <mesh rotation={[0, Math.PI / 2, 0]}>
+            <planeGeometry
+              args={[heightSize.width / 100, heightSize.height / 100]}
+            />
+            <meshBasicMaterial color="white" />
+          </mesh>
+          <Text
+            rotation={[0, Math.PI / 2, 0]}
+            position={[0, 0, 0.01]}
+            fontSize={0.2}
+            color="black"
+            anchorX="center"
+            anchorY="middle"
+          >
+            {heightText}
+          </Text>
+        </group>
+      )}
+      {/* Width */}
+      {dimensions && (
+        <group position={[0, 0.3, -0.8]}>
+          <mesh rotation={[0, Math.PI / 2, 0]}>
+            <planeGeometry
+              args={[widthSize.width / 100, widthSize.height / 100]}
+            />
+            <meshBasicMaterial color="white" />
+          </mesh>
+          <Text
+            rotation={[0, Math.PI / 2, 0]}
+            position={[0, 0, 0.01]}
+            fontSize={0.2}
+            color="black"
+            anchorX="center"
+            anchorY="middle"
+          >
+            {widthText}
+          </Text>
+        </group>
+      )}
+      {/* Depth */}
+      {dimensions && (
+        <group position={[0, 0, -0.8]}>
+          <mesh rotation={[0, Math.PI / 2, 0]}>
+            <planeGeometry
+              args={[depthSize.width / 100, depthSize.height / 100]}
+            />
+            <meshBasicMaterial color="white" />
+          </mesh>
+          <Text
+            rotation={[0, Math.PI / 2, 0]}
+            position={[0, 0, 0.01]}
+            fontSize={0.2}
+            color="black"
+            anchorX="center"
+            anchorY="middle"
+          >
+            {depthText}
+          </Text>
+        </group>
+      )}
     </group>
   );
 }
 
 export default OpenCabinet;
 
+// Preload GLTF model
 useGLTF.preload(OpenCabinetGlb);

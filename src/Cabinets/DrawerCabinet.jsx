@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF, useTexture, Text } from "@react-three/drei";
 import * as THREE from "three";
 import DrawerCabinetGlb from "../modals/DrawerCabinetUpdated.glb";
 import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
@@ -13,9 +13,11 @@ function DrawerCabinet(props) {
   const storageCabinetNodes = StorageCabinetNode.nodes;
   const storageCabinetMaterials = StorageCabinetNode.materials;
 
-  // Destructure props to get depth
+  // Destructure props to get depth, width, and height
   const {
     depth,
+    width,
+    height,
     backPanel,
     specialWidth,
     densityFactor,
@@ -24,10 +26,11 @@ function DrawerCabinet(props) {
     textureUrl,
     color,
     colorCodes,
+    dimensions,
   } = props;
 
   const texture = useTexture(textureUrl);
-  const width = specialWidth === 0 ? 50 : specialWidth;
+  const calculatedWidth = specialWidth === 0 ? 50 : specialWidth;
 
   useFrame(() => {
     if (drawerRef.current) {
@@ -42,7 +45,7 @@ function DrawerCabinet(props) {
   // Adjust scales based on depth
   let depthScale = 1;
   let widthScale = specialWidth
-    ? width / 25
+    ? calculatedWidth / 25
     : densityFactor[configWidth][density] / 50;
   let depthPositionX = -0.595;
   let doorPositionX = 0.1;
@@ -76,18 +79,37 @@ function DrawerCabinet(props) {
       break;
   }
 
-  const openDoor = (event) => {
+  const openDrawer = (event) => {
     event.stopPropagation();
     setHovered(!hovered);
   };
 
+  const textSize = (text, fontSize) => {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    context.font = `${fontSize}px Arial`;
+    const metrics = context.measureText(text);
+    return { width: metrics.width, height: fontSize };
+  };
+
+  const depthText = `D : ${depthScale * 40}`;
+  const depthSize = textSize(depthText, 24);
+
+  const widthText = `W : ${width}`;
+  const widthSize = textSize(widthText, 24);
+
+  const heightText = `H : ${height}`;
+  const heightSize = textSize(heightText, 24);
+
   return (
     <group {...props} dispose={null}>
+      {/* Meshes for cabinet components */}
+      {/* Left plank */}
       <mesh
         geometry={nodes.left_plank003.geometry}
         material={materials.Material}
         position={[0.002, 0.003, -0.006]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        scale={[depthScale, 1, 1]}
         castShadow
         receiveShadow
       >
@@ -97,11 +119,12 @@ function DrawerCabinet(props) {
           color={colorCodes[color]}
         />
       </mesh>
+      {/* Right plank */}
       <mesh
         geometry={nodes.right_plank003.geometry}
         material={materials["Material.003"]}
         position={[0.004, 0.148, -1.49 * widthScale]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+        scale={[depthScale, 1, 1]}
         castShadow
         receiveShadow
       >
@@ -111,11 +134,12 @@ function DrawerCabinet(props) {
           color={colorCodes[color]}
         />
       </mesh>
+      {/* Top plank */}
       <mesh
         geometry={nodes.top_plank003.geometry}
         material={materials["Material.002"]}
         position={[-0.001, 1.023, -0.735 * widthScale]}
-        scale={[depthScale, 2, widthScale - decimal[density]]} // Adjusted scale based on depth
+        scale={[depthScale, 2, widthScale - decimal[density]]}
         castShadow
         receiveShadow
       >
@@ -125,11 +149,12 @@ function DrawerCabinet(props) {
           color={colorCodes[color]}
         />
       </mesh>
+      {/* Bottom plank */}
       <mesh
         geometry={nodes.bottom_plank003.geometry}
         material={materials["Material.004"]}
         position={[-0.008, -0.267, -0.735 * widthScale]}
-        scale={[depthScale, 1, widthScale - decimal[density]]} // Adjusted scale based on depth
+        scale={[depthScale, 1, widthScale - decimal[density]]}
         castShadow
         receiveShadow
       >
@@ -139,6 +164,7 @@ function DrawerCabinet(props) {
           color={colorCodes[color]}
         />
       </mesh>
+      {/* Back plank */}
       <mesh
         geometry={nodes.back_plank003.geometry}
         material={materials["Material.005"]}
@@ -153,14 +179,16 @@ function DrawerCabinet(props) {
           color={colorCodes[color]}
         />
       </mesh>
+      {/* Drawer group */}
       <group
         ref={drawerRef}
         position={[0.581, 0.315, -0.754 * widthScale]}
-        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
-        onPointerUp={openDoor}
+        scale={[depthScale, 1, widthScale]}
+        onPointerUp={openDrawer}
         castShadow
         receiveShadow
       >
+        {/* Drawer mesh */}
         <mesh
           geometry={nodes.drawer_back001.geometry}
           material={materials["Material.007"]}
@@ -171,6 +199,7 @@ function DrawerCabinet(props) {
           receiveShadow
         >
           <meshStandardMaterial map={texture} attach="material" color="white" />
+          {/* Left side of drawer */}
           <mesh
             geometry={nodes.drawe_left.geometry}
             material={materials["Material.009"]}
@@ -185,6 +214,7 @@ function DrawerCabinet(props) {
               attach="material"
               color="#E2DFD2"
             />
+            {/* Slider left */}
             <mesh
               geometry={nodes.slider_left.geometry}
               material={materials["Material.011"]}
@@ -195,6 +225,7 @@ function DrawerCabinet(props) {
               receiveShadow
             />
           </mesh>
+          {/* Back of drawer */}
           <mesh
             geometry={nodes.drawer_back.geometry}
             material={materials["Material.010"]}
@@ -208,6 +239,7 @@ function DrawerCabinet(props) {
               color={colorCodes[color]}
             />
           </mesh>
+          {/* Bottom of drawer */}
           <mesh
             geometry={nodes.drawer_bottom.geometry}
             material={materials["Material.034"]}
@@ -223,6 +255,7 @@ function DrawerCabinet(props) {
               color="#E2DFD2"
             />
           </mesh>
+          {/* Right side of drawer */}
           <mesh
             geometry={nodes.drawer_right.geometry}
             material={materials["Material.008"]}
@@ -237,22 +270,77 @@ function DrawerCabinet(props) {
               attach="material"
               color="#E2DFD2"
             />
-            <mesh
-              geometry={nodes.slider_right.geometry}
-              material={materials["Material.011"]}
-              position={[0.119, -0.435, -0.052]}
-              scale={[0.397, 0.025, 0.02]}
-            />
+            {/* Text and background chip for depth */}
+            {dimensions && (
+              <group position={[0.8, -0.3, 0.6]}>
+                {/* Background plane for width */}
+                <mesh rotation={[0, Math.PI / 2, 0]}>
+                  <planeGeometry
+                    args={[widthSize.width / 100, widthSize.height / 100]}
+                  />
+                  <meshBasicMaterial color="grey" />
+                </mesh>
+                {/* Text for width */}
+                <Text
+                  color="white"
+                  fontSize={0.2}
+                  maxWidth={widthSize.width / 100}
+                  lineHeight={1}
+                  textAlign="center"
+                  position={[0, 0, 0.001]}
+                  rotation={[0, Math.PI / 2, 0]}
+                >
+                  {widthText}
+                </Text>
+              </group>
+            )}
+            {/* Text and background chip for depth */}
+            {dimensions && (
+              <group position={[0.8, 0, 0.6]}>
+                <mesh rotation={[0, Math.PI / 2, 0]}>
+                  <planeGeometry
+                    args={[depthSize.width / 100, depthSize.height / 100]}
+                  />
+                  <meshBasicMaterial color="grey" />
+                </mesh>
+                <Text
+                  color="white"
+                  fontSize={0.2}
+                  maxWidth={depthSize.width / 100}
+                  lineHeight={1}
+                  textAlign="center"
+                  position={[0, 0, 0.001]}
+                  rotation={[0, Math.PI / 2, 0]}
+                >
+                  {depthText}
+                </Text>
+              </group>
+            )}
+            {/* Text and background chip for height */}
+            {dimensions && (
+              <group position={[0.8, 0.3, 0.6]}>
+                {/* Background plane for height */}
+                <mesh rotation={[0, Math.PI / 2, 0]}>
+                  <planeGeometry
+                    args={[heightSize.width / 100, heightSize.height / 100]}
+                  />
+                  <meshBasicMaterial color="grey" />
+                </mesh>
+                {/* Text for height */}
+                <Text
+                  color="white"
+                  fontSize={0.2}
+                  maxWidth={heightSize.width / 100}
+                  lineHeight={1}
+                  textAlign="center"
+                  position={[0, 0, 0.001]}
+                  rotation={[0, Math.PI / 2, 0]}
+                >
+                  {heightText}
+                </Text>
+              </group>
+            )}
           </mesh>
-          {/* <mesh
-            geometry={storageCabinetNodes.edges.geometry}
-            material={storageCabinetMaterials["Material.012"]}
-            position={[0.69 * widthScale, -0.02, -0.8 * depthScale]}
-            rotation={[0, 0, -Math.PI]}
-            scale={[-0.02 * widthScale, -0.5, -0.009 * depthScale]}
-          >
-            <meshStandardMaterial color="white" attach="material" />
-          </mesh> */}
         </mesh>
       </group>
     </group>

@@ -401,6 +401,44 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
               </ToggleButton>
             </ToggleButtonGroup>
           </Grid>
+          <Grid
+            item
+            xs={4}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="subtitle1">Dimensions</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <ToggleButtonGroup
+              value={configuration.dimensions}
+              onChange={handleSelectChange("dimensions")}
+              aria-label="dimensions"
+              fullWidth
+            >
+              <ToggleButton
+                value="OFF"
+                aria-label="OFF"
+                size="small"
+                disabled={configuration.dimensions === "OFF"}
+                color="warning"
+              >
+                OFF
+              </ToggleButton>
+              <ToggleButton
+                value="ON"
+                aria-label="ON"
+                size="small"
+                disabled={configuration.dimensions === "ON"}
+                color="warning"
+              >
+                ON
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </Grid>
         </Grid>
       </CardContent>
     </Card>

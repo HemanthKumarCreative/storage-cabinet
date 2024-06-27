@@ -27,6 +27,7 @@ export default function App() {
     finish: "Plywood",
     color: "green",
     books: "OFF",
+    dimensions: "OFF",
   });
 
   const textureUrl = {
@@ -187,6 +188,7 @@ export default function App() {
               textureUrl={textureUrl[configuration.finish]}
               color={configuration.color}
               colorCodes={colorCodes}
+              dimensions={configuration.dimensions === "ON"}
             />
           )}
           {verticalCabinConfig[configuration.height].smallCabinet && (
@@ -205,6 +207,7 @@ export default function App() {
               textureUrl={textureUrl[configuration.finish]}
               color={configuration.color}
               colorCodes={colorCodes}
+              dimensions={configuration.dimensions === "ON"}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet01 && (
@@ -224,6 +227,7 @@ export default function App() {
               color={configuration.color}
               colorCodes={colorCodes}
               books={configuration.books === "ON"}
+              dimensions={configuration.dimensions === "ON"}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet02 && (
@@ -243,6 +247,7 @@ export default function App() {
               color={configuration.color}
               colorCodes={colorCodes}
               books={configuration.books === "ON"}
+              dimensions={configuration.dimensions === "ON"}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet03 && (
@@ -262,6 +267,7 @@ export default function App() {
               color={configuration.color}
               colorCodes={colorCodes}
               books={configuration.books === "ON"}
+              dimensions={configuration.dimensions === "ON"}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet04 && (
@@ -281,6 +287,7 @@ export default function App() {
               color={configuration.color}
               colorCodes={colorCodes}
               books={configuration.books === "ON"}
+              dimensions={configuration.dimensions === "ON"}
             />
           )}
           {verticalCabinConfig[configuration.height].drawerCabinet && (
@@ -299,6 +306,7 @@ export default function App() {
               textureUrl={textureUrl[configuration.finish]}
               color={configuration.color}
               colorCodes={colorCodes}
+              dimensions={configuration.dimensions === "ON"}
             />
           )}
           {verticalCabinConfig[configuration.height].storageCabinet02 && (
@@ -318,6 +326,7 @@ export default function App() {
               textureUrl={textureUrl[configuration.finish]}
               color={configuration.color}
               colorCodes={colorCodes}
+              dimensions={configuration.dimensions === "ON"}
             />
           )}
         </group>
@@ -413,33 +422,41 @@ export default function App() {
         setConfiguration={setConfiguration}
         exportGLTF={exportGLTF}
       />
-      <div
-        style={{
-          position: "absolute",
-          left: `${300 + configuration.width + configuration.width / 2.5}px`,
-          bottom: "90px",
-        }}
-      >
-        <VerticalRule height={configuration.height} value={25} />
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          left: `230px`,
-          bottom: `${configuration.height + configuration.height / 20 + 150}px`,
-        }}
-      >
-        <HorizontalRule value={25} width={configuration.width} />
-      </div>
-      <div
-        style={{
-          position: "absolute",
-          left: `70px`,
-          bottom: "90px",
-        }}
-      >
-        <VerticalRule height={165} value={25} />
-      </div>
+      {configuration.dimensions === "ON" && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              left: `${
+                300 + configuration.width + configuration.width / 2.5
+              }px`,
+              bottom: "90px",
+            }}
+          >
+            <VerticalRule height={configuration.height} value={25} />
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              left: `230px`,
+              bottom: `${
+                configuration.height + configuration.height / 20 + 150
+              }px`,
+            }}
+          >
+            <HorizontalRule value={25} width={configuration.width} />
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              left: `70px`,
+              bottom: "90px",
+            }}
+          >
+            <VerticalRule height={165} value={25} />
+          </div>
+        </>
+      )}
     </div>
   );
 }

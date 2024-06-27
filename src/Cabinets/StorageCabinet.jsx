@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF, useTexture, Text } from "@react-three/drei";
 import * as THREE from "three";
 import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
 
@@ -20,6 +20,7 @@ function StorageCabinet(props) {
     textureUrl,
     color,
     colorCodes,
+    dimensions,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -75,6 +76,23 @@ function StorageCabinet(props) {
     50: 0.08,
     25: 0.14,
   };
+
+  const textSize = (text, fontSize) => {
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    context.font = `${fontSize}px Arial`;
+    const metrics = context.measureText(text);
+    return { width: metrics.width, height: fontSize };
+  };
+
+  const heightText = `H : ${depthScale * 100}`;
+  const heightSize = textSize(heightText, 24);
+
+  const widthText = `W : ${widthScale * 50}`;
+  const widthSize = textSize(widthText, 24);
+
+  const depthText = `D : ${depthScale * 40}`;
+  const depthSize = textSize(depthText, 24);
 
   return (
     <group {...props} dispose={null}>
@@ -139,7 +157,7 @@ function StorageCabinet(props) {
         geometry={nodes.back_plank.geometry}
         material={materials["Material.005"]}
         position={[depthPositionX, 0.001, -0.746 * widthScale]}
-        scale={[1, 0.958, widthScale]}
+        scale={[1, 0.958, 1]}
         castShadow
         receiveShadow
       >
@@ -168,6 +186,69 @@ function StorageCabinet(props) {
           map={texture}
           attach="material"
         />
+        {/* Text and background chip for height */}
+        {dimensions && (
+          <group position={[0, 0.5, 0.7]}>
+            <mesh rotation={[0, Math.PI / 2, 0]}>
+              <planeGeometry
+                args={[heightSize.width / 100, heightSize.height / 100]}
+              />
+              <meshBasicMaterial color="white" />
+            </mesh>
+            <Text
+              rotation={[0, Math.PI / 2, 0]}
+              position={[0, 0, 0.01]}
+              fontSize={0.2}
+              color="black"
+              anchorX="center"
+              anchorY="middle"
+            >
+              {heightText}
+            </Text>
+          </group>
+        )}
+        {/* Text and background chip for width */}
+        {dimensions && (
+          <group position={[0, 0, 0.7]}>
+            <mesh rotation={[0, Math.PI / 2, 0]}>
+              <planeGeometry
+                args={[widthSize.width / 100, widthSize.height / 100]}
+              />
+              <meshBasicMaterial color="white" />
+            </mesh>
+            <Text
+              rotation={[0, Math.PI / 2, 0]}
+              position={[0, 0, 0.01]}
+              fontSize={0.2}
+              color="black"
+              anchorX="center"
+              anchorY="middle"
+            >
+              {widthText}
+            </Text>
+          </group>
+        )}
+        {/* Text and background chip for depth */}
+        {dimensions && (
+          <group position={[0, -0.5, 0.7]}>
+            <mesh rotation={[0, Math.PI / 2, 0]}>
+              <planeGeometry
+                args={[depthSize.width / 100, depthSize.height / 100]}
+              />
+              <meshBasicMaterial color="white" />
+            </mesh>
+            <Text
+              rotation={[0, Math.PI / 2, 0]}
+              position={[0, 0, 0.01]}
+              fontSize={0.2}
+              color="black"
+              anchorX="center"
+              anchorY="middle"
+            >
+              {depthText}
+            </Text>
+          </group>
+        )}
       </mesh>
       <mesh
         geometry={nodes.hinge_top.geometry}

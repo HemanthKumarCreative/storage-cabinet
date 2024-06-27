@@ -28,12 +28,12 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
   };
 
   const heightMap = [
-    { value: 183, label: "" },
-    { value: 223, label: "" },
-    { value: 253, label: "" },
-    { value: 293, label: "" },
-    { value: 323, label: "" },
-    { value: 363, label: "" },
+    { value: 250, label: "" },
+    { value: 300, label: "" },
+    { value: 350, label: "" },
+    { value: 400, label: "" },
+    { value: 450, label: "" },
+    { value: 500, label: "" },
   ];
 
   const widthMap = [
@@ -192,8 +192,8 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
               onChange={handleInputChange("height")}
               valueLabelDisplay="auto"
               aria-labelledby="height-slider"
-              min={183}
-              max={363}
+              min={250}
+              max={500}
               step={null}
               marks={heightMap} // Add marks to show stepper behavior
               size="small"

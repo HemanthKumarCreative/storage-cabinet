@@ -4,8 +4,8 @@ import * as THREE from "three";
 const Texture = ({ texture }) => {
   return (
     <mesh
-      position={[-9.9, -2.8, 1]}
-      scale={[0.5, 1.5, 0.1]}
+      position={[-9.9, -3.8, 1]}
+      scale={[0.5, 1, 0.1]}
       receiveShadow={false}
     >
       <planeGeometry attach="geometry" args={[4, 4]} receiveShadow={false} />
@@ -35,6 +35,9 @@ const Image = ({ url }) => {
       <Suspense fallback={null}>
         <Texture texture={texture} />
       </Suspense>
+      {/* <div style={{ height: "100vh", position: "relative" }}> */}
+      {/* <ThreeJSVerticalLineWithMarker value={25} /> */}
+      {/* </div> */}
     </group>
   );
 };

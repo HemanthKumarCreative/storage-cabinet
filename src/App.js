@@ -13,13 +13,15 @@ import * as THREE from "three";
 import VeneerTexture from "./textures/Veneer02.png";
 import PlywoodTexture from "./textures/Veneer01.png";
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter";
+import VerticalRule from "./Dimensions/VerticalRule";
+import HorizontalRule from "./Dimensions/HorizontalRule";
 
 export default function App() {
   const [configuration, setConfiguration] = useState({
     style: "grid",
     density: 100,
     width: 450,
-    height: 293,
+    height: 400,
     depth: "24cm", // Initial depth value
     backPanel: "ON",
     finish: "Plywood",
@@ -98,7 +100,7 @@ export default function App() {
     };
 
     const verticalCabinConfig = {
-      183: {
+      250: {
         storageCabinet01: { position: [0, -1.5, 0] },
         smallCabinet: null,
         openCabinet01: null,
@@ -108,7 +110,7 @@ export default function App() {
         drawerCabinet: { position: [0, -3.5, 0] },
         storageCabinet02: { position: [0, -4.8, 0] },
       },
-      223: {
+      300: {
         storageCabinet01: { position: [0, -0.34, 0] },
         smallCabinet: null,
         openCabinet01: null,
@@ -118,7 +120,7 @@ export default function App() {
         drawerCabinet: { position: [0, -3.5, 0] },
         storageCabinet02: { position: [0, -4.8, 0] },
       },
-      253: {
+      350: {
         storageCabinet01: { position: [0, 0.8, 0] },
         smallCabinet: null,
         openCabinet01: null,
@@ -128,7 +130,7 @@ export default function App() {
         drawerCabinet: { position: [0, -3.5, 0] },
         storageCabinet02: { position: [0, -4.8, 0] },
       },
-      293: {
+      400: {
         storageCabinet01: { position: [0, 2.1, 0] },
         smallCabinet: null,
         openCabinet01: null,
@@ -138,7 +140,7 @@ export default function App() {
         drawerCabinet: { position: [0, -3.5, 0] },
         storageCabinet02: { position: [0, -4.8, 0] },
       },
-      323: {
+      450: {
         storageCabinet01: { position: [0, 3.3, 0] },
         smallCabinet: null,
         openCabinet01: { position: [0, 1.4, 0] },
@@ -148,7 +150,7 @@ export default function App() {
         drawerCabinet: { position: [0, -3.5, 0] },
         storageCabinet02: { position: [0, -4.8, 0] },
       },
-      363: {
+      500: {
         storageCabinet01: { position: [0, 4.35, 0] },
         smallCabinet: { position: [0, 2.4, 0] },
         openCabinet01: { position: [0, 1.15, 0] },
@@ -325,25 +327,6 @@ export default function App() {
     return groups;
   };
 
-  const Texture = ({ texture }) => {
-    return (
-      <mesh
-        position={[-9.3, -3, 0.2]}
-        scale={[0.5, 1.5, 0.1]}
-        // rotation={[-Math.PI / 2, 0, Math.PI / 3]}
-        receiveShadow
-      >
-        <planeGeometry attach="geometry" args={[4, 4]} />
-        <meshBasicMaterial attach="material" map={texture} />
-      </mesh>
-    );
-  };
-
-  const Image = ({ url }) => {
-    const texture = useMemo(() => new THREE.TextureLoader().load(url), [url]);
-    return <Texture texture={texture} />;
-  };
-
   const uri = "https://pics.io/preview/66792a63548394472778ddc6/thumbnail";
 
   const sceneRef = useRef();
@@ -383,7 +366,7 @@ export default function App() {
   return (
     <div
       className="canvas-container"
-      style={{ backgroundColor: "rgb(217,217,217)" }}
+      style={{ backgroundColor: "rgb(217,217,217)", position: "relative" }}
     >
       <Canvas
         camera={{ position: [0, 0, 15], fov: 60 }}
@@ -424,6 +407,33 @@ export default function App() {
         setConfiguration={setConfiguration}
         exportGLTF={exportGLTF}
       />
+      <div
+        style={{
+          position: "absolute",
+          left: `${300 + configuration.width + configuration.width / 2.5}px`,
+          bottom: "90px",
+        }}
+      >
+        <VerticalRule height={configuration.height} value={25} />
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: `230px`,
+          bottom: `${configuration.height + configuration.height / 20 + 150}px`,
+        }}
+      >
+        <HorizontalRule value={25} width={configuration.width} />
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: `70px`,
+          bottom: "90px",
+        }}
+      >
+        <VerticalRule height={165} value={25} />
+      </div>
     </div>
   );
 }

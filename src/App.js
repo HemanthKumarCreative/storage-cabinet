@@ -57,25 +57,6 @@ export default function App() {
 
   const horizontalAlignment = (count) => {
     const groups = [];
-    let specialPosition = null;
-    let specialGroup = null;
-    let multiplier = null;
-    switch (configuration.density) {
-      case 25:
-        multiplier = 6;
-        break;
-      case 50:
-        multiplier = 4.5;
-        break;
-      case 75:
-        multiplier = 3;
-        break;
-      case 100:
-        multiplier = 1.5;
-        break;
-      default:
-        multiplier = 1.5;
-    }
 
     const densityMultiplier = {
       450: {
@@ -116,995 +97,231 @@ export default function App() {
       },
     };
 
+    const verticalCabinConfig = {
+      183: {
+        storageCabinet01: { position: [0, -1.5, 0] },
+        smallCabinet: null,
+        openCabinet01: null,
+        openCabinet02: null,
+        openCabinet03: null,
+        openCabinet04: null,
+        drawerCabinet: { position: [0, -3.5, 0] },
+        storageCabinet02: { position: [0, -4.8, 0] },
+      },
+      223: {
+        storageCabinet01: { position: [0, -0.34, 0] },
+        smallCabinet: null,
+        openCabinet01: null,
+        openCabinet02: null,
+        openCabinet03: null,
+        openCabinet04: { position: [0, -2.3, 0] },
+        drawerCabinet: { position: [0, -3.5, 0] },
+        storageCabinet02: { position: [0, -4.8, 0] },
+      },
+      253: {
+        storageCabinet01: { position: [0, 0.8, 0] },
+        smallCabinet: null,
+        openCabinet01: null,
+        openCabinet02: null,
+        openCabinet03: { position: [0, -1.1, 0] },
+        openCabinet04: { position: [0, -2.3, 0] },
+        drawerCabinet: { position: [0, -3.5, 0] },
+        storageCabinet02: { position: [0, -4.8, 0] },
+      },
+      293: {
+        storageCabinet01: { position: [0, 2.1, 0] },
+        smallCabinet: null,
+        openCabinet01: null,
+        openCabinet02: { position: [0, 0.15, 0] },
+        openCabinet03: { position: [0, -1, 0] },
+        openCabinet04: { position: [0, -2.2, 0] },
+        drawerCabinet: { position: [0, -3.5, 0] },
+        storageCabinet02: { position: [0, -4.8, 0] },
+      },
+      323: {
+        storageCabinet01: { position: [0, 3.3, 0] },
+        smallCabinet: null,
+        openCabinet01: { position: [0, 1.4, 0] },
+        openCabinet02: { position: [0, 0.2, 0] },
+        openCabinet03: { position: [0, -1, 0] },
+        openCabinet04: { position: [0, -2.2, 0] },
+        drawerCabinet: { position: [0, -3.5, 0] },
+        storageCabinet02: { position: [0, -4.8, 0] },
+      },
+      363: {
+        storageCabinet01: { position: [0, 4.35, 0] },
+        smallCabinet: { position: [0, 2.4, 0] },
+        openCabinet01: { position: [0, 1.15, 0] },
+        openCabinet02: { position: [0, 0, 0] },
+        openCabinet03: { position: [0, -1.15, 0] },
+        openCabinet04: { position: [0, -2.3, 0] },
+        drawerCabinet: { position: [0, -3.5, 0] },
+        storageCabinet02: { position: [0, -4.8, 0] },
+      },
+    };
+
     for (
       let i = -8;
       i <
       count * densityMultiplier[configuration.width][configuration.density] - 8;
       i += densityMultiplier[configuration.width][configuration.density]
     ) {
-      const group_183_cm = (
+      const group = (
         <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
-          <StorageCabinet
-            position={[0, -1.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            density={configuration.density}
-            backPanel={configuration.backPanel === "ON"}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
+          {verticalCabinConfig[configuration.height].storageCabinet01 && (
+            <StorageCabinet
+              position={
+                verticalCabinConfig[configuration.height].storageCabinet01
+                  .position
+              }
+              receiveShadow
+              width={configuration.width}
+              height={configuration.height}
+              depth={configuration.depth}
+              backPanel={configuration.backPanel === "ON"}
+              density={configuration.density}
+              densityFactor={densityFactor}
+              configWidth={configuration.width}
+              textureUrl={textureUrl[configuration.finish]}
+              color={configuration.color}
+              colorCodes={colorCodes}
+            />
+          )}
+          {verticalCabinConfig[configuration.height].smallCabinet && (
+            <SmallCabinet
+              position={
+                verticalCabinConfig[configuration.height].smallCabinet.position
+              }
+              receiveShadow
+              width={configuration.width}
+              height={configuration.height}
+              depth={configuration.depth}
+              backPanel={configuration.backPanel === "ON"}
+              density={configuration.density}
+              densityFactor={densityFactor}
+              configWidth={configuration.width}
+              textureUrl={textureUrl[configuration.finish]}
+              color={configuration.color}
+              colorCodes={colorCodes}
+            />
+          )}
+          {verticalCabinConfig[configuration.height].openCabinet01 && (
+            <OpenCabinet
+              position={
+                verticalCabinConfig[configuration.height].openCabinet01.position
+              }
+              receiveShadow
+              width={configuration.width}
+              height={configuration.height}
+              depth={configuration.depth}
+              backPanel={configuration.backPanel === "ON"}
+              density={configuration.density}
+              densityFactor={densityFactor}
+              configWidth={configuration.width}
+              textureUrl={textureUrl[configuration.finish]}
+              color={configuration.color}
+              colorCodes={colorCodes}
+              books={configuration.books === "ON"}
+            />
+          )}
+          {verticalCabinConfig[configuration.height].openCabinet02 && (
+            <OpenCabinet
+              position={
+                verticalCabinConfig[configuration.height].openCabinet02.position
+              }
+              receiveShadow
+              width={configuration.width}
+              height={configuration.height}
+              depth={configuration.depth}
+              backPanel={configuration.backPanel === "ON"}
+              density={configuration.density}
+              densityFactor={densityFactor}
+              configWidth={configuration.width}
+              textureUrl={textureUrl[configuration.finish]}
+              color={configuration.color}
+              colorCodes={colorCodes}
+              books={configuration.books === "ON"}
+            />
+          )}
+          {verticalCabinConfig[configuration.height].openCabinet03 && (
+            <OpenCabinet
+              position={
+                verticalCabinConfig[configuration.height].openCabinet03.position
+              }
+              receiveShadow
+              width={configuration.width}
+              height={configuration.height}
+              depth={configuration.depth}
+              backPanel={configuration.backPanel === "ON"}
+              density={configuration.density}
+              densityFactor={densityFactor}
+              configWidth={configuration.width}
+              textureUrl={textureUrl[configuration.finish]}
+              color={configuration.color}
+              colorCodes={colorCodes}
+              books={configuration.books === "ON"}
+            />
+          )}
+          {verticalCabinConfig[configuration.height].openCabinet04 && (
+            <OpenCabinet
+              position={
+                verticalCabinConfig[configuration.height].openCabinet04.position
+              }
+              receiveShadow
+              width={configuration.width}
+              height={configuration.height}
+              depth={configuration.depth}
+              backPanel={configuration.backPanel === "ON"}
+              density={configuration.density}
+              densityFactor={densityFactor}
+              configWidth={configuration.width}
+              textureUrl={textureUrl[configuration.finish]}
+              color={configuration.color}
+              colorCodes={colorCodes}
+              books={configuration.books === "ON"}
+            />
+          )}
+          {verticalCabinConfig[configuration.height].drawerCabinet && (
+            <DrawerCabinet
+              position={
+                verticalCabinConfig[configuration.height].drawerCabinet.position
+              }
+              receiveShadow
+              width={configuration.width}
+              height={configuration.height}
+              depth={configuration.depth}
+              backPanel={configuration.backPanel === "ON"}
+              density={configuration.density}
+              densityFactor={densityFactor}
+              configWidth={configuration.width}
+              textureUrl={textureUrl[configuration.finish]}
+              color={configuration.color}
+              colorCodes={colorCodes}
+            />
+          )}
+          {verticalCabinConfig[configuration.height].storageCabinet02 && (
+            <StorageCabinet
+              position={
+                verticalCabinConfig[configuration.height].storageCabinet02
+                  .position
+              }
+              receiveShadow
+              width={configuration.width}
+              height={configuration.height}
+              depth={configuration.depth}
+              backPanel={configuration.backPanel === "ON"}
+              density={configuration.density}
+              densityFactor={densityFactor}
+              configWidth={configuration.width}
+              textureUrl={textureUrl[configuration.finish]}
+              color={configuration.color}
+              colorCodes={colorCodes}
+            />
+          )}
         </group>
       );
-
-      const group_223_cm = (
-        <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
-          <StorageCabinet
-            position={[0, -0.34, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <OpenCabinet
-            position={[0, -2.3, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-        </group>
-      );
-
-      const group_253_cm = (
-        <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
-          <StorageCabinet
-            position={[0, 0.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <OpenCabinet
-            position={[0, -1.1, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <OpenCabinet
-            position={[0, -2.3, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-        </group>
-      );
-
-      const group_293_cm = (
-        <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
-          <StorageCabinet
-            position={[0, 2.1, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <OpenCabinet
-            position={[0, 0.15, 0]}
-            receiveShadow
-            configWidth={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <OpenCabinet
-            position={[0, -1, 0]}
-            receiveShadow
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <OpenCabinet
-            position={[0, -2.2, 0]}
-            receiveShadow
-            configWidth={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-        </group>
-      );
-
-      const group_323_cm = (
-        <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
-          <StorageCabinet
-            position={[0, 3.3, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <OpenCabinet
-            position={[0, 1.4, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <OpenCabinet
-            position={[0, 0.2, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <OpenCabinet
-            position={[0, -1.0, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <OpenCabinet
-            position={[0, -2.2, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-        </group>
-      );
-
-      const group_363_cm = (
-        <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
-          <StorageCabinet
-            position={[0, 4.35, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <SmallCabinet
-            position={[0, 2.4, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <OpenCabinet
-            position={[0, 1.15, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <OpenCabinet
-            position={[0, 0, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <OpenCabinet
-            position={[0, -1.15, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <OpenCabinet
-            position={[0, -2.3, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-            books={configuration.books === "ON"}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-            textureUrl={textureUrl[configuration.finish]}
-            color={configuration.color}
-            colorCodes={colorCodes}
-          />
-        </group>
-      );
-
-      specialPosition = i;
-
-      const specialGroup_183_cm = (
-        <group
-          key={specialPosition - 6.5}
-          position={[specialPosition + 1.5, 0, 0]}
-          rotation={[0, -Math.PI / 2, 0]}
-        >
-          <StorageCabinet
-            position={[0, -1.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            specialWidth={configuration.width % 25}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-        </group>
-      );
-
-      const specialGroup_223_cm = (
-        <group
-          key={specialPosition - 6.5}
-          position={[specialPosition + 1.5, 0, 0]}
-          rotation={[0, -Math.PI / 2, 0]}
-        >
-          <StorageCabinet
-            position={[0, -0.1, 0]}
-            receiveShadow
-            width={configuration.width}
-            specialWidth={configuration.width % 25}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, -2.2, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-        </group>
-      );
-
-      const specialGroup_253_cm = (
-        <group
-          key={specialPosition - 6.5}
-          position={[specialPosition + 1.5, 0, 0]}
-          rotation={[0, -Math.PI / 2, 0]}
-        >
-          <StorageCabinet
-            position={[0, 1.2, 0]}
-            receiveShadow
-            width={configuration.width}
-            specialWidth={configuration.width % 25}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, -0.9, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, -2.2, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-        </group>
-      );
-
-      const specialGroup_293_cm = (
-        <group
-          key={specialPosition - 6.5}
-          position={[specialPosition + 1.5, 0, 0]}
-          rotation={[0, -Math.PI / 2, 0]}
-        >
-          <StorageCabinet
-            position={[0, 2.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            specialWidth={configuration.width % 25}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, 0.4, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, -0.9, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, -2.2, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-        </group>
-      );
-
-      const specialGroup_323_cm = (
-        <group
-          key={specialPosition - 6.5}
-          position={[specialPosition + 1.5, 0, 0]}
-          rotation={[0, -Math.PI / 2, 0]}
-        >
-          <StorageCabinet
-            position={[0, 3.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, 1.7, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            densityFactor={densityFactor}
-            density={configuration.density}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, 0.4, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            densityFactor={densityFactor}
-            density={configuration.density}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, -0.9, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            densityFactor={densityFactor}
-            density={configuration.density}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, -2.2, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            densityFactor={densityFactor}
-            density={configuration.density}
-            configWidth={configuration.width}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-        </group>
-      );
-
-      const specialGroup_363_cm = (
-        <group
-          key={specialPosition - 6.5}
-          position={[specialPosition + 1.5, 0, 0]}
-          rotation={[0, -Math.PI / 2, 0]}
-        >
-          <StorageCabinet
-            position={[0, 5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <SmallCabinet
-            position={[0, 3, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, 1.7, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, 0.4, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, -0.9, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <OpenCabinet
-            position={[0, -2.2, 0]}
-            receiveShadow
-            configWidth={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-          />
-          <DrawerCabinet
-            position={[0, -3.5, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-          <StorageCabinet
-            position={[0, -4.8, 0]}
-            receiveShadow
-            width={configuration.width}
-            height={configuration.height}
-            depth={configuration.depth}
-            backPanel={configuration.backPanel === "ON"}
-            specialWidth={configuration.width % 25}
-            density={configuration.density}
-            densityFactor={densityFactor}
-            configWidth={configuration.width}
-          />
-        </group>
-      );
-
-      const height = configuration.height;
-      let group = group_293_cm;
-      specialGroup = specialGroup_293_cm;
-      if (height <= 183) {
-        group = group_183_cm;
-        specialGroup = specialGroup_183_cm;
-      } else if (height <= 223) {
-        group = group_223_cm;
-        specialGroup = specialGroup_223_cm;
-      } else if (height <= 253) {
-        group = group_253_cm;
-        specialGroup = specialGroup_253_cm;
-      } else if (height <= 293) {
-        group = group_293_cm;
-        specialGroup = specialGroup_293_cm;
-      } else if (height <= 323) {
-        group = group_323_cm;
-        specialGroup = specialGroup_323_cm;
-      } else if (height <= 363) {
-        group = group_363_cm;
-        specialGroup = specialGroup_363_cm;
-      } else {
-        group = group_293_cm;
-        specialGroup = specialGroup_293_cm;
-      }
-
       groups.push(group);
     }
-    if (configuration.width % 50 !== 0) groups.push(specialGroup);
     return groups;
   };
 

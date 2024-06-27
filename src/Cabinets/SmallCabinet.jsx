@@ -71,6 +71,13 @@ function SmallCabinet(props) {
     setIsHovered(!isHovered);
   };
 
+  const decimal = {
+    100: 0,
+    75: 0,
+    50: 0.08,
+    25: 0.14,
+  };
+
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -113,7 +120,7 @@ function SmallCabinet(props) {
         geometry={nodes.bottom_plank001.geometry}
         material={materials["Material.004"]}
         position={[-0.008, -0.267, -0.742 * widthScale]}
-        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
+        scale={[depthScale, 1, widthScale - decimal[density]]} // Adjusted scale based on depth
         castShadow
         receiveShadow
       >
@@ -164,15 +171,17 @@ function SmallCabinet(props) {
         material={materials["Material.006"]}
         position={[hingePosX, -0.014, -1.449 * widthScale]}
       />
-      <mesh
-        geometry={storageCabinetNodes.edges.geometry}
-        material={storageCabinetMaterials["Material.012"]}
-        position={[0.68 * depthScale, 0.35, -1.484 * widthScale]}
-        rotation={[0, 0, -Math.PI]}
-        scale={[-0.019 * depthScale, -0.6, -0.027 * widthScale]}
-      >
-        <meshStandardMaterial color="white" attach="material" />
-      </mesh>
+      {density > 50 && (
+        <mesh
+          geometry={storageCabinetNodes.edges.geometry}
+          material={storageCabinetMaterials["Material.012"]}
+          position={[0.68 * depthScale, 0.35, -1.484 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.019 * depthScale, -0.6, -0.027 * widthScale]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+      )}
     </group>
   );
 }

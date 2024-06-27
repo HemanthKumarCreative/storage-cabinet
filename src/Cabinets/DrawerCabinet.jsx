@@ -48,6 +48,13 @@ function DrawerCabinet(props) {
   let doorPositionX = 0.1;
   let hingePosX = 0.522;
 
+  const decimal = {
+    100: 0.01,
+    75: 0.02,
+    50: 0.08,
+    25: 0.14,
+  };
+
   switch (depth) {
     case "24cm":
       depthScale = 1;
@@ -93,7 +100,7 @@ function DrawerCabinet(props) {
       <mesh
         geometry={nodes.right_plank003.geometry}
         material={materials["Material.003"]}
-        position={[0.004, 0.148, -1.494 * widthScale]}
+        position={[0.004, 0.148, -1.49 * widthScale]}
         scale={[depthScale, 1, 1]} // Adjusted scale based on depth
         castShadow
         receiveShadow
@@ -107,8 +114,8 @@ function DrawerCabinet(props) {
       <mesh
         geometry={nodes.top_plank003.geometry}
         material={materials["Material.002"]}
-        position={[-0.001, 1.023, -0.744 * widthScale]}
-        scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth
+        position={[-0.001, 1.023, -0.735 * widthScale]}
+        scale={[depthScale, 2, widthScale - decimal[density]]} // Adjusted scale based on depth
         castShadow
         receiveShadow
       >
@@ -121,8 +128,8 @@ function DrawerCabinet(props) {
       <mesh
         geometry={nodes.bottom_plank003.geometry}
         material={materials["Material.004"]}
-        position={[-0.008, -0.267, -0.742 * widthScale]}
-        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth
+        position={[-0.008, -0.267, -0.735 * widthScale]}
+        scale={[depthScale, 1, widthScale - decimal[density]]} // Adjusted scale based on depth
         castShadow
         receiveShadow
       >
@@ -158,7 +165,7 @@ function DrawerCabinet(props) {
           geometry={nodes.drawer_back001.geometry}
           material={materials["Material.007"]}
           rotation={[0, 1.571, 0]}
-          scale={[0.924, 0.863, widthScale]}
+          scale={[0.924, 0.863, 1]}
           position={[doorPositionX, 0, 0]}
           castShadow
           receiveShadow

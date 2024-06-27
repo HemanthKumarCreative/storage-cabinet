@@ -69,6 +69,13 @@ function StorageCabinet(props) {
     setIsHovered(!isHovered);
   };
 
+  const decimal = {
+    100: 0.01,
+    75: 0.02,
+    50: 0.08,
+    25: 0.14,
+  };
+
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -104,7 +111,7 @@ function StorageCabinet(props) {
         geometry={nodes.top_plank.geometry}
         material={materials["Material.002"]}
         position={[-0.001, 1.023, -0.744 * widthScale]}
-        scale={[depthScale, 2, widthScale]} // Adjusted scale based on depth and width
+        scale={[depthScale, 2, widthScale - decimal[density]]} // Adjusted scale based on depth and width
         castShadow
         receiveShadow
       >
@@ -118,7 +125,7 @@ function StorageCabinet(props) {
         geometry={nodes.bottom_plank.geometry}
         material={materials["Material.004"]}
         position={[-0.008, -1.025, -0.742 * widthScale]}
-        scale={[depthScale, 1, widthScale]} // Adjusted scale based on depth and width
+        scale={[depthScale, 1, widthScale - decimal[density]]} // Adjusted scale based on depth and width
         castShadow
         receiveShadow
       >
@@ -172,21 +179,23 @@ function StorageCabinet(props) {
         geometry={nodes.inner_shelf.geometry}
         material={materials.Material}
         position={[0, -0.202, -0.744 * widthScale]}
-        scale={[depthScale - 0.05, 2, widthScale - 0.05]}
+        scale={[depthScale - 0.05, 2, widthScale - decimal[density]]}
       >
         <meshStandardMaterial map={texture} attach="material" />
       </mesh>
-      <mesh
-        geometry={nodes.edges.geometry}
-        material={materials["Material.012"]}
-        position={[0.68 * depthScale, -0.02, -1.484 * widthScale]}
-        rotation={[0, 0, -Math.PI]}
-        scale={[-0.019 * depthScale, -0.9, -0.027 * widthScale]}
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial color="white" attach="material" />
-      </mesh>
+      {density > 50 && (
+        <mesh
+          geometry={nodes.edges.geometry}
+          material={materials["Material.012"]}
+          position={[0.68 * depthScale, -0.02, -1.484 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.019 * depthScale, -0.9, -0.027 * widthScale]}
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+      )}
     </group>
   );
 }

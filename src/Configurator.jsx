@@ -209,6 +209,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
                 size="small"
                 style={{ textTransform: "none" }}
                 disabled={configuration.depth === "24cm"}
+                color="warning"
               >
                 24cm
               </ToggleButton>
@@ -218,6 +219,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
                 size="small"
                 style={{ textTransform: "none" }}
                 disabled={configuration.depth === "32cm"}
+                color="warning"
               >
                 32cm
               </ToggleButton>
@@ -227,6 +229,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
                 size="small"
                 style={{ textTransform: "none" }}
                 disabled={configuration.depth === "40cm"}
+                color="warning"
               >
                 40cm
               </ToggleButton>
@@ -262,6 +265,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
                 aria-label="OFF"
                 size="small"
                 disabled={configuration.backPanel === "OFF"}
+                color="warning"
               >
                 OFF
               </ToggleButton>
@@ -270,6 +274,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
                 aria-label="ON"
                 size="small"
                 disabled={configuration.backPanel === "ON"}
+                color="warning"
               >
                 ON
               </ToggleButton>
@@ -298,6 +303,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
                 size="small"
                 style={{ textTransform: "none" }}
                 disabled={configuration.finish === "Plywood"}
+                color="warning"
               >
                 Plywood
               </ToggleButton>
@@ -307,6 +313,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
                 size="small"
                 style={{ textTransform: "none" }}
                 disabled={configuration.finish === "Veneer"}
+                color="warning"
               >
                 Veneer
               </ToggleButton>
@@ -357,6 +364,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
                 aria-label="OFF"
                 size="small"
                 disabled={configuration.books === "OFF"}
+                color="warning"
               >
                 OFF
               </ToggleButton>
@@ -365,6 +373,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
                 aria-label="ON"
                 size="small"
                 disabled={configuration.books === "ON"}
+                color="warning"
               >
                 ON
               </ToggleButton>

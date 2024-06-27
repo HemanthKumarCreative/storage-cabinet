@@ -123,17 +123,19 @@ function OpenCabinet(props) {
           />
         </mesh>
       )}
-      <mesh
-        geometry={storageCabinetNodes.edges.geometry}
-        material={storageCabinetMaterials["Material.012"]}
-        position={[0.68 * depthScale, 0.43, -1.484 * widthScale]}
-        rotation={[0, 0, -Math.PI]}
-        scale={[-0.019 * depthScale, 0.55, -0.027 * widthScale]}
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial color="white" attach="material" />
-      </mesh>
+      {density > 50 && (
+        <mesh
+          geometry={storageCabinetNodes.edges.geometry}
+          material={storageCabinetMaterials["Material.012"]}
+          position={[0.68 * depthScale, 0.43, -1.484 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.019 * depthScale, 0.55, -0.027 * widthScale]}
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+      )}
       {books && <Book />}
     </group>
   );

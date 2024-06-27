@@ -148,9 +148,13 @@ function SmallCabinet(props) {
         ref={doorRef}
         geometry={nodes.door001.geometry}
         material={materials["Material.001"]}
-        position={[doopPositionX, 0.386, -1.444 * widthScale]}
+        position={[
+          doopPositionX,
+          0.386,
+          -1.444 * widthScale - decimal[density],
+        ]}
         rotation={[0, 0, 0]} // Initial rotation state
-        scale={[2, 1, widthScale]}
+        scale={[2, 1, widthScale + decimal[density]]}
         onPointerUp={openDoor}
         castShadow
         receiveShadow

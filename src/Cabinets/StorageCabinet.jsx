@@ -153,8 +153,12 @@ function StorageCabinet(props) {
         ref={doorRef}
         geometry={nodes.door.geometry}
         material={materials["Material.001"]}
-        position={[doorPositionX, 0.033, -1.446 * widthScale]}
-        scale={[2, 1, widthScale]}
+        position={[
+          doorPositionX,
+          0.033,
+          -1.446 * widthScale - decimal[density],
+        ]}
+        scale={[2, 1, widthScale + decimal[density]]}
         onPointerUp={openDoor}
         castShadow
         receiveShadow

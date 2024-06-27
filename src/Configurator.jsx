@@ -69,6 +69,17 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
               alignItems: "center",
             }}
           >
+            <Typography variant="subtitle1">Export</Typography>
+          </Grid>
+          <Grid
+            item
+            xs={4}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
             <ToggleButton
               value="export"
               aria-label="Export"
@@ -78,7 +89,18 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
               <FcExport style={{ fontSize: "20px", color: "#b84b4a" }} />
             </ToggleButton>
           </Grid>
-          <Grid item xs={8}>
+          <Grid
+            item
+            xs={2}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography variant="subtitle1">Style</Typography>
+          </Grid>
+          <Grid item xs={2}>
             <ToggleButtonGroup
               value={configuration.style}
               onChange={handleSelectChange("style")}

@@ -1,11 +1,16 @@
 import React, { useRef, useState } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useGLTF, useTexture, Text } from "@react-three/drei";
 import * as THREE from "three";
 import SmallCabinetGlb from "../modals/SmallCabinet.glb";
+import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
 
 function SmallCabinet(props) {
   const { nodes, materials } = useGLTF(SmallCabinetGlb);
+  const StorageCabinetNode = useGLTF(StorageCabinetGlb);
+  const storageCabinetNodes = StorageCabinetNode.nodes;
+  const storageCabinetMaterials = StorageCabinetNode.materials;
+
   const doorRef = useRef();
   const [isHovered, setIsHovered] = useState(false);
 
@@ -27,11 +32,9 @@ function SmallCabinet(props) {
   const width = specialWidth === 0 ? 50 : specialWidth;
   useFrame(() => {
     if (doorRef.current) {
-      doorRef.current.rotation.y = THREE.MathUtils.lerp(
-        doorRef.current.rotation.y,
-        isHovered ? Math.PI / 2 : 0,
-        0.1
-      );
+      doorRef.current.rotation.y = isHovered
+        ? Math.min(Math.PI / 2, doorRef.current.rotation.y + 0.05)
+        : Math.max(0, doorRef.current.rotation.y - 0.05);
     }
   });
 
@@ -245,6 +248,17 @@ function SmallCabinet(props) {
         material={materials["Material.006"]}
         position={[hingePosX, -0.014, -1.449 * widthScale]}
       />
+      {density > 50 && (
+        <mesh
+          geometry={storageCabinetNodes.edges.geometry}
+          material={storageCabinetMaterials["Material.012"]}
+          position={[0.68 * depthScale, 0.35, -1.484 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.019 * depthScale, -0.6, -0.027 * widthScale]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+      )}
     </group>
   );
 }

@@ -157,7 +157,7 @@ function StorageCabinet(props) {
         geometry={nodes.back_plank.geometry}
         material={materials["Material.005"]}
         position={[depthPositionX, 0.001, -0.746 * widthScale]}
-        scale={[1, 0.958, 1]}
+        scale={[1, 0.958, widthScale]}
         castShadow
         receiveShadow
       >

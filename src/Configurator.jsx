@@ -140,7 +140,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
               size="small"
               step={null}
               marks={densityMap}
-              // disabled={true}
+              disabled={true}
               color="warning"
             />
           </Grid>

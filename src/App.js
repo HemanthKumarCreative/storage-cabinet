@@ -28,6 +28,7 @@ export default function App() {
     color: "green",
     books: "OFF",
     dimensions: "OFF",
+    units: "cm",
   });
 
   const textureUrl = {

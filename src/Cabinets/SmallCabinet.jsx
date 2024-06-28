@@ -87,13 +87,13 @@ function SmallCabinet(props) {
     return { width: metrics.width, height: fontSize };
   };
 
-  const heightText = `H : ${(depthScale / 2) * 100}`;
+  const heightText = `H : 50`;
   const heightSize = textSize(heightText, 24);
 
   const widthText = `W : ${widthScale * 50}`;
   const widthSize = textSize(widthText, 24);
 
-  const depthText = `D : ${depthScale * 40}`;
+  const depthText = `D : ${depth.slice(0, 2)}`;
   const depthSize = textSize(depthText, 24);
 
   return (

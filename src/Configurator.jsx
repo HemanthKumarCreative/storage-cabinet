@@ -439,6 +439,48 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
               </ToggleButton>
             </ToggleButtonGroup>
           </Grid>
+          {/* {configuration.dimensions === "ON" && (
+            <>
+              <Grid
+                item
+                xs={4}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Typography variant="subtitle1">Units</Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <ToggleButtonGroup
+                  value={configuration.units}
+                  onChange={handleSelectChange("units")}
+                  aria-label="units"
+                  fullWidth
+                >
+                  <ToggleButton
+                    value="cm"
+                    aria-label="cm"
+                    size="small"
+                    disabled={configuration.units === "cm"}
+                    color="warning"
+                  >
+                    cm
+                  </ToggleButton>
+                  <ToggleButton
+                    value="ft. inc."
+                    aria-label="ft. inc."
+                    size="small"
+                    disabled={configuration.units === "ft. inc."}
+                    color="warning"
+                  >
+                    ft. inc.
+                  </ToggleButton>
+                </ToggleButtonGroup>
+              </Grid>
+            </>
+          )} */}
         </Grid>
       </CardContent>
     </Card>

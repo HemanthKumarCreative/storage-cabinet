@@ -439,7 +439,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
               </ToggleButton>
             </ToggleButtonGroup>
           </Grid>
-          {/* {configuration.dimensions === "ON" && (
+          {configuration.dimensions === "ON" && (
             <>
               <Grid
                 item
@@ -480,7 +480,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
                 </ToggleButtonGroup>
               </Grid>
             </>
-          )} */}
+          )}
         </Grid>
       </CardContent>
     </Card>

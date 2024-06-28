@@ -1,7 +1,17 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-export default function HorizontalLineWithMarker({ value, width }) {
+export default function HorizontalLineWithMarker({ value, width, isCM }) {
+  function cmToFeetInches(cm) {
+    // 1 inch = 2.54 cm
+    // 1 foot = 12 inches
+    const inches = cm / 2.54;
+    const feet = Math.floor(inches / 12);
+    const remainingInches = inches % 12;
+
+    return { feet: feet, inches: remainingInches };
+  }
+
   return (
     <Box
       sx={{
@@ -28,7 +38,13 @@ export default function HorizontalLineWithMarker({ value, width }) {
           boxShadow: "0 0 3px rgba(0, 0, 0, 0.3)",
         }}
       >
-        <Typography variant="body1">{width}</Typography>
+        <Typography variant="body1">
+          {isCM
+            ? width
+            : `${cmToFeetInches(width).feet.toFixed(0)}:${cmToFeetInches(
+                width
+              ).inches.toFixed(0)}`}
+        </Typography>
       </Box>
 
       <Box

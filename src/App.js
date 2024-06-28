@@ -434,7 +434,11 @@ export default function App() {
               bottom: "90px",
             }}
           >
-            <VerticalRule height={configuration.height} value={25} />
+            <VerticalRule
+              height={configuration.height}
+              value={25}
+              isCM={configuration.units === "cm"}
+            />
           </div>
           <div
             style={{
@@ -445,7 +449,11 @@ export default function App() {
               }px`,
             }}
           >
-            <HorizontalRule value={25} width={configuration.width} />
+            <HorizontalRule
+              value={25}
+              width={configuration.width}
+              isCM={configuration.units === "cm"}
+            />
           </div>
           <div
             style={{
@@ -454,7 +462,11 @@ export default function App() {
               bottom: "90px",
             }}
           >
-            <VerticalRule height={165} value={25} />
+            <VerticalRule
+              height={165}
+              value={25}
+              isCM={configuration.units === "cm"}
+            />
           </div>
         </>
       )}

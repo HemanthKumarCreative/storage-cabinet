@@ -92,14 +92,14 @@ function DrawerCabinet(props) {
     return { width: metrics.width, height: fontSize };
   };
 
-  const depthText = `D : ${depthScale * 40}`;
-  const depthSize = textSize(depthText, 24);
+  const heightText = `H : ${depthScale * 100}`;
+  const heightSize = textSize(heightText, 24);
 
-  const widthText = `W : ${width}`;
+  const widthText = `W : ${widthScale * 50}`;
   const widthSize = textSize(widthText, 24);
 
-  const heightText = `H : ${height}`;
-  const heightSize = textSize(heightText, 24);
+  const depthText = `D : ${depth}`;
+  const depthSize = textSize(depthText, 24);
 
   return (
     <group {...props} dispose={null}>

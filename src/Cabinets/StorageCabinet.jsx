@@ -91,7 +91,7 @@ function StorageCabinet(props) {
   const widthText = `W : ${widthScale * 50}`;
   const widthSize = textSize(widthText, 24);
 
-  const depthText = `D : ${depthScale * 40}`;
+  const depthText = `D : ${depth}`;
   const depthSize = textSize(depthText, 24);
 
   return (

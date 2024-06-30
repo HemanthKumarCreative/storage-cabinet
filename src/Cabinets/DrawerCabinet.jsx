@@ -269,6 +269,12 @@ function DrawerCabinet(props) {
               attach="material"
               color="#E2DFD2"
             />
+            <mesh
+              geometry={nodes.slider_right.geometry}
+              material={materials["Material.011"]}
+              position={[0.119, -0.435, -0.052]}
+              scale={[0.397, 0.025, 0.02]}
+            />
             {/* Text and background chip for depth */}
             {dimensions && (
               <group position={[0.8, -0.3, 0.6]}>

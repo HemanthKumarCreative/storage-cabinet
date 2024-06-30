@@ -30,7 +30,8 @@ export default function HorizontalLineWithMarker({ value, width, isCM }) {
           transform: "translateY(-50%)",
           backgroundColor: "white",
           borderRadius: "50%",
-          width: "40px",
+          width: "fit-content",
+          minWidth: "50px",
           height: "30px",
           display: "flex",
           alignItems: "center",
@@ -41,9 +42,9 @@ export default function HorizontalLineWithMarker({ value, width, isCM }) {
         <Typography variant="body1">
           {isCM
             ? width
-            : `${cmToFeetInches(width).feet.toFixed(0)}:${cmToFeetInches(
+            : `${cmToFeetInches(width).feet.toFixed(0)}' ${cmToFeetInches(
                 width
-              ).inches.toFixed(0)}`}
+              ).inches.toFixed(0)}''`}
         </Typography>
       </Box>
 

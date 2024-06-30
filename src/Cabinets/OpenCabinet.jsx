@@ -2,15 +2,61 @@ import React, { useRef, useEffect } from "react";
 import { useGLTF, useTexture, Text } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import OpenCabinetGlb from "../modals/OpenCabinet.glb";
-import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
+import CabinetEdgesGlb from "../modals/CabinetEdges.glb";
 import Book from "./Book";
+import CeramicPot from "./CeramicPot";
 
 function OpenCabinet(props) {
   const { nodes, materials } = useGLTF(OpenCabinetGlb);
-  const StorageCabinetNode = useGLTF(StorageCabinetGlb);
-  const storageCabinetNodes = StorageCabinetNode.nodes;
-  const storageCabinetMaterials = StorageCabinetNode.materials;
+  const cabinetEdgesNodes = useGLTF(CabinetEdgesGlb).nodes;
+  const cabinetEdgesMaterials = useGLTF(CabinetEdgesGlb).materials;
 
+  const OBJECTS = [
+    [
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+    ],
+    [
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+    ],
+    [
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+    ],
+    [
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+      CeramicPot,
+      Book,
+    ],
+  ];
   // Destructure depth from props
   const {
     depth,
@@ -24,6 +70,8 @@ function OpenCabinet(props) {
     colorCodes,
     books,
     dimensions,
+    col,
+    row,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -35,6 +83,13 @@ function OpenCabinet(props) {
   let widthScale = specialWidth
     ? width / 25
     : densityFactor[configWidth][density] / 50;
+
+  const decimal = {
+    100: 0.01,
+    75: 0.02,
+    50: 0.08,
+    25: 0.14,
+  };
 
   switch (depth) {
     case "24cm":
@@ -81,7 +136,7 @@ function OpenCabinet(props) {
 
   const depthText = `D : ${depth.slice(0, 2)}`;
   const depthSize = textSize(depthText, 24);
-
+  const Object = OBJECTS[row][col];
   return (
     <group {...props} dispose={null}>
       {/* Top Plank */}
@@ -142,22 +197,8 @@ function OpenCabinet(props) {
           />
         </mesh>
       )}
-      {/* Additional Cabinet Component */}
-      {density > 50 && (
-        <mesh
-          geometry={storageCabinetNodes.edges.geometry}
-          material={storageCabinetMaterials["Material.012"]}
-          position={[0.68 * depthScale, 0.43, -1.484 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[-0.019 * depthScale, 0.55, -0.027 * widthScale]}
-          castShadow
-          receiveShadow
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-      )}
       {/* Display Books */}
-      {books && <Book />}
+      {books && <Object />}
       {/* Dimensions */}
       {/* Height */}
       {dimensions && (
@@ -172,7 +213,7 @@ function OpenCabinet(props) {
             rotation={[0, Math.PI / 2, 0]}
             position={[0, 0, 0.01]}
             fontSize={0.2}
-            color="black"
+            color="white"
             anchorX="center"
             anchorY="middle"
           >
@@ -193,7 +234,7 @@ function OpenCabinet(props) {
             rotation={[0, Math.PI / 2, 0]}
             position={[0, 0, 0.01]}
             fontSize={0.2}
-            color="black"
+            color="white"
             anchorX="center"
             anchorY="middle"
           >
@@ -201,6 +242,129 @@ function OpenCabinet(props) {
           </Text>
         </group>
       )}
+      {/* Depth */}
+      <group dispose={null}>
+        {/* Top Side1 blue*/}
+        <mesh
+          geometry={cabinetEdgesNodes.edges003.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.63, 1.023, -0.744 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.01, -1.3, -0.027 * (widthScale - decimal[density])]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Top Side 2 pink*/}
+        <mesh
+          geometry={cabinetEdgesNodes.edges001.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.308, 1.023, 0.023 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -1.3, -0.005]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Top Side 3 var green*/}
+        <mesh
+          geometry={cabinetEdgesNodes.edges003.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[0.63, 1.023, -0.744 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[0.005, -1.3, -0.028 * (widthScale - decimal[density])]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Top Side 4 green*/}
+        <mesh
+          geometry={cabinetEdgesNodes.edges001.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.308, 1.023, -1.5 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -1.3, -0.02]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Middle Edge 1 */}
+        <mesh
+          geometry={cabinetEdgesNodes.edges002.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.625, 0.4, -1.488 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -0.595, -0.027]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Middle Edge 2 */}
+        <mesh
+          geometry={cabinetEdgesNodes.edges002.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[0.625, 0.4, 0]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -0.595, -0.027]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Middle Edge 3 */}
+        <mesh
+          geometry={cabinetEdgesNodes.edges002.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.625, 0.4, 0]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -0.595, -0.027]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Middle Edge 4 Red*/}
+        <mesh
+          geometry={cabinetEdgesNodes.edges002.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[0.625, 0.4, -1.5 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -0.595, -0.027]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Bottom Side 1 */}
+        <mesh
+          geometry={cabinetEdgesNodes.edges001.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.32, -0.23, -1.5 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.0186, -1.3, -0.027]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Bottpm Side 2 */}
+        <mesh
+          geometry={cabinetEdgesNodes.edges003.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.61, -0.23, -0.744 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -1.3, -0.028 * (widthScale - decimal[density])]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Bottom side 3 */}
+        <mesh
+          geometry={cabinetEdgesNodes.edges001.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.32, -0.23, 0.006 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.0184, -1.3, -0.027]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Bottom side 4 */}
+        <mesh
+          geometry={cabinetEdgesNodes.edges003.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[0.61, -0.23, -0.744 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -1.3, -0.0285 * (widthScale - decimal[density])]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+      </group>
       {/* Depth */}
       {dimensions && (
         <group position={[0, 0, -0.8]}>
@@ -214,7 +378,7 @@ function OpenCabinet(props) {
             rotation={[0, Math.PI / 2, 0]}
             position={[0, 0, 0.01]}
             fontSize={0.2}
-            color="black"
+            color="white"
             anchorX="center"
             anchorY="middle"
           >

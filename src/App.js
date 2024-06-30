@@ -163,7 +163,7 @@ export default function App() {
         storageCabinet02: { position: [0, -4.8, 0] },
       },
     };
-
+    let counter = 0;
     for (
       let i = -8;
       i <
@@ -229,6 +229,8 @@ export default function App() {
               colorCodes={colorCodes}
               books={configuration.books === "ON"}
               dimensions={configuration.dimensions === "ON"}
+              col={counter}
+              row={0}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet02 && (
@@ -249,6 +251,8 @@ export default function App() {
               colorCodes={colorCodes}
               books={configuration.books === "ON"}
               dimensions={configuration.dimensions === "ON"}
+              col={counter}
+              row={0}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet03 && (
@@ -269,6 +273,8 @@ export default function App() {
               colorCodes={colorCodes}
               books={configuration.books === "ON"}
               dimensions={configuration.dimensions === "ON"}
+              col={counter}
+              row={0}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet04 && (
@@ -289,6 +295,8 @@ export default function App() {
               colorCodes={colorCodes}
               books={configuration.books === "ON"}
               dimensions={configuration.dimensions === "ON"}
+              col={counter}
+              row={0}
             />
           )}
           {verticalCabinConfig[configuration.height].drawerCabinet && (
@@ -333,6 +341,7 @@ export default function App() {
         </group>
       );
       groups.push(group);
+      counter += 1;
     }
     return groups;
   };

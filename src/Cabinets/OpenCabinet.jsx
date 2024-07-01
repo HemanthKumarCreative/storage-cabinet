@@ -7,6 +7,11 @@ import Book from "./Book";
 import CeramicPot from "./CeramicPot";
 import ShineSprite from "./ShineSprite";
 import BatCreature from "./BatCreature";
+import BookPack from "./BookpackGlb";
+import CandleStickGlb from "./CandleStickGlb";
+import NepoleanGlb from "./NapoleanGlb";
+import NesCafeGlb from "./NesCafeGlb";
+import RayBanGlb from "./RayBanGlb";
 
 function OpenCabinet(props) {
   const { nodes, materials } = useGLTF(OpenCabinetGlb);
@@ -16,47 +21,47 @@ function OpenCabinet(props) {
   const OBJECTS = [
     [
       Book,
+      CeramicPot,
       ShineSprite,
-      Book,
-      CeramicPot,
-      Book,
       BatCreature,
-      Book,
+      BookPack,
+      CandleStickGlb,
       CeramicPot,
-      Book,
+      BookPack,
+      ShineSprite,
+    ],
+    [
+      BookPack,
+      CandleStickGlb,
+      NepoleanGlb,
+      NesCafeGlb,
+      BatCreature,
+      ShineSprite,
+      BatCreature,
+      BookPack,
+      CandleStickGlb,
     ],
     [
       Book,
       CeramicPot,
-      Book,
+      ShineSprite,
+      BatCreature,
+      BookPack,
+      CandleStickGlb,
       CeramicPot,
-      Book,
-      CeramicPot,
-      Book,
-      CeramicPot,
-      Book,
+      BookPack,
+      ShineSprite,
     ],
     [
-      Book,
-      CeramicPot,
-      Book,
-      CeramicPot,
-      Book,
-      CeramicPot,
-      Book,
-      CeramicPot,
-      Book,
-    ],
-    [
-      Book,
-      CeramicPot,
-      Book,
-      CeramicPot,
-      Book,
-      CeramicPot,
-      Book,
-      CeramicPot,
-      Book,
+      BookPack,
+      CandleStickGlb,
+      NepoleanGlb,
+      NesCafeGlb,
+      BatCreature,
+      ShineSprite,
+      BatCreature,
+      BookPack,
+      CandleStickGlb,
     ],
   ];
   // Destructure depth from props

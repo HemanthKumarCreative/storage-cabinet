@@ -252,7 +252,7 @@ export default function App() {
               books={configuration.books === "ON"}
               dimensions={configuration.dimensions === "ON"}
               col={counter}
-              row={0}
+              row={1}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet03 && (
@@ -274,7 +274,7 @@ export default function App() {
               books={configuration.books === "ON"}
               dimensions={configuration.dimensions === "ON"}
               col={counter}
-              row={0}
+              row={2}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet04 && (
@@ -296,7 +296,7 @@ export default function App() {
               books={configuration.books === "ON"}
               dimensions={configuration.dimensions === "ON"}
               col={counter}
-              row={0}
+              row={3}
             />
           )}
           {verticalCabinConfig[configuration.height].drawerCabinet && (

@@ -7,10 +7,16 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import BookPackGlb from "../modals/BookpackGlb.glb";
 
-export function Model(props) {
+export default function Model(props) {
   const { nodes, materials } = useGLTF(BookPackGlb);
   return (
-    <group {...props} dispose={null}>
+    <group
+      {...props}
+      dispose={null}
+      scale={[0.004, 0.005, 0.004]}
+      rotation={[Math.PI / 2, 0, Math.PI / 2]}
+      position={[0.2, 0.3, -0.7]}
+    >
       <mesh
         geometry={nodes.book001.geometry}
         material={materials["Material #100"]}

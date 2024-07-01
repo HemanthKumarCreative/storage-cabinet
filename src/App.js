@@ -472,7 +472,7 @@ export default function App() {
             }}
           >
             <VerticalRule
-              height={165}
+              height={175}
               value={25}
               isCM={configuration.units === "cm"}
             />

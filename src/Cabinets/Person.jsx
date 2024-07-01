@@ -4,8 +4,8 @@ import * as THREE from "three";
 const Texture = ({ texture }) => {
   return (
     <mesh
-      position={[-9.9, -3.8, 1]}
-      scale={[0.5, 1, 0.1]}
+      position={[-9.9, -2.7, 1]}
+      scale={[0.8, 1.6, 0.1]}
       receiveShadow={false}
     >
       <planeGeometry attach="geometry" args={[4, 4]} receiveShadow={false} />

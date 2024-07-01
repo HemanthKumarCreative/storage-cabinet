@@ -16,7 +16,9 @@ export default function VerticalLineWithMarker({ value, height, isCM }) {
     <Box
       sx={{
         position: "relative",
-        height: `${height !== 175 ? height + height / 10 : 280}px`,
+        height: `${
+          height !== 175 ? height + height / 2 + height / 2 + height / 4 : 350
+        }px`,
         width: "2px",
         backgroundColor: "grey",
         margin: "auto",

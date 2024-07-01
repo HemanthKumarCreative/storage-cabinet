@@ -17,7 +17,7 @@ export default function HorizontalLineWithMarker({ value, width, isCM }) {
       sx={{
         position: "relative",
         height: "2px",
-        width: `${width + width / 2.5}px`,
+        width: `${width + width / 1.3}px`,
         backgroundColor: "grey",
         margin: "auto",
       }}

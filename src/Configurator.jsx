@@ -15,7 +15,13 @@ import { color } from "three/examples/jsm/nodes/Nodes.js";
 import { BsGrid3X3 } from "react-icons/bs";
 import { FcExport } from "react-icons/fc";
 
-function Configurator({ configuration, setConfiguration, exportGLTF }) {
+function Configurator({
+  configuration,
+  setConfiguration,
+  exportGLTF,
+  handleReset,
+  controlsRef,
+}) {
   const handleInputChange = (prop) => (event, newValue) => {
     setConfiguration({ ...configuration, [prop]: newValue });
   };
@@ -28,12 +34,12 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
   };
 
   const heightMap = [
-    { value: 250, label: "" },
+    { value: 150, label: "" },
+    { value: 180, label: "" },
+    { value: 210, label: "" },
+    { value: 240, label: "" },
+    { value: 270, label: "" },
     { value: 300, label: "" },
-    { value: 350, label: "" },
-    { value: 400, label: "" },
-    { value: 450, label: "" },
-    { value: 500, label: "" },
   ];
 
   const widthMap = [
@@ -192,8 +198,8 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
               onChange={handleInputChange("height")}
               valueLabelDisplay="auto"
               aria-labelledby="height-slider"
-              min={250}
-              max={500}
+              min={150}
+              max={300}
               step={null}
               marks={heightMap} // Add marks to show stepper behavior
               size="small"
@@ -434,6 +440,7 @@ function Configurator({ configuration, setConfiguration, exportGLTF }) {
                 size="small"
                 disabled={configuration.dimensions === "ON"}
                 color="warning"
+                onClick={handleReset}
               >
                 ON
               </ToggleButton>

@@ -21,7 +21,7 @@ export default function App() {
     style: "grid",
     density: 100,
     width: 450,
-    height: 400,
+    height: 240,
     depth: "24cm", // Initial depth value
     backPanel: "ON",
     finish: "Plywood",
@@ -102,7 +102,7 @@ export default function App() {
     };
 
     const verticalCabinConfig = {
-      250: {
+      150: {
         storageCabinet01: { position: [0, -1.5, 0] },
         smallCabinet: null,
         openCabinet01: null,
@@ -112,7 +112,7 @@ export default function App() {
         drawerCabinet: { position: [0, -3.5, 0] },
         storageCabinet02: { position: [0, -4.8, 0] },
       },
-      300: {
+      180: {
         storageCabinet01: { position: [0, -0.2, 0] },
         smallCabinet: null,
         openCabinet01: null,
@@ -122,7 +122,7 @@ export default function App() {
         drawerCabinet: { position: [0, -3.5, 0] },
         storageCabinet02: { position: [0, -4.8, 0] },
       },
-      350: {
+      210: {
         storageCabinet01: { position: [0, 1.19, 0] },
         smallCabinet: null,
         openCabinet01: null,
@@ -132,7 +132,7 @@ export default function App() {
         drawerCabinet: { position: [0, -3.5, 0] },
         storageCabinet02: { position: [0, -4.8, 0] },
       },
-      400: {
+      240: {
         storageCabinet01: { position: [0, 2.4, 0] },
         smallCabinet: null,
         openCabinet01: null,
@@ -142,7 +142,7 @@ export default function App() {
         drawerCabinet: { position: [0, -3.5, 0] },
         storageCabinet02: { position: [0, -4.8, 0] },
       },
-      450: {
+      270: {
         storageCabinet01: { position: [0, 3.6, 0] },
         smallCabinet: null,
         openCabinet01: { position: [0, 1.6, 0] },
@@ -152,7 +152,7 @@ export default function App() {
         drawerCabinet: { position: [0, -3.5, 0] },
         storageCabinet02: { position: [0, -4.8, 0] },
       },
-      500: {
+      300: {
         storageCabinet01: { position: [0, 4.9, 0] },
         smallCabinet: { position: [0, 2.9, 0] },
         openCabinet01: { position: [0, 1.6, 0] },
@@ -349,7 +349,7 @@ export default function App() {
   const uri = "https://pics.io/preview/66792a63548394472778ddc6/thumbnail";
 
   const sceneRef = useRef();
-
+  const controlsRef = useRef();
   console.log({ sceneRef });
   function save(blob, fileName) {
     const link = document.createElement("a");
@@ -381,6 +381,12 @@ export default function App() {
     }
   };
 
+  const handleReset = () => {
+    if (controlsRef.current) {
+      controlsRef.current.reset();
+    }
+  };
+
   console.log({ sceneRef });
   return (
     <div
@@ -394,7 +400,7 @@ export default function App() {
       }}
     >
       <Canvas
-        camera={{ position: [0, 0, 15], fov: 60 }}
+        camera={{ position: [0, 0, 15], fov: 50 }}
         shadows
         gl={{ antialias: true }}
         style={{ cursor: "grabbing" }}
@@ -425,12 +431,17 @@ export default function App() {
             )
           )}
         </group>
-        <OrbitControls />
+        <OrbitControls
+          ref={controlsRef}
+          enabled={configuration.dimensions === "OFF"}
+        />
       </Canvas>
       <Configurator
         configuration={configuration}
         setConfiguration={setConfiguration}
         exportGLTF={exportGLTF}
+        handleReset={handleReset}
+        controlsRef={controlsRef}
       />
       {configuration.dimensions === "ON" && (
         <>
@@ -438,9 +449,9 @@ export default function App() {
             style={{
               position: "absolute",
               left: `${
-                300 + configuration.width + configuration.width / 2.5
+                350 + configuration.width + configuration.width / 2.5
               }px`,
-              bottom: "90px",
+              bottom: "25px",
             }}
           >
             <VerticalRule
@@ -452,9 +463,12 @@ export default function App() {
           <div
             style={{
               position: "absolute",
-              left: `230px`,
+              left: `150px`,
               bottom: `${
-                configuration.height + configuration.height / 20 + 150
+                configuration.height +
+                configuration.height / 2.5 +
+                configuration.height / 2 +
+                configuration.height / 2
               }px`,
             }}
           >
@@ -467,8 +481,8 @@ export default function App() {
           <div
             style={{
               position: "absolute",
-              left: `70px`,
-              bottom: "90px",
+              left: "18px",
+              bottom: "25px",
             }}
           >
             <VerticalRule

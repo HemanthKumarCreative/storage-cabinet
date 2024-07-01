@@ -252,9 +252,13 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.63, 1.023, -0.744 * widthScale]}
+          position={[-0.63 * depthScale, 1.023, -0.744 * widthScale]}
           rotation={[0, 0, -Math.PI]}
-          scale={[-0.01, -1.3, -0.027 * (widthScale - decimal[density])]}
+          scale={[
+            -0.01 * depthScale,
+            -1.3,
+            -0.027 * (widthScale - decimal[density]),
+          ]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
@@ -262,9 +266,9 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.308, 1.023, 0.023 * widthScale]}
+          position={[-0.308 * depthScale, 1.023, 0.023 * widthScale]}
           rotation={[0, 0, -Math.PI]}
-          scale={[-0.018, -1.3, -0.005]}
+          scale={[-0.018 * depthScale, -1.3, -0.005]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
@@ -272,9 +276,13 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[0.63, 1.023, -0.744 * widthScale]}
+          position={[0.63 * depthScale, 1.023, -0.744 * widthScale]}
           rotation={[0, 0, -Math.PI]}
-          scale={[0.005, -1.3, -0.028 * (widthScale - decimal[density])]}
+          scale={[
+            0.005 * depthScale,
+            -1.3,
+            -0.028 * (widthScale - decimal[density]),
+          ]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
@@ -282,9 +290,9 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.308, 1.023, -1.5 * widthScale]}
+          position={[-0.308 * depthScale, 1.023, -1.5 * widthScale]}
           rotation={[0, 0, -Math.PI]}
-          scale={[-0.018, -1.3, -0.02]}
+          scale={[-0.018 * depthScale, -1.3, -0.02]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
@@ -292,7 +300,7 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.625, 0.4, -1.488 * widthScale]}
+          position={[-0.625 * depthScale, 0.4, -1.488 * widthScale]}
           rotation={[0, 0, -Math.PI]}
           scale={[-0.018, -0.595, -0.027]}
         >
@@ -302,7 +310,7 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[0.625, 0.4, 0]}
+          position={[0.625 * depthScale, 0.4, 0]}
           rotation={[0, 0, -Math.PI]}
           scale={[-0.018, -0.595, -0.027]}
         >
@@ -312,7 +320,7 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.625, 0.4, 0]}
+          position={[-0.625 * depthScale, 0.4, 0]}
           rotation={[0, 0, -Math.PI]}
           scale={[-0.018, -0.595, -0.027]}
         >
@@ -322,7 +330,7 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[0.625, 0.4, -1.5 * widthScale]}
+          position={[0.625 * depthScale, 0.4, -1.5 * widthScale]}
           rotation={[0, 0, -Math.PI]}
           scale={[-0.018, -0.595, -0.027]}
         >
@@ -332,9 +340,9 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.32, -0.23, -1.5 * widthScale]}
+          position={[-0.32 * depthScale, -0.23, -1.5 * widthScale]}
           rotation={[0, 0, -Math.PI]}
-          scale={[-0.0186, -1.3, -0.027]}
+          scale={[-0.0186 * depthScale, -1.3, -0.027]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
@@ -342,9 +350,13 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.61, -0.23, -0.744 * widthScale]}
+          position={[-0.61 * depthScale, -0.23, -0.744 * widthScale]}
           rotation={[0, 0, -Math.PI]}
-          scale={[-0.018, -1.3, -0.028 * (widthScale - decimal[density])]}
+          scale={[
+            -0.018 * depthScale,
+            -1.3,
+            -0.028 * (widthScale - decimal[density]),
+          ]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
@@ -352,9 +364,9 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.32, -0.23, 0.006 * widthScale]}
+          position={[-0.32 * depthScale, -0.23, 0.006 * widthScale]}
           rotation={[0, 0, -Math.PI]}
-          scale={[-0.0184, -1.3, -0.027]}
+          scale={[-0.0184 * depthScale, -1.3, -0.027]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
@@ -362,9 +374,13 @@ function SmallCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[0.61, -0.23, -0.744 * widthScale]}
+          position={[0.61 * depthScale, -0.23, -0.744 * widthScale]}
           rotation={[0, 0, -Math.PI]}
-          scale={[-0.018, -1.3, -0.0285 * (widthScale - decimal[density])]}
+          scale={[
+            -0.018 * depthScale,
+            -1.3,
+            -0.0285 * (widthScale - decimal[density]),
+          ]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>

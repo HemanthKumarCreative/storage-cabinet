@@ -405,6 +405,7 @@ export default function App() {
         gl={{ antialias: true }}
         style={{ cursor: "grabbing" }}
         ref={sceneRef}
+        onDoubleClick={handleReset}
       >
         <ambientLight intensity={0.5} />
         <directionalLight

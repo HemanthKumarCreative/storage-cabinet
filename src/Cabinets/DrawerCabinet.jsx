@@ -182,7 +182,7 @@ function DrawerCabinet(props) {
       <group
         ref={drawerRef}
         position={[0.581, 0.315, -0.754 * widthScale]}
-        scale={[depthScale, 1, widthScale]}
+        scale={[depthScale, 1, widthScale + decimal[density]]}
         onPointerUp={openDrawer}
         castShadow
         receiveShadow

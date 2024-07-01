@@ -52,7 +52,6 @@ function Configurator({
   ];
 
   const densityMap = [
-    { value: 25, label: "" },
     { value: 50, label: "" },
     { value: 75, label: "" },
     { value: 100, label: "" },
@@ -141,7 +140,7 @@ function Configurator({
               onChange={handleInputChange("density")}
               valueLabelDisplay="auto"
               aria-labelledby="density-slider"
-              min={25}
+              min={50}
               max={100}
               size="small"
               step={null}

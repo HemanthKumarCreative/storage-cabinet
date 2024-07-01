@@ -16,7 +16,7 @@ export default function Model(props) {
         geometry={nodes.Ceramic_pot.geometry}
         material={materials.Ceramic_pot}
         scale={[3, 3, 3]}
-        position={[0.2, -0.1, -0.8]}
+        position={[0.2, -0.2, -0.8]}
       />
     </group>
   );

@@ -5,6 +5,8 @@ import OpenCabinetGlb from "../modals/OpenCabinet.glb";
 import CabinetEdgesGlb from "../modals/CabinetEdges.glb";
 import Book from "./Book";
 import CeramicPot from "./CeramicPot";
+import ShineSprite from "./ShineSprite";
+import BatCreature from "./BatCreature";
 
 function OpenCabinet(props) {
   const { nodes, materials } = useGLTF(OpenCabinetGlb);
@@ -14,11 +16,11 @@ function OpenCabinet(props) {
   const OBJECTS = [
     [
       Book,
-      CeramicPot,
+      ShineSprite,
       Book,
       CeramicPot,
       Book,
-      CeramicPot,
+      BatCreature,
       Book,
       CeramicPot,
       Book,

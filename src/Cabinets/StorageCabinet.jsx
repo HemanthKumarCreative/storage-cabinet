@@ -4,6 +4,7 @@ import { useGLTF, useTexture, Text } from "@react-three/drei";
 import * as THREE from "three";
 import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
 import CabinetEdgesGlb from "../modals/CabinetEdges.glb";
+import InnerDimension from "../Dimensions/InnerDimension";
 
 function StorageCabinet(props) {
   const { nodes, materials } = useGLTF(StorageCabinetGlb);
@@ -89,7 +90,7 @@ function StorageCabinet(props) {
     return { width: metrics.width, height: fontSize };
   };
 
-  const heightText = `H : 100`;
+  const heightText = `100`;
   const heightSize = textSize(heightText, 24);
 
   const widthText = `W : ${widthScale * 50}`;
@@ -190,68 +191,32 @@ function StorageCabinet(props) {
           map={texture}
           attach="material"
         />
-        {/* Text and background chip for height */}
+        {/* Dimensions */}
+        {/* Height */}
         {dimensions && (
-          <group position={[0, 0.5, 0.7]}>
-            <mesh rotation={[0, Math.PI / 2, 0]}>
-              <planeGeometry
-                args={[heightSize.width / 100, heightSize.height / 100]}
-              />
-              <meshBasicMaterial color="white" />
-            </mesh>
-            <Text
-              rotation={[0, Math.PI / 2, 0]}
-              position={[0, 0, 0.01]}
-              fontSize={0.2}
-              color="white"
-              anchorX="center"
-              anchorY="middle"
-            >
-              {heightText}
-            </Text>
-          </group>
+          <InnerDimension
+            heightSize={heightSize}
+            heightText={heightText}
+            groupPosition={[0, 0.3, 0.4]}
+            groupRotation={[0, Math.PI / 2, 0]}
+            textRotation={[0, 0, 0]}
+            textPosition={[0, 0, 0.01]}
+            planeRotation={[0, 0, 0]}
+            type="height"
+          />
         )}
-        {/* Text and background chip for width */}
+        {/* Width */}
         {dimensions && (
-          <group position={[0, 0, 0.7]}>
-            <mesh rotation={[0, Math.PI / 2, 0]}>
-              <planeGeometry
-                args={[widthSize.width / 100, widthSize.height / 100]}
-              />
-              <meshBasicMaterial color="white" />
-            </mesh>
-            <Text
-              rotation={[0, Math.PI / 2, 0]}
-              position={[0, 0, 0.01]}
-              fontSize={0.2}
-              color="white"
-              anchorX="center"
-              anchorY="middle"
-            >
-              {widthText}
-            </Text>
-          </group>
-        )}
-        {/* Text and background chip for depth */}
-        {dimensions && (
-          <group position={[0, -0.5, 0.7]}>
-            <mesh rotation={[0, Math.PI / 2, 0]}>
-              <planeGeometry
-                args={[depthSize.width / 100, depthSize.height / 100]}
-              />
-              <meshBasicMaterial color="white" />
-            </mesh>
-            <Text
-              rotation={[0, Math.PI / 2, 0]}
-              position={[0, 0, 0.01]}
-              fontSize={0.2}
-              color="white"
-              anchorX="center"
-              anchorY="middle"
-            >
-              {depthText}
-            </Text>
-          </group>
+          <InnerDimension
+            heightSize={heightSize}
+            heightText={heightText}
+            groupPosition={[0, -0.3, 0.5]}
+            groupRotation={[0, Math.PI / 2, 0]}
+            textRotation={[0, 0, 0]}
+            textPosition={[0, 0, 0.01]}
+            planeRotation={[0, 0, 0]}
+            type="width"
+          />
         )}
       </mesh>
       <mesh

@@ -12,6 +12,7 @@ import CandleStickGlb from "./CandleStickGlb";
 import NepoleanGlb from "./NapoleanGlb";
 import NesCafeGlb from "./NesCafeGlb";
 import RayBanGlb from "./RayBanGlb";
+import InnerDimension from "../Dimensions/InnerDimension";
 
 function OpenCabinet(props) {
   const { nodes, materials } = useGLTF(OpenCabinetGlb);
@@ -135,7 +136,7 @@ function OpenCabinet(props) {
     return { width: metrics.width, height: fontSize };
   };
 
-  const heightText = `H : 50`;
+  const heightText = ` 50 `;
   const heightSize = textSize(heightText, 24);
 
   const widthText = `W : ${widthScale * 50}`;
@@ -209,47 +210,43 @@ function OpenCabinet(props) {
       {/* Dimensions */}
       {/* Height */}
       {dimensions && (
-        <group position={[0, 0.6, -0.8]}>
-          <mesh rotation={[0, Math.PI / 2, 0]}>
-            <planeGeometry
-              args={[heightSize.width / 100, heightSize.height / 100]}
-            />
-            <meshBasicMaterial color="white" />
-          </mesh>
-          <Text
-            rotation={[0, Math.PI / 2, 0]}
-            position={[0, 0, 0.01]}
-            fontSize={0.2}
-            color="white"
-            anchorX="center"
-            anchorY="middle"
-          >
-            {heightText}
-          </Text>
-        </group>
+        <InnerDimension
+          heightSize={heightSize}
+          heightText={heightText}
+          groupPosition={[0.8, 0.6, -0.8]}
+          groupRotation={[0, Math.PI / 2, 0]}
+          textRotation={[0, 0, 0]}
+          textPosition={[0, 0, 0.01]}
+          planeRotation={[0, 0, 0]}
+          type="height"
+        />
       )}
       {/* Width */}
       {dimensions && (
-        <group position={[0, 0.3, -0.8]}>
-          <mesh rotation={[0, Math.PI / 2, 0]}>
-            <planeGeometry
-              args={[widthSize.width / 100, widthSize.height / 100]}
-            />
-            <meshBasicMaterial color="white" />
-          </mesh>
-          <Text
-            rotation={[0, Math.PI / 2, 0]}
-            position={[0, 0, 0.01]}
-            fontSize={0.2}
-            color="white"
-            anchorX="center"
-            anchorY="middle"
-          >
-            {widthText}
-          </Text>
-        </group>
+        <InnerDimension
+          heightSize={heightSize}
+          heightText={heightText}
+          groupPosition={[0.8, 0, -0.8]}
+          groupRotation={[0, Math.PI / 2, 0]}
+          textRotation={[0, 0, 0]}
+          textPosition={[0, 0, 0.01]}
+          planeRotation={[0, 0, 0]}
+          type="width"
+        />
       )}
       {/* Depth */}
+      {/* {dimensions && (
+        <InnerDimension
+          heightSize={heightSize}
+          heightText={heightText}
+          groupPosition={[0, 0, -0.8]}
+          groupRotation={[0, Math.PI / 2, 0]}
+          textRotation={[0, 0, 0]}
+          textPosition={[0, 0, 0.01]}
+          planeRotation={[0, 0, 0]}
+          type="depth"
+        />
+      )} */}
       <group dispose={null}>
         {/* Top Side1 blue*/}
         <mesh
@@ -388,27 +385,6 @@ function OpenCabinet(props) {
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
       </group>
-      {/* Depth */}
-      {dimensions && (
-        <group position={[0, 0, -0.8]}>
-          <mesh rotation={[0, Math.PI / 2, 0]}>
-            <planeGeometry
-              args={[depthSize.width / 100, depthSize.height / 100]}
-            />
-            <meshBasicMaterial color="white" />
-          </mesh>
-          <Text
-            rotation={[0, Math.PI / 2, 0]}
-            position={[0, 0, 0.01]}
-            fontSize={0.2}
-            color="white"
-            anchorX="center"
-            anchorY="middle"
-          >
-            {depthText}
-          </Text>
-        </group>
-      )}
     </group>
   );
 }

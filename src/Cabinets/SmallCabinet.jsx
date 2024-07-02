@@ -180,7 +180,7 @@ function SmallCabinet(props) {
           <InnerDimension
             heightSize={heightSize}
             heightText={heightText}
-            groupPosition={[0, 0.2, 0.4]}
+            groupPosition={[0, 0.2, 0.6]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}
             textPosition={[0, 0, 0.01]}
@@ -193,7 +193,7 @@ function SmallCabinet(props) {
           <InnerDimension
             heightSize={heightSize}
             heightText={heightText}
-            groupPosition={[0, -0.3, 0.5]}
+            groupPosition={[0, -0.3, 0.6]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}
             textPosition={[0, 0, 0.01]}

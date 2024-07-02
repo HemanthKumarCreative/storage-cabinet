@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { RoundedBox, Text, Line } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
 function Height({
   heightSize,
@@ -47,6 +48,24 @@ function Height({
   const depthLineStart = [0, 0, 0];
   const depthLineEnd = [0, 0, 0.2]; // Depth line ends
 
+  // References for the line groups
+  const heightLinesRef = useRef();
+  const widthLinesRef = useRef();
+  const depthLinesRef = useRef();
+
+  // Animation with useFrame
+  useFrame(() => {
+    if (heightLinesRef.current) {
+      heightLinesRef.current.scale.lerp({ x: 1, y: 1, z: 1 }, 0.1);
+    }
+    if (widthLinesRef.current) {
+      widthLinesRef.current.scale.lerp({ x: 1, y: 1, z: 1 }, 0.1);
+    }
+    if (depthLinesRef.current) {
+      depthLinesRef.current.scale.lerp({ x: 1, y: 1, z: 1 }, 0.1);
+    }
+  });
+
   return (
     <group position={groupPosition} rotation={groupRotation}>
       <RoundedBox
@@ -69,7 +88,7 @@ function Height({
         {heightText}
       </Text>
       {type === "height" && (
-        <>
+        <group ref={heightLinesRef} scale={[0, 0, 0]}>
           {/* Top vertical line */}
           <Line
             points={[verticalLineStart, verticalLineEnd]}
@@ -98,10 +117,10 @@ function Height({
             lineWidth={1}
             position={[0, 0, 0.001]}
           />
-        </>
+        </group>
       )}
       {type === "width" && (
-        <>
+        <group ref={widthLinesRef} scale={[0, 0, 0]}>
           {/* Right horizontal line */}
           <Line
             points={[horizontalLineStart, horizontalLineEnd]}
@@ -130,10 +149,10 @@ function Height({
             lineWidth={1}
             position={[0, 0, 0.001]}
           />
-        </>
+        </group>
       )}
       {type === "depth" && (
-        <>
+        <group ref={depthLinesRef} scale={[0, 0, 0]}>
           {/* Depth line */}
           <Line
             points={[depthLineStart, depthLineEnd]}
@@ -141,7 +160,7 @@ function Height({
             lineWidth={1}
             position={[0.5, 0, heightSize.height / 200]}
           />
-        </>
+        </group>
       )}
     </group>
   );

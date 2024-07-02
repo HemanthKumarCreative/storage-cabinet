@@ -434,7 +434,7 @@ export default function App() {
         </group>
         <OrbitControls
           ref={controlsRef}
-          // enabled={configuration.dimensions === "OFF"}
+          enabled={configuration.dimensions === "OFF"}
         />
       </Canvas>
       <Configurator

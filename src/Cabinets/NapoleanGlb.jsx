@@ -17,7 +17,9 @@ export default function Model(props) {
       rotation={[-Math.PI / 2, 0, 0]}
       position={[0, 0.4, -0.5]}
     >
-      <mesh geometry={nodes.napoleon.geometry} material={materials.Marble} />
+      <mesh geometry={nodes.napoleon.geometry} material={materials.Marble}>
+        <meshStandardMaterial color="#886451" attach="material" />
+      </mesh>
     </group>
   );
 }

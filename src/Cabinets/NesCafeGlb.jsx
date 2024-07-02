@@ -16,7 +16,9 @@ export default function Model(props) {
       scale={[10, 10, 10]}
       position={[0, -0.2, -0.8]}
     >
-      <mesh geometry={nodes.mug_Circle.geometry} material={materials.Mat_1} />
+      <mesh geometry={nodes.mug_Circle.geometry} material={materials.Mat_1}>
+        <meshStandardMaterial color="#645188" attach="material" />
+      </mesh>
     </group>
   );
 }

@@ -19,7 +19,9 @@ export default function Model(props) {
       <mesh
         geometry={nodes.Object01.geometry}
         material={materials.Plastic_white}
-      />
+      >
+        <meshStandardMaterial color="#528881" attach="material" />
+      </mesh>
       <mesh geometry={nodes.Object03.geometry} material={materials.Fabric} />
       <mesh geometry={nodes.Object02.geometry} material={materials.Chrome} />
       <mesh geometry={nodes.Object02_1.geometry} material={materials.Wax} />

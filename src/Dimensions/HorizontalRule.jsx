@@ -1,76 +1,169 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
+import React, { useRef } from "react";
+import { RoundedBox, Text, Line } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 
-export default function HorizontalLineWithMarker({ value, width, isCM }) {
-  function cmToFeetInches(cm) {
-    // 1 inch = 2.54 cm
-    // 1 foot = 12 inches
-    const inches = cm / 2.54;
-    const feet = Math.floor(inches / 12);
-    const remainingInches = inches % 12;
+function Height({
+  heightSize,
+  heightText,
+  textPosition,
+  textRotation,
+  groupPosition,
+  groupRotation,
+  planeRotation,
+  type,
+  lineColor,
+}) {
+  // Define the positions for the vertical lines
+  const verticalLineStart = [0, 0, 0];
+  const verticalLineEnd = [0, 0.2, 0]; // Vertical line ends
+  const bottomLineStart = [0, 0, 0];
+  const bottomLineEnd = [0, -0.2, 0]; // Bottom line ends
 
-    return { feet: feet, inches: remainingInches };
-  }
+  // Define the positions for the horizontal lines
+  const horizontalLineStart = [0, 0, 0];
+  const horizontalLineEnd = [0.2, 0, 0]; // Horizontal line ends
+  const leftLineStart = [0, 0, 0];
+  const leftLineEnd = [-0.2, 0, 0]; // Left line ends
+
+  // Define the positions for the small lines
+  const lineLength = 0.05; // Length of the small lines
+  const topHorizontalLine = [
+    [-lineLength / 2, heightSize.height / 200 + 0.2, 0],
+    [lineLength / 2, heightSize.height / 200 + 0.2, 0],
+  ];
+  const bottomHorizontalLine = [
+    [-lineLength / 2, -heightSize.height / 200 - 0.2, 0],
+    [lineLength / 2, -heightSize.height / 200 - 0.2, 0],
+  ];
+  const rightHorizontalLine = [
+    [heightSize.width / 200 + 0.2, -lineLength / 2, 0],
+    [heightSize.width / 200 + 0.2, lineLength / 2, 0],
+  ];
+  const leftHorizontalLine = [
+    [-heightSize.width / 200 - 0.2, -lineLength / 2, 0],
+    [-heightSize.width / 200 - 0.2, lineLength / 2, 0],
+  ];
+
+  // Define positions for depth lines
+  const depthLineStart = [0, 0, 0];
+  const depthLineEnd = [0, 0, 0.2]; // Depth line ends
+
+  // References for the line groups
+  const heightLinesRef = useRef();
+  const widthLinesRef = useRef();
+  const depthLinesRef = useRef();
+
+  // Animation with useFrame
+  useFrame(() => {
+    if (heightLinesRef.current) {
+      heightLinesRef.current.scale.lerp({ x: 1, y: 1, z: 1 }, 0.1);
+    }
+    if (widthLinesRef.current) {
+      widthLinesRef.current.scale.lerp({ x: 1, y: 1, z: 1 }, 0.1);
+    }
+    if (depthLinesRef.current) {
+      depthLinesRef.current.scale.lerp({ x: 1, y: 1, z: 1 }, 0.1);
+    }
+  });
 
   return (
-    <Box
-      sx={{
-        position: "relative",
-        height: "2px",
-        width: `${width + width / 1.3}px`,
-        backgroundColor: "grey",
-        margin: "auto",
-      }}
-    >
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: `calc(${value}% - 10px)`,
-          transform: "translateY(-50%)",
-          backgroundColor: "white",
-          borderRadius: "50%",
-          width: "fit-content",
-          minWidth: "50px",
-          height: "30px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          boxShadow: "0 0 3px rgba(0, 0, 0, 0.3)",
-        }}
+    <group position={groupPosition} rotation={groupRotation}>
+      <RoundedBox
+        args={[heightSize.width / 100, heightSize.height / 100, 0.0025]}
+        radius={0.05} // Border radius
+        smoothness={4} // Smoothness of the rounded corners
+        rotation={planeRotation}
       >
-        <Typography variant="body1">
-          {isCM
-            ? width
-            : `${cmToFeetInches(width).feet.toFixed(0)}' ${cmToFeetInches(
-                width
-              ).inches.toFixed(0)}''`}
-        </Typography>
-      </Box>
-
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "0",
-          transform: "translateY(-50%)",
-          backgroundColor: "black",
-          width: "2px",
-          height: "10px",
-        }}
-      />
-
-      <Box
-        sx={{
-          position: "absolute",
-          top: "50%",
-          right: "0",
-          transform: "translateY(-50%)",
-          backgroundColor: "black",
-          width: "2px",
-          height: "10px",
-        }}
-      />
-    </Box>
+        <meshBasicMaterial color="#3A3B3C" />
+      </RoundedBox>
+      <Text
+        rotation={textRotation}
+        position={textPosition}
+        fontSize={0.2} // Smaller font size
+        fontWeight="800" // Medium font weight
+        color="white"
+        anchorX="center"
+        anchorY="middle"
+      >
+        {heightText}
+      </Text>
+      {type === "height" && (
+        <group ref={heightLinesRef} scale={[0, 0, 0]}>
+          {/* Top vertical line */}
+          <Line
+            points={[verticalLineStart, verticalLineEnd]}
+            color={lineColor}
+            lineWidth={1}
+            position={[0, heightSize.height / 200, 0.001]}
+          />
+          {/* Bottom vertical line */}
+          <Line
+            points={[bottomLineStart, bottomLineEnd]}
+            color={lineColor}
+            lineWidth={1}
+            position={[0, -heightSize.height / 200, 0.001]}
+          />
+          {/* Top horizontal line */}
+          <Line
+            points={topHorizontalLine}
+            color={lineColor}
+            lineWidth={1}
+            position={[0, 0, 0.001]}
+          />
+          {/* Bottom horizontal line */}
+          <Line
+            points={bottomHorizontalLine}
+            color={lineColor}
+            lineWidth={1}
+            position={[0, 0, 0.001]}
+          />
+        </group>
+      )}
+      {type === "width" && (
+        <group ref={widthLinesRef} scale={[0, 0, 0]}>
+          {/* Right horizontal line */}
+          <Line
+            points={[horizontalLineStart, horizontalLineEnd]}
+            color={lineColor}
+            lineWidth={1}
+            position={[heightSize.width / 200, 0, 0.001]}
+          />
+          {/* Left horizontal line */}
+          <Line
+            points={[leftLineStart, leftLineEnd]}
+            color={lineColor}
+            lineWidth={1}
+            position={[-heightSize.width / 200, 0, 0.001]}
+          />
+          {/* Right small line */}
+          <Line
+            points={rightHorizontalLine}
+            color={lineColor}
+            lineWidth={1}
+            position={[0, 0, 0.001]}
+          />
+          {/* Left small line */}
+          <Line
+            points={leftHorizontalLine}
+            color={lineColor}
+            lineWidth={1}
+            position={[0, 0, 0.001]}
+          />
+        </group>
+      )}
+      {type === "depth" && (
+        <group ref={depthLinesRef} scale={[0, 0, 0]}>
+          {/* Depth line */}
+          <Line
+            points={[depthLineStart, depthLineEnd]}
+            color={lineColor}
+            lineWidth={1}
+            position={[0.5, 0, heightSize.height / 200]}
+          />
+        </group>
+      )}
+    </group>
   );
 }
+
+export default Height;

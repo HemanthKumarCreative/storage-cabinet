@@ -181,7 +181,7 @@ function StorageCabinet(props) {
           0.033,
           -1.446 * widthScale - decimal[density],
         ]}
-        scale={[2, 1, widthScale + decimal[density]]}
+        scale={[2, 0.9, widthScale + decimal[density]]}
         onPointerUp={openDoor}
         castShadow
         receiveShadow
@@ -197,7 +197,7 @@ function StorageCabinet(props) {
           <InnerDimension
             heightSize={heightSize}
             heightText={heightText}
-            groupPosition={[0, 0.3, 0.6]}
+            groupPosition={[0.2, 0.3, 0.7]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}
             textPosition={[0, 0, 0.01]}
@@ -210,7 +210,7 @@ function StorageCabinet(props) {
           <InnerDimension
             heightSize={heightSize}
             heightText={heightText}
-            groupPosition={[0, -0.3, 0.6]}
+            groupPosition={[0.2, -0.3, 0.7]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}
             textPosition={[0, 0, 0.01]}

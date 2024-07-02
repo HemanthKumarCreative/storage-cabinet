@@ -423,7 +423,7 @@ export default function App() {
 
         <Floor receiveShadow style={{ backgroundColor: "rgb(215,215,214)" }} />
 
-        <group rotation={[0, 0, 0]} position={[1, 0, 1]}>
+        <group rotation={[0, 0, 0]} position={[2, 0, 1]}>
           <Person url={uri} />
           {horizontalAlignment(
             Math.floor(
@@ -434,7 +434,39 @@ export default function App() {
         </group>
         <OrbitControls
           ref={controlsRef}
-          enabled={configuration.dimensions === "OFF"}
+          // enabled={configuration.dimensions === "OFF"}
+        />
+        <VerticalRule
+          groupPosition={[-7.5, -2, 3]}
+          groupRotation={[0, 0, 0]}
+          textRotation={[0, 0, 0]}
+          textPosition={[0, 0, 0.01]}
+          planeRotation={[0, 0, 0]}
+          type="width"
+          lineColor="grey"
+          height={165}
+          verticalLineStart={[0, 0, 0]}
+          verticalLineEnd={[0, 2.5, 0]}
+          bottomLineStart={[0, 0, 0]}
+          bottomLineEnd={[0, -3, 0]}
+        />
+        <VerticalRule
+          groupPosition={[7.5, -2, 3]}
+          groupRotation={[0, 0, 0]}
+          textRotation={[0, 0, 0]}
+          textPosition={[0, 0, 0.01]}
+          planeRotation={[0, 0, 0]}
+          type="width"
+          lineColor="grey"
+          height={configuration.height}
+          verticalLineStart={[0, 0, 0]}
+          verticalLineEnd={[
+            0,
+            configuration.height * 0.01 + configuration.height / 300,
+            0,
+          ]}
+          bottomLineStart={[0, 0, 0]}
+          bottomLineEnd={[0, -3, 0]}
         />
       </Canvas>
       <Configurator
@@ -444,56 +476,6 @@ export default function App() {
         handleReset={handleReset}
         controlsRef={controlsRef}
       />
-      {configuration.dimensions === "ON" && (
-        <>
-          <div
-            style={{
-              position: "absolute",
-              left: `${
-                350 + configuration.width + configuration.width / 2.5
-              }px`,
-              bottom: "25px",
-            }}
-          >
-            <VerticalRule
-              height={configuration.height}
-              value={25}
-              isCM={configuration.units === "cm"}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              left: `150px`,
-              bottom: `${
-                configuration.height +
-                configuration.height / 2.5 +
-                configuration.height / 2 +
-                configuration.height / 2
-              }px`,
-            }}
-          >
-            <HorizontalRule
-              value={25}
-              width={configuration.width}
-              isCM={configuration.units === "cm"}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              left: "18px",
-              bottom: "25px",
-            }}
-          >
-            <VerticalRule
-              height={175}
-              value={25}
-              isCM={configuration.units === "cm"}
-            />
-          </div>
-        </>
-      )}
     </div>
   );
 }

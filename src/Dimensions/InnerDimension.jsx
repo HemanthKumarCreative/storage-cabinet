@@ -74,7 +74,7 @@ function Height({
         smoothness={4} // Smoothness of the rounded corners
         rotation={planeRotation}
       >
-        <meshBasicMaterial color="grey" />
+        <meshBasicMaterial color="#3A3B3C" />
       </RoundedBox>
       <Text
         rotation={textRotation}

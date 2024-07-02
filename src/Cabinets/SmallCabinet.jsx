@@ -164,7 +164,7 @@ function SmallCabinet(props) {
           -1.444 * widthScale - decimal[density],
         ]}
         rotation={[0, 0, 0]} // Initial rotation state
-        scale={[2, 1, widthScale + decimal[density]]}
+        scale={[2, 0.9, widthScale + decimal[density]]}
         onPointerUp={openDoor}
         castShadow
         receiveShadow
@@ -180,7 +180,7 @@ function SmallCabinet(props) {
           <InnerDimension
             heightSize={heightSize}
             heightText={heightText}
-            groupPosition={[0, 0.2, 0.6]}
+            groupPosition={[0.2, 0.1, 0.7]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}
             textPosition={[0, 0, 0.01]}
@@ -193,7 +193,7 @@ function SmallCabinet(props) {
           <InnerDimension
             heightSize={heightSize}
             heightText={heightText}
-            groupPosition={[0, -0.3, 0.6]}
+            groupPosition={[0.2, -0.5, 0.7]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}
             textPosition={[0, 0, 0.01]}

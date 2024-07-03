@@ -26,6 +26,7 @@ function StorageCabinet(props) {
     color,
     colorCodes,
     dimensions,
+    units,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -49,6 +50,12 @@ function StorageCabinet(props) {
   let depthPositionX = -0.6;
   let doorPositionX = 0.624;
   let hingePosX = 0.522;
+
+  const convertToFeetInches = (cm) => {
+    const inches = cm / 2.54;
+    const feet = Math.ceil(inches / 12);
+    return `${feet}'`;
+  };
 
   switch (depth) {
     case "24cm":
@@ -196,7 +203,7 @@ function StorageCabinet(props) {
         {dimensions && (
           <InnerDimension
             heightSize={heightSize}
-            heightText={heightText}
+            heightText={units === "cm" ? ` 60 ` : `${convertToFeetInches(60)}`}
             groupPosition={[0.2, 0.3, 0.7]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}
@@ -209,7 +216,7 @@ function StorageCabinet(props) {
         {dimensions && (
           <InnerDimension
             heightSize={heightSize}
-            heightText={heightText}
+            heightText={units === "cm" ? ` 50 ` : `${convertToFeetInches(60)}`}
             groupPosition={[0.2, -0.3, 0.7]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}

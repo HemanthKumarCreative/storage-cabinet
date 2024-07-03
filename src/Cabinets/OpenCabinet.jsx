@@ -80,6 +80,7 @@ function OpenCabinet(props) {
     dimensions,
     col,
     row,
+    units,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -91,6 +92,12 @@ function OpenCabinet(props) {
   let widthScale = specialWidth
     ? width / 25
     : densityFactor[configWidth][density] / 50;
+
+  const convertToFeetInches = (cm) => {
+    const inches = cm / 2.54;
+    const feet = Math.ceil(inches / 12);
+    return `${feet}'`;
+  };
 
   const decimal = {
     100: 0.01,
@@ -212,7 +219,7 @@ function OpenCabinet(props) {
       {dimensions && (
         <InnerDimension
           heightSize={heightSize}
-          heightText={heightText}
+          heightText={units === "cm" ? ` 30 ` : `${convertToFeetInches(30)}`}
           groupPosition={[0.8, 0.6, -0.8]}
           groupRotation={[0, Math.PI / 2, 0]}
           textRotation={[0, 0, 0]}
@@ -225,7 +232,7 @@ function OpenCabinet(props) {
       {dimensions && (
         <InnerDimension
           heightSize={heightSize}
-          heightText={heightText}
+          heightText={units === "cm" ? ` 50 ` : `${convertToFeetInches(50)}`}
           groupPosition={[0.8, 0, -0.8]}
           groupRotation={[0, Math.PI / 2, 0]}
           textRotation={[0, 0, 0]}

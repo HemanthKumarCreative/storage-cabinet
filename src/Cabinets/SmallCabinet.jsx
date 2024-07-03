@@ -25,6 +25,7 @@ function SmallCabinet(props) {
     color,
     colorCodes,
     dimensions,
+    units,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -77,6 +78,12 @@ function SmallCabinet(props) {
     75: 0,
     50: 0.08,
     25: 0.14,
+  };
+
+  const convertToFeetInches = (cm) => {
+    const inches = cm / 2.54;
+    const feet = Math.ceil(inches / 12);
+    return `${feet}'`;
   };
 
   const textSize = (text, fontSize) => {
@@ -179,7 +186,7 @@ function SmallCabinet(props) {
         {dimensions && (
           <InnerDimension
             heightSize={heightSize}
-            heightText={heightText}
+            heightText={units === "cm" ? ` 30 ` : `${convertToFeetInches(30)}`}
             groupPosition={[0.2, 0.1, 0.7]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}
@@ -192,7 +199,7 @@ function SmallCabinet(props) {
         {dimensions && (
           <InnerDimension
             heightSize={heightSize}
-            heightText={heightText}
+            heightText={units === "cm" ? ` 50 ` : `${convertToFeetInches(50)}`}
             groupPosition={[0.2, -0.5, 0.7]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}

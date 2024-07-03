@@ -8,12 +8,16 @@ function Height({
   groupPosition,
   groupRotation,
   planeRotation,
+  planePosition,
   lineColor,
   height,
   verticalLineStart,
   verticalLineEnd,
   bottomLineStart,
   bottomLineEnd,
+  topHorizontalLine,
+  bottomHorizontalLine,
+  units,
 }) {
   const textSize = (text, fontSize) => {
     const canvas = document.createElement("canvas");
@@ -23,14 +27,16 @@ function Height({
     return { width: metrics.width, height: fontSize };
   };
 
-  const heightText = ` ${height}  `;
-  const heightSize = textSize(heightText, 24);
+  const convertToFeetInches = (cm) => {
+    const inches = cm / 2.54;
+    const feet = Math.floor(inches / 12);
+    const remainingInches = Math.round(inches % 12);
+    return `${feet}' ${remainingInches}''`;
+  };
 
-  // Define the positions for the vertical lines
-  // const verticalLineStart = [0, 0, 0];
-  // const verticalLineEnd = [0, 2.5, 0]; // Vertical line ends
-  // const bottomLineStart = [0, 0, 0];
-  // const bottomLineEnd = [0, -3, 0]; // Bottom line ends
+  const heightText =
+    units === "cm" ? ` ${height} ` : ` ${convertToFeetInches(height)} `;
+  const heightSize = textSize(heightText, 24);
 
   // Define the positions for the horizontal lines
   const horizontalLineStart = [0, 0, 0];
@@ -40,14 +46,6 @@ function Height({
 
   // Define the positions for the small lines
   const lineLength = 0.05; // Length of the small lines
-  const topHorizontalLine = [
-    [-lineLength / 2, heightSize.height / 200 + 0.2, 0],
-    [lineLength / 2, heightSize.height / 200 + 0.2, 0],
-  ];
-  const bottomHorizontalLine = [
-    [-lineLength / 2, -heightSize.height / 200 - 0.2, 0],
-    [lineLength / 2, -heightSize.height / 200 - 0.2, 0],
-  ];
   const rightHorizontalLine = [
     [heightSize.width / 200 + 0.2, -lineLength / 2, 0],
     [heightSize.width / 200 + 0.2, lineLength / 2, 0],
@@ -86,6 +84,7 @@ function Height({
         radius={0.05} // Border radius
         smoothness={4} // Smoothness of the rounded corners
         rotation={planeRotation}
+        position={planePosition}
       >
         <meshBasicMaterial color="#3A3B3C" />
       </RoundedBox>
@@ -119,14 +118,14 @@ function Height({
         <Line
           points={topHorizontalLine}
           color={lineColor}
-          lineWidth={3}
+          lineWidth={2}
           position={[0, 2.3, 0.001]}
         />
         {/* Bottom horizontal line */}
         <Line
           points={bottomHorizontalLine}
           color={lineColor}
-          lineWidth={3}
+          lineWidth={2}
           position={[0, -2.8, 0.001]}
         />
       </group>

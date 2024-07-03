@@ -59,6 +59,165 @@ export default function App() {
     50: { 100: 50, 75: 50, 50: 50, 25: 50 },
   };
 
+  const verticalCabinConfig = {
+    150: {
+      storageCabinet01: { position: [0, -1.5, 0] },
+      smallCabinet: null,
+      openCabinet01: null,
+      openCabinet02: null,
+      openCabinet03: null,
+      openCabinet04: null,
+      drawerCabinet: { position: [0, -3.5, 0] },
+      storageCabinet02: { position: [0, -4.8, 0] },
+      measurementPole: {
+        textPosition: [0, -1, 0.01],
+        planePosition: [0, -1, 0],
+        verticalLineStart: [0, -1, 0],
+        verticalLineEnd: [0, 1, 0],
+        bottomLineStart: [0, -1, 0],
+        bottomLineEnd: [0, -3.5, 0],
+        topHorizontalLine: [
+          [-0.05 / 2, -1.2, 0],
+          [0.05 / 2, -1.2, 0],
+        ],
+        bottomHorizontalLine: [
+          [-0.05 / 2, -0.8, 0],
+          [0.05 / 2, -0.8, 0],
+        ],
+      },
+    },
+    180: {
+      storageCabinet01: { position: [0, -0.2, 0] },
+      smallCabinet: null,
+      openCabinet01: null,
+      openCabinet02: null,
+      openCabinet03: null,
+      openCabinet04: { position: [0, -2.2, 0] },
+      drawerCabinet: { position: [0, -3.5, 0] },
+      storageCabinet02: { position: [0, -4.8, 0] },
+      measurementPole: {
+        textPosition: [0, -0.5, 0.01],
+        planePosition: [0, -0.5, 0],
+        verticalLineStart: [0, -0.5, 0],
+        verticalLineEnd: [0, 2.1, 0],
+        bottomLineStart: [0, -0.5, 0],
+        bottomLineEnd: [0, -3.5, 0],
+        topHorizontalLine: [
+          [-0.05 / 2, -0.1, 0],
+          [0.05 / 2, -0.1, 0],
+        ],
+        bottomHorizontalLine: [
+          [-0.05 / 2, -0.8, 0],
+          [0.05 / 2, -0.8, 0],
+        ],
+      },
+    },
+    210: {
+      storageCabinet01: { position: [0, 1.19, 0] },
+      smallCabinet: null,
+      openCabinet01: null,
+      openCabinet02: null,
+      openCabinet03: { position: [0, -0.9, 0] },
+      openCabinet04: { position: [0, -2.2, 0] },
+      drawerCabinet: { position: [0, -3.5, 0] },
+      storageCabinet02: { position: [0, -4.8, 0] },
+      measurementPole: {
+        textPosition: [0, 0.5, 0.01],
+        planePosition: [0, 0.5, 0],
+        verticalLineStart: [0, 0.5, 0],
+        verticalLineEnd: [0, 3.4, 0],
+        bottomLineStart: [0, 0.5, 0],
+        bottomLineEnd: [0, -3.5, 0],
+        topHorizontalLine: [
+          [-0.05 / 2, 1.2, 0],
+          [0.05 / 2, 1.2, 0],
+        ],
+        bottomHorizontalLine: [
+          [-0.05 / 2, -0.8, 0],
+          [0.05 / 2, -0.8, 0],
+        ],
+      },
+    },
+    240: {
+      storageCabinet01: { position: [0, 2.4, 0] },
+      smallCabinet: null,
+      openCabinet01: null,
+      openCabinet02: { position: [0, 0.31, 0] },
+      openCabinet03: { position: [0, -0.9, 0] },
+      openCabinet04: { position: [0, -2.2, 0] },
+      drawerCabinet: { position: [0, -3.5, 0] },
+      storageCabinet02: { position: [0, -4.8, 0] },
+      measurementPole: {
+        textPosition: [0, 1, 0.01],
+        planePosition: [0, 1, 0],
+        verticalLineStart: [0, 1, 0],
+        verticalLineEnd: [0, 4.5, 0],
+        bottomLineStart: [0, 1, 0],
+        bottomLineEnd: [0, -3.5, 0],
+        topHorizontalLine: [
+          [-0.05 / 2, 2.3, 0],
+          [0.05 / 2, 2.3, 0],
+        ],
+        bottomHorizontalLine: [
+          [-0.05 / 2, -0.8, 0],
+          [0.05 / 2, -0.8, 0],
+        ],
+      },
+    },
+    270: {
+      storageCabinet01: { position: [0, 3.6, 0] },
+      smallCabinet: null,
+      openCabinet01: { position: [0, 1.6, 0] },
+      openCabinet02: { position: [0, 0.31, 0] },
+      openCabinet03: { position: [0, -0.9, 0] },
+      openCabinet04: { position: [0, -2.2, 0] },
+      drawerCabinet: { position: [0, -3.5, 0] },
+      storageCabinet02: { position: [0, -4.8, 0] },
+      measurementPole: {
+        textPosition: [0, 1.5, 0.01],
+        planePosition: [0, 1.5, 0],
+        verticalLineStart: [0, 1.5, 0],
+        verticalLineEnd: [0, 5.5, 0],
+        bottomLineStart: [0, 1.5, 0],
+        bottomLineEnd: [0, -3.5, 0],
+        topHorizontalLine: [
+          [-0.05 / 2, 3.3, 0],
+          [0.05 / 2, 3.3, 0],
+        ],
+        bottomHorizontalLine: [
+          [-0.05 / 2, -0.8, 0],
+          [0.05 / 2, -0.8, 0],
+        ],
+      },
+    },
+    300: {
+      storageCabinet01: { position: [0, 4.9, 0] },
+      smallCabinet: { position: [0, 2.9, 0] },
+      openCabinet01: { position: [0, 1.6, 0] },
+      openCabinet02: { position: [0, 0.31, 0] },
+      openCabinet03: { position: [0, -0.9, 0] },
+      openCabinet04: { position: [0, -2.2, 0] },
+      drawerCabinet: { position: [0, -3.5, 0] },
+      storageCabinet02: { position: [0, -4.8, 0] },
+      measurementPole: {
+        textPosition: [0, 2, 0.01],
+        planePosition: [0, 2, 0],
+        verticalLineStart: [0, 2, 0],
+        verticalLineEnd: [0, 6.7, 0],
+        bottomLineStart: [0, 2, 0],
+        bottomLineEnd: [0, -3.5, 0],
+        topHorizontalLine: [
+          [-0.05 / 2, 4.5, 0],
+          [0.05 / 2, 4.5, 0],
+        ],
+        bottomHorizontalLine: [
+          [-0.05 / 2, -0.8, 0],
+          [0.05 / 2, -0.8, 0],
+        ],
+      },
+    },
+  };
+
   const horizontalAlignment = (count) => {
     const groups = [];
 
@@ -101,68 +260,6 @@ export default function App() {
       },
     };
 
-    const verticalCabinConfig = {
-      150: {
-        storageCabinet01: { position: [0, -1.5, 0] },
-        smallCabinet: null,
-        openCabinet01: null,
-        openCabinet02: null,
-        openCabinet03: null,
-        openCabinet04: null,
-        drawerCabinet: { position: [0, -3.5, 0] },
-        storageCabinet02: { position: [0, -4.8, 0] },
-      },
-      180: {
-        storageCabinet01: { position: [0, -0.2, 0] },
-        smallCabinet: null,
-        openCabinet01: null,
-        openCabinet02: null,
-        openCabinet03: null,
-        openCabinet04: { position: [0, -2.2, 0] },
-        drawerCabinet: { position: [0, -3.5, 0] },
-        storageCabinet02: { position: [0, -4.8, 0] },
-      },
-      210: {
-        storageCabinet01: { position: [0, 1.19, 0] },
-        smallCabinet: null,
-        openCabinet01: null,
-        openCabinet02: null,
-        openCabinet03: { position: [0, -0.9, 0] },
-        openCabinet04: { position: [0, -2.2, 0] },
-        drawerCabinet: { position: [0, -3.5, 0] },
-        storageCabinet02: { position: [0, -4.8, 0] },
-      },
-      240: {
-        storageCabinet01: { position: [0, 2.4, 0] },
-        smallCabinet: null,
-        openCabinet01: null,
-        openCabinet02: { position: [0, 0.31, 0] },
-        openCabinet03: { position: [0, -0.9, 0] },
-        openCabinet04: { position: [0, -2.2, 0] },
-        drawerCabinet: { position: [0, -3.5, 0] },
-        storageCabinet02: { position: [0, -4.8, 0] },
-      },
-      270: {
-        storageCabinet01: { position: [0, 3.6, 0] },
-        smallCabinet: null,
-        openCabinet01: { position: [0, 1.6, 0] },
-        openCabinet02: { position: [0, 0.31, 0] },
-        openCabinet03: { position: [0, -0.9, 0] },
-        openCabinet04: { position: [0, -2.2, 0] },
-        drawerCabinet: { position: [0, -3.5, 0] },
-        storageCabinet02: { position: [0, -4.8, 0] },
-      },
-      300: {
-        storageCabinet01: { position: [0, 4.9, 0] },
-        smallCabinet: { position: [0, 2.9, 0] },
-        openCabinet01: { position: [0, 1.6, 0] },
-        openCabinet02: { position: [0, 0.31, 0] },
-        openCabinet03: { position: [0, -0.9, 0] },
-        openCabinet04: { position: [0, -2.2, 0] },
-        drawerCabinet: { position: [0, -3.5, 0] },
-        storageCabinet02: { position: [0, -4.8, 0] },
-      },
-    };
     let counter = 0;
     for (
       let i = -8;
@@ -190,6 +287,7 @@ export default function App() {
               color={configuration.color}
               colorCodes={colorCodes}
               dimensions={configuration.dimensions === "ON"}
+              units={configuration.units}
             />
           )}
           {verticalCabinConfig[configuration.height].smallCabinet && (
@@ -209,6 +307,7 @@ export default function App() {
               color={configuration.color}
               colorCodes={colorCodes}
               dimensions={configuration.dimensions === "ON"}
+              units={configuration.units}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet01 && (
@@ -231,6 +330,7 @@ export default function App() {
               dimensions={configuration.dimensions === "ON"}
               col={counter}
               row={0}
+              units={configuration.units}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet02 && (
@@ -253,6 +353,7 @@ export default function App() {
               dimensions={configuration.dimensions === "ON"}
               col={counter}
               row={1}
+              units={configuration.units}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet03 && (
@@ -275,6 +376,7 @@ export default function App() {
               dimensions={configuration.dimensions === "ON"}
               col={counter}
               row={2}
+              units={configuration.units}
             />
           )}
           {verticalCabinConfig[configuration.height].openCabinet04 && (
@@ -297,6 +399,7 @@ export default function App() {
               dimensions={configuration.dimensions === "ON"}
               col={counter}
               row={3}
+              units={configuration.units}
             />
           )}
           {verticalCabinConfig[configuration.height].drawerCabinet && (
@@ -316,6 +419,7 @@ export default function App() {
               color={configuration.color}
               colorCodes={colorCodes}
               dimensions={configuration.dimensions === "ON"}
+              units={configuration.units}
             />
           )}
           {verticalCabinConfig[configuration.height].storageCabinet02 && (
@@ -336,6 +440,7 @@ export default function App() {
               color={configuration.color}
               colorCodes={colorCodes}
               dimensions={configuration.dimensions === "ON"}
+              units={configuration.units}
             />
           )}
         </group>
@@ -346,8 +451,130 @@ export default function App() {
     return groups;
   };
 
-  const uri = "https://pics.io/preview/66792a63548394472778ddc6/thumbnail";
+  const positionX = {
+    450: {
+      cabinet: 2,
+      manPole: -10,
+      cabinetPole: 5.8,
+      cabinetHPole: -1.2,
+      measurementPole: {
+        horizontalLineStart: [0, 0, 0],
+        horizontalLineEnd: [5.6, 0, 0],
+        leftLineStart: [0, 0, 0],
+        leftLineEnd: [-5.8, 0, 0],
+        rightHorizontalLine: [
+          [5.9, -0.05 / 2, 0],
+          [5.9, 0.05 / 2, 0],
+        ],
+        leftHorizontalLine: [
+          [-6.1, -0.05 / 2, 0],
+          [-6.1, 0.05 / 2, 0],
+        ],
+      },
+    },
+    400: {
+      cabinet: 3,
+      manPole: -10,
+      cabinetPole: 4.3,
+      cabinetHPole: -2.2,
+      measurementPole: {
+        horizontalLineStart: [0, 0, 0],
+        horizontalLineEnd: [5.2, 0, 0],
+        leftLineStart: [0, 0, 0],
+        leftLineEnd: [-5, 0, 0],
+        rightHorizontalLine: [
+          [5.5, -0.05 / 2, 0],
+          [5.5, 0.05 / 2, 0],
+        ],
+        leftHorizontalLine: [
+          [-5.3, -0.05 / 2, 0],
+          [-5.3, 0.05 / 2, 0],
+        ],
+      },
+    },
+    350: {
+      cabinet: 4,
+      manPole: -10,
+      cabinetPole: 2.8,
+      cabinetHPole: -3.3,
+      measurementPole: {
+        horizontalLineStart: [0, 0, 0],
+        horizontalLineEnd: [4.9, 0, 0],
+        leftLineStart: [0, 0, 0],
+        leftLineEnd: [-4, 0, 0],
+        rightHorizontalLine: [
+          [5.2, -0.05 / 2, 0],
+          [5.2, 0.05 / 2, 0],
+        ],
+        leftHorizontalLine: [
+          [-4.3, -0.05 / 2, 0],
+          [-4.3, 0.05 / 2, 0],
+        ],
+      },
+    },
+    250: {
+      cabinet: 5,
+      manPole: -10,
+      cabinetPole: 0,
+      cabinetHPole: -4.4,
+      measurementPole: {
+        horizontalLineStart: [0, 0, 0],
+        horizontalLineEnd: [3.2, 0, 0],
+        leftLineStart: [0, 0, 0],
+        leftLineEnd: [-3, 0, 0],
+        rightHorizontalLine: [
+          [3.5, -0.05 / 2, 0],
+          [3.5, 0.05 / 2, 0],
+        ],
+        leftHorizontalLine: [
+          [-3.3, -0.05 / 2, 0],
+          [-3.3, 0.05 / 2, 0],
+        ],
+      },
+    },
+    150: {
+      cabinet: 6,
+      manPole: -10,
+      cabinetPole: -2.8,
+      cabinetHPole: -5.5,
+      measurementPole: {
+        horizontalLineStart: [0, 0, 0],
+        horizontalLineEnd: [1.4, 0, 0],
+        leftLineStart: [0, 0, 0],
+        leftLineEnd: [-2, 0, 0],
+        rightHorizontalLine: [
+          [1.7, -0.05 / 2, 0],
+          [1.7, 0.05 / 2, 0],
+        ],
+        leftHorizontalLine: [
+          [-2.3, -0.05 / 2, 0],
+          [-2.3, 0.05 / 2, 0],
+        ],
+      },
+    },
+    50: {
+      cabinet: 7,
+      manPole: -10,
+      cabinetPole: -5.8,
+      cabinetHPole: -6.6,
+      measurementPole: {
+        horizontalLineStart: [0, 0, 0],
+        horizontalLineEnd: [1.1, 0, 0],
+        leftLineStart: [0, 0, 0],
+        leftLineEnd: [-1.4, 0, 0],
+        rightHorizontalLine: [
+          [1.3, -0.05 / 2, 0],
+          [1.3, 0.05 / 2, 0],
+        ],
+        leftHorizontalLine: [
+          [-1.6, -0.05 / 2, 0],
+          [-1.6, 0.05 / 2, 0],
+        ],
+      },
+    },
+  };
 
+  const uri = "https://pics.io/preview/66792a63548394472778ddc6/thumbnail";
   const sceneRef = useRef();
   const controlsRef = useRef();
   console.log({ sceneRef });
@@ -400,7 +627,7 @@ export default function App() {
       }}
     >
       <Canvas
-        camera={{ position: [0, 0, 15], fov: 50 }}
+        camera={{ position: [0, 0, 15], fov: 53 }}
         shadows
         gl={{ antialias: true }}
         style={{ cursor: "grabbing" }}
@@ -423,7 +650,10 @@ export default function App() {
 
         <Floor receiveShadow style={{ backgroundColor: "rgb(215,215,214)" }} />
 
-        <group rotation={[0, 0, 0]} position={[2, 0, 1]}>
+        <group
+          rotation={[0, 0, 0]}
+          position={[positionX[configuration.width].cabinet, 0, 1]}
+        >
           <Person url={uri} />
           {horizontalAlignment(
             Math.floor(
@@ -431,42 +661,130 @@ export default function App() {
                 densityFactor[configuration.width][configuration.density]
             )
           )}
+
+          {configuration.dimensions === "ON" && (
+            <>
+              <VerticalRule
+                groupPosition={[
+                  positionX[configuration.width].manPole,
+                  -1.5,
+                  2,
+                ]}
+                units={configuration.units}
+                groupRotation={[0, 0, 0]}
+                textRotation={[0, 0, 0]}
+                textPosition={[0, 0, 0.01]}
+                planeRotation={[0, 0, 0]}
+                planePosition={[0, 0, 0]}
+                planePo
+                type="width"
+                lineColor="grey"
+                height={165}
+                verticalLineStart={[0, 0, 0]}
+                verticalLineEnd={[0, 1.9, 0]}
+                bottomLineStart={[0, 0, 0]}
+                bottomLineEnd={[0, -3.5, 0]}
+                topHorizontalLine={[
+                  [-0.05 / 2, -0.25, 0],
+                  [0.05 / 2, -0.25, 0],
+                ]}
+                bottomHorizontalLine={[
+                  [-0.05 / 2, -0.8, 0],
+                  [0.05 / 2, -0.8, 0],
+                ]}
+              />
+              <HorizontalRule
+                groupPosition={[
+                  positionX[configuration.width].cabinetHPole,
+                  verticalCabinConfig[configuration.height].measurementPole
+                    .verticalLineEnd[1] - 1,
+                  2,
+                ]}
+                units={configuration.units}
+                groupRotation={[0, 0, 0]}
+                textRotation={[0, 0, 0]}
+                textPosition={[0, 0, 0.01]}
+                planeRotation={[0, 0, 0]}
+                planePosition={[0, 0, 0]}
+                planePo
+                type="width"
+                lineColor="grey"
+                height={configuration.width}
+                horizontalLineStart={
+                  positionX[configuration.width].measurementPole
+                    .horizontalLineStart
+                }
+                horizontalLineEnd={
+                  positionX[configuration.width].measurementPole
+                    .horizontalLineEnd
+                }
+                leftLineStart={
+                  positionX[configuration.width].measurementPole.leftLineStart
+                }
+                leftLineEnd={
+                  positionX[configuration.width].measurementPole.leftLineEnd
+                }
+                rightHorizontalLine={
+                  positionX[configuration.width].measurementPole
+                    .rightHorizontalLine
+                }
+                leftHorizontalLine={
+                  positionX[configuration.width].measurementPole
+                    .leftHorizontalLine
+                }
+              />
+              <VerticalRule
+                groupPosition={[
+                  positionX[configuration.width].cabinetPole,
+                  -1.5,
+                  2,
+                ]}
+                units={configuration.units}
+                groupRotation={[0, 0, 0]}
+                textRotation={[0, 0, 0]}
+                textPosition={
+                  verticalCabinConfig[configuration.height].measurementPole
+                    .textPosition
+                }
+                planeRotation={[0, 0, 0]}
+                planePosition={
+                  verticalCabinConfig[configuration.height].measurementPole
+                    .planePosition
+                }
+                type="width"
+                lineColor="grey"
+                height={configuration.height}
+                verticalLineStart={
+                  verticalCabinConfig[configuration.height].measurementPole
+                    .verticalLineStart
+                }
+                verticalLineEnd={
+                  verticalCabinConfig[configuration.height].measurementPole
+                    .verticalLineEnd
+                }
+                bottomLineStart={
+                  verticalCabinConfig[configuration.height].measurementPole
+                    .bottomLineStart
+                }
+                bottomLineEnd={
+                  verticalCabinConfig[configuration.height].measurementPole
+                    .bottomLineEnd
+                }
+                topHorizontalLine={
+                  verticalCabinConfig[configuration.height].measurementPole
+                    .topHorizontalLine
+                }
+                bottomHorizontalLine={
+                  verticalCabinConfig[configuration.height].measurementPole
+                    .bottomHorizontalLine
+                }
+              />
+            </>
+          )}
         </group>
         <OrbitControls
           ref={controlsRef}
           // enabled={configuration.dimensions === "OFF"}
-        />
-        <VerticalRule
-          groupPosition={[-7.5, -2, 3]}
-          groupRotation={[0, 0, 0]}
-          textRotation={[0, 0, 0]}
-          textPosition={[0, 0, 0.01]}
-          planeRotation={[0, 0, 0]}
-          type="width"
-          lineColor="grey"
-          height={165}
-          verticalLineStart={[0, 0, 0]}
-          verticalLineEnd={[0, 2.5, 0]}
-          bottomLineStart={[0, 0, 0]}
-          bottomLineEnd={[0, -3, 0]}
-        />
-        <VerticalRule
-          groupPosition={[7.5, -2, 3]}
-          groupRotation={[0, 0, 0]}
-          textRotation={[0, 0, 0]}
-          textPosition={[0, 0, 0.01]}
-          planeRotation={[0, 0, 0]}
-          type="width"
-          lineColor="grey"
-          height={configuration.height}
-          verticalLineStart={[0, 0, 0]}
-          verticalLineEnd={[
-            0,
-            configuration.height * 0.01 + configuration.height / 300,
-            0,
-          ]}
-          bottomLineStart={[0, 0, 0]}
-          bottomLineEnd={[0, -3, 0]}
         />
       </Canvas>
       <Configurator

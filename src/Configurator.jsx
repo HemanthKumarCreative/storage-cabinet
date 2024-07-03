@@ -377,7 +377,7 @@ function Configurator({
               alignItems: "center",
             }}
           >
-            <Typography variant="subtitle1">Books Visibility</Typography>
+            <Typography variant="subtitle1">Objects Visibility</Typography>
           </Grid>
           <Grid item xs={6}>
             <ToggleButtonGroup

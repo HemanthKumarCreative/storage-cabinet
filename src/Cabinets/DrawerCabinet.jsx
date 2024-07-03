@@ -27,6 +27,7 @@ function DrawerCabinet(props) {
     color,
     colorCodes,
     dimensions,
+    units,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -56,6 +57,12 @@ function DrawerCabinet(props) {
     75: 0.02,
     50: 0.08,
     25: 0.14,
+  };
+
+  const convertToFeetInches = (cm) => {
+    const inches = cm / 2.54;
+    const feet = Math.ceil(inches / 12);
+    return `${feet}'`;
   };
 
   switch (depth) {
@@ -281,12 +288,15 @@ function DrawerCabinet(props) {
             {dimensions && (
               <InnerDimension
                 heightSize={heightSize}
-                heightText={heightText}
+                heightText={
+                  units === "cm" ? ` 30 ` : `${convertToFeetInches(30)}`
+                }
                 groupPosition={[0.9, 0.2, 0.6]}
                 groupRotation={[0, Math.PI / 2, 0]}
                 textRotation={[0, 0, 0]}
                 textPosition={[0, 0, 0.01]}
                 planeRotation={[0, 0, 0]}
+                planePosition={[0, 0, 0]}
                 type="height"
                 lineColor="grey"
               />
@@ -295,12 +305,15 @@ function DrawerCabinet(props) {
             {dimensions && (
               <InnerDimension
                 heightSize={heightSize}
-                heightText={heightText}
+                heightText={
+                  units === "cm" ? ` 50 ` : `${convertToFeetInches(50)}`
+                }
                 groupPosition={[0.9, -0.3, 0.6]}
                 groupRotation={[0, Math.PI / 2, 0]}
                 textRotation={[0, 0, 0]}
                 textPosition={[0, 0, 0.01]}
                 planeRotation={[0, 0, 0]}
+                planePosition={[0, 0, 0]}
                 type="width"
                 lineColor="grey"
               />

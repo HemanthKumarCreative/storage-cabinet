@@ -53,3 +53,25 @@ canvas {
   top: 20px;
   right: 20px;
 }
+
+.swal-custom-position {
+  position: absolute !important;
+  left: 70% !important; /* Adjust this value to move the modal horizontally */
+  top: 5% !important; /* Adjust this value to move the modal vertically */
+  transform: translate(-50%, -50%) !important;
+}
+
+.swal-custom-arrow {
+  position: absolute;
+  top: 50%; /* Position the arrow in the middle vertically */
+  left: -14px; /* Position the arrow to the left of the modal */
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid white; /* Adjust the color to match your modal background */
+}
+
+
+

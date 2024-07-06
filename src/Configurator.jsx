@@ -58,7 +58,14 @@ function Configurator({
   ];
 
   return (
-    <Card style={{ width: 550, height: "100%", margin: 10, overflow: "auto" }}>
+    <Card
+      style={{
+        width: 550,
+        height: "100%",
+        margin: 10,
+        overflow: "auto",
+      }}
+    >
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           Custom Configuration

@@ -205,7 +205,11 @@ function DrawerCabinet(props) {
           castShadow
           receiveShadow
         >
-          <meshStandardMaterial map={texture} attach="material" color="white" />
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
           {/* Left side of drawer */}
           <mesh
             geometry={nodes.drawe_left.geometry}
@@ -219,7 +223,7 @@ function DrawerCabinet(props) {
             <meshStandardMaterial
               map={texture}
               attach="material"
-              color="#E2DFD2"
+              color={colorCodes[color]}
             />
             {/* Slider left */}
             <mesh
@@ -259,7 +263,7 @@ function DrawerCabinet(props) {
             <meshStandardMaterial
               map={texture}
               attach="material"
-              color="#E2DFD2"
+              color={colorCodes[color]}
             />
           </mesh>
           {/* Right side of drawer */}
@@ -275,7 +279,7 @@ function DrawerCabinet(props) {
             <meshStandardMaterial
               map={texture}
               attach="material"
-              color="#E2DFD2"
+              color={colorCodes[color]}
             />
             <mesh
               geometry={nodes.slider_right.geometry}
@@ -298,7 +302,7 @@ function DrawerCabinet(props) {
                 planeRotation={[0, 0, 0]}
                 planePosition={[0, 0, 0]}
                 type="height"
-                lineColor="grey"
+                lineColor="white"
               />
             )}
             {/* Width */}
@@ -315,7 +319,7 @@ function DrawerCabinet(props) {
                 planeRotation={[0, 0, 0]}
                 planePosition={[0, 0, 0]}
                 type="width"
-                lineColor="grey"
+                lineColor="white"
               />
             )}
           </mesh>

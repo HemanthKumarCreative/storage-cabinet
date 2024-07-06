@@ -15,8 +15,21 @@ import PlywoodTexture from "./textures/Veneer01.png";
 import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter";
 import VerticalRule from "./Dimensions/VerticalRule";
 import HorizontalRule from "./Dimensions/HorizontalRule";
+import HoverModal from "./Modal";
+import Cabinet from "./Cabinet";
+import HorizontalGroup from "./HorizontalGroup";
+import OpenModal from "./OpenModel";
 
 export default function App() {
+  const [showStorage1Modal, setShowStorage1Modal] = useState(false);
+  const [showStorage2Modal, setShowStorage2Modal] = useState(false);
+  const [showOpen1Modal, setShowOpen1Modal] = useState(false);
+  const [showOpen2Modal, setShowOpen2Modal] = useState(false);
+  const [showOpen3Modal, setShowOpen3Modal] = useState(false);
+  const [showOpen4Modal, setShowOpen4Modal] = useState(false);
+  const [showSmallModal, setShowSmallModal] = useState(false);
+  const [showDrawerModal, setShowDrawerModal] = useState(false);
+
   const [configuration, setConfiguration] = useState({
     style: "grid",
     density: 100,
@@ -48,6 +61,7 @@ export default function App() {
     Walnut: "#957b63",
     Oak: "#ce9f6f",
     "White oak": "#D8B589",
+    orange: "#E88769",
   };
 
   const densityFactor = {
@@ -61,14 +75,14 @@ export default function App() {
 
   const verticalCabinConfig = {
     150: {
-      storageCabinet01: { position: [0, -1.5, 0] },
+      storageCabinet01: { position: [0, -6.4, 0] },
       smallCabinet: null,
       openCabinet01: null,
       openCabinet02: null,
       openCabinet03: null,
       openCabinet04: null,
-      drawerCabinet: { position: [0, -3.5, 0] },
-      storageCabinet02: { position: [0, -4.8, 0] },
+      drawerCabinet: { position: [0, -8.4, 0] },
+      storageCabinet02: { position: [0, -9.7, 0] },
       measurementPole: {
         textPosition: [0, -1, 0.01],
         planePosition: [0, -1, 0],
@@ -87,14 +101,14 @@ export default function App() {
       },
     },
     180: {
-      storageCabinet01: { position: [0, -0.2, 0] },
+      storageCabinet01: { position: [0, -5.1, 0] },
       smallCabinet: null,
       openCabinet01: null,
       openCabinet02: null,
       openCabinet03: null,
-      openCabinet04: { position: [0, -2.2, 0] },
-      drawerCabinet: { position: [0, -3.5, 0] },
-      storageCabinet02: { position: [0, -4.8, 0] },
+      openCabinet04: { position: [0, -7.1, 0] },
+      drawerCabinet: { position: [0, -8.4, 0] },
+      storageCabinet02: { position: [0, -9.7, 0] },
       measurementPole: {
         textPosition: [0, -0.5, 0.01],
         planePosition: [0, -0.5, 0],
@@ -113,14 +127,14 @@ export default function App() {
       },
     },
     210: {
-      storageCabinet01: { position: [0, 1.19, 0] },
+      storageCabinet01: { position: [0, -3.8, 0] },
       smallCabinet: null,
       openCabinet01: null,
       openCabinet02: null,
-      openCabinet03: { position: [0, -0.9, 0] },
-      openCabinet04: { position: [0, -2.2, 0] },
-      drawerCabinet: { position: [0, -3.5, 0] },
-      storageCabinet02: { position: [0, -4.8, 0] },
+      openCabinet03: { position: [0, -5.8, 0] },
+      openCabinet04: { position: [0, -7.1, 0] },
+      drawerCabinet: { position: [0, -8.4, 0] },
+      storageCabinet02: { position: [0, -9.7, 0] },
       measurementPole: {
         textPosition: [0, 0.5, 0.01],
         planePosition: [0, 0.5, 0],
@@ -139,14 +153,14 @@ export default function App() {
       },
     },
     240: {
-      storageCabinet01: { position: [0, 2.4, 0] },
+      storageCabinet01: { position: [0, -2.5, 0] },
       smallCabinet: null,
       openCabinet01: null,
-      openCabinet02: { position: [0, 0.31, 0] },
-      openCabinet03: { position: [0, -0.9, 0] },
-      openCabinet04: { position: [0, -2.2, 0] },
-      drawerCabinet: { position: [0, -3.5, 0] },
-      storageCabinet02: { position: [0, -4.8, 0] },
+      openCabinet02: { position: [0, -4.5, 0] },
+      openCabinet03: { position: [0, -5.8, 0] },
+      openCabinet04: { position: [0, -7.1, 0] },
+      drawerCabinet: { position: [0, -8.4, 0] },
+      storageCabinet02: { position: [0, -9.7, 0] },
       measurementPole: {
         textPosition: [0, 1, 0.01],
         planePosition: [0, 1, 0],
@@ -165,14 +179,14 @@ export default function App() {
       },
     },
     270: {
-      storageCabinet01: { position: [0, 3.6, 0] },
+      storageCabinet01: { position: [0, -1.39, 0] },
       smallCabinet: null,
-      openCabinet01: { position: [0, 1.6, 0] },
-      openCabinet02: { position: [0, 0.31, 0] },
-      openCabinet03: { position: [0, -0.9, 0] },
-      openCabinet04: { position: [0, -2.2, 0] },
-      drawerCabinet: { position: [0, -3.5, 0] },
-      storageCabinet02: { position: [0, -4.8, 0] },
+      openCabinet01: { position: [0, -3.39, 0] },
+      openCabinet02: { position: [0, -4.6, 0] },
+      openCabinet03: { position: [0, -5.9, 0] },
+      openCabinet04: { position: [0, -7.2, 0] },
+      drawerCabinet: { position: [0, -8.5, 0] },
+      storageCabinet02: { position: [0, -9.8, 0] },
       measurementPole: {
         textPosition: [0, 1.5, 0.01],
         planePosition: [0, 1.5, 0],
@@ -191,14 +205,14 @@ export default function App() {
       },
     },
     300: {
-      storageCabinet01: { position: [0, 4.9, 0] },
-      smallCabinet: { position: [0, 2.9, 0] },
-      openCabinet01: { position: [0, 1.6, 0] },
-      openCabinet02: { position: [0, 0.31, 0] },
-      openCabinet03: { position: [0, -0.9, 0] },
-      openCabinet04: { position: [0, -2.2, 0] },
-      drawerCabinet: { position: [0, -3.5, 0] },
-      storageCabinet02: { position: [0, -4.8, 0] },
+      storageCabinet01: { position: [0, -0.1, 0] },
+      smallCabinet: { position: [0, -2.1, 0] },
+      openCabinet01: { position: [0, -3.4, 0] },
+      openCabinet02: { position: [0, -4.6, 0] },
+      openCabinet03: { position: [0, -5.9, 0] },
+      openCabinet04: { position: [0, -7.2, 0] },
+      drawerCabinet: { position: [0, -8.5, 0] },
+      storageCabinet02: { position: [0, -9.8, 0] },
       measurementPole: {
         textPosition: [0, 2, 0.01],
         planePosition: [0, 2, 0],
@@ -261,193 +275,175 @@ export default function App() {
     };
 
     let counter = 0;
-    for (
-      let i = -8;
-      i <
-      count * densityMultiplier[configuration.width][configuration.density] - 8;
-      i += densityMultiplier[configuration.width][configuration.density]
-    ) {
-      const group = (
-        <group key={i} position={[i, 0, 0]} rotation={[0, -Math.PI / 2, 0]}>
-          {verticalCabinConfig[configuration.height].storageCabinet01 && (
-            <StorageCabinet
-              position={
-                verticalCabinConfig[configuration.height].storageCabinet01
-                  .position
-              }
-              receiveShadow
-              width={configuration.width}
-              height={configuration.height}
-              depth={configuration.depth}
-              backPanel={configuration.backPanel === "ON"}
-              density={configuration.density}
-              densityFactor={densityFactor}
-              configWidth={configuration.width}
-              textureUrl={textureUrl[configuration.finish]}
-              color={configuration.color}
-              colorCodes={colorCodes}
-              dimensions={configuration.dimensions === "ON"}
-              units={configuration.units}
-            />
-          )}
-          {verticalCabinConfig[configuration.height].smallCabinet && (
-            <SmallCabinet
-              position={
-                verticalCabinConfig[configuration.height].smallCabinet.position
-              }
-              receiveShadow
-              width={configuration.width}
-              height={configuration.height}
-              depth={configuration.depth}
-              backPanel={configuration.backPanel === "ON"}
-              density={configuration.density}
-              densityFactor={densityFactor}
-              configWidth={configuration.width}
-              textureUrl={textureUrl[configuration.finish]}
-              color={configuration.color}
-              colorCodes={colorCodes}
-              dimensions={configuration.dimensions === "ON"}
-              units={configuration.units}
-            />
-          )}
-          {verticalCabinConfig[configuration.height].openCabinet01 && (
-            <OpenCabinet
-              position={
-                verticalCabinConfig[configuration.height].openCabinet01.position
-              }
-              receiveShadow
-              width={configuration.width}
-              height={configuration.height}
-              depth={configuration.depth}
-              backPanel={configuration.backPanel === "ON"}
-              density={configuration.density}
-              densityFactor={densityFactor}
-              configWidth={configuration.width}
-              textureUrl={textureUrl[configuration.finish]}
-              color={configuration.color}
-              colorCodes={colorCodes}
-              books={configuration.books === "ON"}
-              dimensions={configuration.dimensions === "ON"}
-              col={counter}
-              row={0}
-              units={configuration.units}
-            />
-          )}
-          {verticalCabinConfig[configuration.height].openCabinet02 && (
-            <OpenCabinet
-              position={
-                verticalCabinConfig[configuration.height].openCabinet02.position
-              }
-              receiveShadow
-              width={configuration.width}
-              height={configuration.height}
-              depth={configuration.depth}
-              backPanel={configuration.backPanel === "ON"}
-              density={configuration.density}
-              densityFactor={densityFactor}
-              configWidth={configuration.width}
-              textureUrl={textureUrl[configuration.finish]}
-              color={configuration.color}
-              colorCodes={colorCodes}
-              books={configuration.books === "ON"}
-              dimensions={configuration.dimensions === "ON"}
-              col={counter}
-              row={1}
-              units={configuration.units}
-            />
-          )}
-          {verticalCabinConfig[configuration.height].openCabinet03 && (
-            <OpenCabinet
-              position={
-                verticalCabinConfig[configuration.height].openCabinet03.position
-              }
-              receiveShadow
-              width={configuration.width}
-              height={configuration.height}
-              depth={configuration.depth}
-              backPanel={configuration.backPanel === "ON"}
-              density={configuration.density}
-              densityFactor={densityFactor}
-              configWidth={configuration.width}
-              textureUrl={textureUrl[configuration.finish]}
-              color={configuration.color}
-              colorCodes={colorCodes}
-              books={configuration.books === "ON"}
-              dimensions={configuration.dimensions === "ON"}
-              col={counter}
-              row={2}
-              units={configuration.units}
-            />
-          )}
-          {verticalCabinConfig[configuration.height].openCabinet04 && (
-            <OpenCabinet
-              position={
-                verticalCabinConfig[configuration.height].openCabinet04.position
-              }
-              receiveShadow
-              width={configuration.width}
-              height={configuration.height}
-              depth={configuration.depth}
-              backPanel={configuration.backPanel === "ON"}
-              density={configuration.density}
-              densityFactor={densityFactor}
-              configWidth={configuration.width}
-              textureUrl={textureUrl[configuration.finish]}
-              color={configuration.color}
-              colorCodes={colorCodes}
-              books={configuration.books === "ON"}
-              dimensions={configuration.dimensions === "ON"}
-              col={counter}
-              row={3}
-              units={configuration.units}
-            />
-          )}
-          {verticalCabinConfig[configuration.height].drawerCabinet && (
-            <DrawerCabinet
-              position={
-                verticalCabinConfig[configuration.height].drawerCabinet.position
-              }
-              receiveShadow
-              width={configuration.width}
-              height={configuration.height}
-              depth={configuration.depth}
-              backPanel={configuration.backPanel === "ON"}
-              density={configuration.density}
-              densityFactor={densityFactor}
-              configWidth={configuration.width}
-              textureUrl={textureUrl[configuration.finish]}
-              color={configuration.color}
-              colorCodes={colorCodes}
-              dimensions={configuration.dimensions === "ON"}
-              units={configuration.units}
-            />
-          )}
-          {verticalCabinConfig[configuration.height].storageCabinet02 && (
-            <StorageCabinet
-              position={
-                verticalCabinConfig[configuration.height].storageCabinet02
-                  .position
-              }
-              receiveShadow
-              width={configuration.width}
-              height={configuration.height}
-              depth={configuration.depth}
-              backPanel={configuration.backPanel === "ON"}
-              density={configuration.density}
-              densityFactor={densityFactor}
-              configWidth={configuration.width}
-              textureUrl={textureUrl[configuration.finish]}
-              color={configuration.color}
-              colorCodes={colorCodes}
-              dimensions={configuration.dimensions === "ON"}
-              units={configuration.units}
-            />
-          )}
-        </group>
-      );
-      groups.push(group);
-      counter += 1;
-    }
+    const storageCabinet01Group = verticalCabinConfig[configuration.height]
+      .storageCabinet01 && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="storage"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].storageCabinet01.position
+        }
+        setShowModal={setShowStorage1Modal}
+      />
+    );
+
+    const smallCabinetGroup = verticalCabinConfig[configuration.height]
+      .smallCabinet && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="small"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].smallCabinet.position
+        }
+        setShowModal={setShowSmallModal}
+      />
+    );
+
+    const openCabinet01Group = verticalCabinConfig[configuration.height]
+      .openCabinet01 && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="open"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].openCabinet01.position
+        }
+        setShowModal={setShowOpen1Modal}
+      />
+    );
+
+    const openCabinet02Group = verticalCabinConfig[configuration.height]
+      .openCabinet02 && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="open"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].openCabinet02.position
+        }
+        setShowModal={setShowOpen2Modal}
+      />
+    );
+
+    const openCabinet03Group = verticalCabinConfig[configuration.height]
+      .openCabinet03 && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="open"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].openCabinet03.position
+        }
+        setShowModal={setShowOpen3Modal}
+      />
+    );
+
+    const openCabinet04Group = verticalCabinConfig[configuration.height]
+      .openCabinet04 && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="open"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].openCabinet04.position
+        }
+        setShowModal={setShowOpen4Modal}
+      />
+    );
+
+    const drawerCabinetGroup = verticalCabinConfig[configuration.height]
+      .drawerCabinet && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="drawer"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].drawerCabinet.position
+        }
+        setShowModal={setShowDrawerModal}
+      />
+    );
+
+    const storageCabinet02Group = verticalCabinConfig[configuration.height]
+      .storageCabinet02 && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="storage"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].storageCabinet02.position
+        }
+        setShowModal={setShowStorage2Modal}
+      />
+    );
+
+    // vertically align
+    verticalCabinConfig[configuration.height].storageCabinet01 &&
+      groups.push(storageCabinet01Group);
+    verticalCabinConfig[configuration.height].smallCabinet &&
+      groups.push(smallCabinetGroup);
+    verticalCabinConfig[configuration.height].openCabinet01 &&
+      groups.push(openCabinet01Group);
+    verticalCabinConfig[configuration.height].openCabinet02 &&
+      groups.push(openCabinet02Group);
+    verticalCabinConfig[configuration.height].openCabinet03 &&
+      groups.push(openCabinet03Group);
+    verticalCabinConfig[configuration.height].openCabinet04 &&
+      groups.push(openCabinet04Group);
+    verticalCabinConfig[configuration.height].drawerCabinet &&
+      groups.push(drawerCabinetGroup);
+    verticalCabinConfig[configuration.height].storageCabinet02 &&
+      groups.push(storageCabinet02Group);
     return groups;
   };
 
@@ -647,7 +643,6 @@ export default function App() {
           shadow-camera-top={10}
           shadow-camera-bottom={-10}
         />
-
         <Floor receiveShadow style={{ backgroundColor: "rgb(215,215,214)" }} />
 
         <group
@@ -785,6 +780,102 @@ export default function App() {
         <OrbitControls
           ref={controlsRef}
           // enabled={configuration.dimensions === "OFF"}
+        />
+        <HoverModal
+          open={showStorage1Modal}
+          handleClose={() => setShowStorage1Modal(false)}
+          position={
+            verticalCabinConfig[configuration.height].storageCabinet01.position
+          }
+          width={configuration.width}
+          height={configuration.height}
+          type="storage1"
+          heading="Upper storage height"
+          buttonText="Remove Upper Storage"
+        />
+        <HoverModal
+          open={showStorage2Modal}
+          handleClose={() => setShowStorage2Modal(false)}
+          position={
+            verticalCabinConfig[configuration.height].storageCabinet02.position
+          }
+          width={configuration.width}
+          height={configuration.height}
+          type="storage2"
+          heading="Lower storage height"
+          buttonText="Remove Lower Storage"
+        />
+        <OpenModal
+          open={showOpen1Modal}
+          handleClose={() => setShowOpen1Modal(false)}
+          position={
+            verticalCabinConfig[configuration.height].storageCabinet01.position
+          }
+          width={configuration.width}
+          height={configuration.height}
+          type="open1"
+          heading="Row Height"
+          buttonText="Remove Lower Storage"
+        />
+        <OpenModal
+          open={showOpen2Modal}
+          handleClose={() => setShowOpen2Modal(false)}
+          position={
+            verticalCabinConfig[configuration.height].storageCabinet01.position
+          }
+          width={configuration.width}
+          height={configuration.height}
+          type="open2"
+          heading="Row Height"
+          buttonText="Remove Lower Storage"
+        />
+        <OpenModal
+          open={showOpen3Modal}
+          handleClose={() => setShowOpen3Modal(false)}
+          position={
+            verticalCabinConfig[configuration.height].storageCabinet01.position
+          }
+          width={configuration.width}
+          height={configuration.height}
+          type="open3"
+          heading="Row Height"
+          buttonText="Remove Lower Storage"
+        />
+        <OpenModal
+          open={showOpen4Modal}
+          handleClose={() => setShowOpen4Modal(false)}
+          position={
+            verticalCabinConfig[configuration.height].storageCabinet01.position
+          }
+          width={configuration.width}
+          height={configuration.height}
+          type="open4"
+          heading="Row Height"
+          buttonText="Remove Lower Storage"
+        />
+        <OpenModal
+          open={showSmallModal}
+          handleClose={() => setShowSmallModal(false)}
+          position={
+            verticalCabinConfig[configuration.height].storageCabinet01.position
+          }
+          width={configuration.width}
+          height={configuration.height}
+          type="small"
+          heading="Row Height"
+          buttonText="Remove Lower Storage"
+        />
+        <OpenModal
+          open={showDrawerModal}
+          handleClose={() => setShowDrawerModal(false)}
+          position={
+            verticalCabinConfig[configuration.height].storageCabinet01.position
+          }
+          width={configuration.width}
+          height={configuration.height}
+          type="drawer"
+          heading="Row Height"
+          buttonText="Remove Lower Storage"
         />
       </Canvas>
       <Configurator

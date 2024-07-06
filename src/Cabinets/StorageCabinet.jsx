@@ -27,6 +27,7 @@ function StorageCabinet(props) {
     colorCodes,
     dimensions,
     units,
+    setShowModel,
   } = props;
 
   const texture = useTexture(textureUrl);

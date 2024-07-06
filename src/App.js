@@ -29,6 +29,11 @@ export default function App() {
   const [showOpen4Modal, setShowOpen4Modal] = useState(false);
   const [showSmallModal, setShowSmallModal] = useState(false);
   const [showDrawerModal, setShowDrawerModal] = useState(false);
+  const [isUpperStorageVisible, setIsUpperStorageVisible] = useState(true);
+  const [isLowerStorageVisible, setIsLowerStorageVisible] = useState(true);
+
+  const [topRemoved, setTopRemoved] = useState(0);
+  const [bottomRemoved, setBottomRemoved] = useState(0);
 
   const [configuration, setConfiguration] = useState({
     style: "grid",
@@ -74,6 +79,78 @@ export default function App() {
   };
 
   const verticalCabinConfig = {
+    30: {
+      measurementPole: {
+        textPosition: [0, -3, 0.01],
+        planePosition: [0, -3, 0],
+        verticalLineStart: [0, -3, 0],
+        verticalLineEnd: [0, -2.5, 0],
+        bottomLineStart: [0, -3, 0],
+        bottomLineEnd: [0, -3.5, 0],
+        topHorizontalLine: [
+          [-0.05 / 2, -4.7, 0],
+          [0.05 / 2, -4.7, 0],
+        ],
+        bottomHorizontalLine: [
+          [-0.05 / 2, -0.8, 0],
+          [0.05 / 2, -0.8, 0],
+        ],
+      },
+    },
+    60: {
+      measurementPole: {
+        textPosition: [0, -2.5, 0.01],
+        planePosition: [0, -2.5, 0],
+        verticalLineStart: [0, -2.5, 0],
+        verticalLineEnd: [0, -1.5, 0],
+        bottomLineStart: [0, -2.5, 0],
+        bottomLineEnd: [0, -3.5, 0],
+        topHorizontalLine: [
+          [-0.05 / 2, -3.7, 0],
+          [0.05 / 2, -3.7, 0],
+        ],
+        bottomHorizontalLine: [
+          [-0.05 / 2, -0.8, 0],
+          [0.05 / 2, -0.8, 0],
+        ],
+      },
+    },
+    90: {
+      measurementPole: {
+        textPosition: [0, -1.8, 0.01],
+        planePosition: [0, -1.8, 0],
+        verticalLineStart: [0, -1.78, 0],
+        verticalLineEnd: [0, -0.5, 0],
+        bottomLineStart: [0, -1.82, 0],
+        bottomLineEnd: [0, -3.5, 0],
+        topHorizontalLine: [
+          [-0.05 / 2, -2.7, 0],
+          [0.05 / 2, -2.7, 0],
+        ],
+        bottomHorizontalLine: [
+          [-0.05 / 2, -0.8, 0],
+          [0.05 / 2, -0.8, 0],
+        ],
+      },
+    },
+    120: {
+      measurementPole: {
+        textPosition: [0, -1.5, 0.01],
+        planePosition: [0, -1.5, 0],
+        verticalLineStart: [0, -1.48, 0],
+        verticalLineEnd: [0, 0.4, 0],
+        bottomLineStart: [0, -1.52, 0],
+        bottomLineEnd: [0, -3.5, 0],
+        topHorizontalLine: [
+          [-0.05 / 2, -1.8, 0],
+          [0.05 / 2, -1.8, 0],
+        ],
+        bottomHorizontalLine: [
+          [-0.05 / 2, -0.8, 0],
+          [0.05 / 2, -0.8, 0],
+        ],
+      },
+    },
     150: {
       storageCabinet01: { position: [0, -6.4, 0] },
       smallCabinet: null,
@@ -276,23 +353,24 @@ export default function App() {
 
     let counter = 0;
     const storageCabinet01Group = verticalCabinConfig[configuration.height]
-      .storageCabinet01 && (
-      <HorizontalGroup
-        densityMultiplier={densityMultiplier}
-        count={count}
-        configuration={configuration}
-        densityFactor={densityFactor}
-        textureUrl={textureUrl}
-        colorCodes={colorCodes}
-        cabinetType="storage"
-        col={counter}
-        row={0}
-        groupPosition={
-          verticalCabinConfig[configuration.height].storageCabinet01.position
-        }
-        setShowModal={setShowStorage1Modal}
-      />
-    );
+      .storageCabinet01 &&
+      isUpperStorageVisible && (
+        <HorizontalGroup
+          densityMultiplier={densityMultiplier}
+          count={count}
+          configuration={configuration}
+          densityFactor={densityFactor}
+          textureUrl={textureUrl}
+          colorCodes={colorCodes}
+          cabinetType="storage"
+          col={counter}
+          row={0}
+          groupPosition={
+            verticalCabinConfig[configuration.height].storageCabinet01.position
+          }
+          setShowModal={setShowStorage1Modal}
+        />
+      );
 
     const smallCabinetGroup = verticalCabinConfig[configuration.height]
       .smallCabinet && (
@@ -409,23 +487,24 @@ export default function App() {
     );
 
     const storageCabinet02Group = verticalCabinConfig[configuration.height]
-      .storageCabinet02 && (
-      <HorizontalGroup
-        densityMultiplier={densityMultiplier}
-        count={count}
-        configuration={configuration}
-        densityFactor={densityFactor}
-        textureUrl={textureUrl}
-        colorCodes={colorCodes}
-        cabinetType="storage"
-        col={counter}
-        row={0}
-        groupPosition={
-          verticalCabinConfig[configuration.height].storageCabinet02.position
-        }
-        setShowModal={setShowStorage2Modal}
-      />
-    );
+      .storageCabinet02 &&
+      isLowerStorageVisible && (
+        <HorizontalGroup
+          densityMultiplier={densityMultiplier}
+          count={count}
+          configuration={configuration}
+          densityFactor={densityFactor}
+          textureUrl={textureUrl}
+          colorCodes={colorCodes}
+          cabinetType="storage"
+          col={counter}
+          row={0}
+          groupPosition={
+            verticalCabinConfig[configuration.height].storageCabinet02.position
+          }
+          setShowModal={setShowStorage2Modal}
+        />
+      );
 
     // vertically align
     verticalCabinConfig[configuration.height].storageCabinet01 &&
@@ -610,6 +689,15 @@ export default function App() {
     }
   };
 
+  const adjustTopDimensions = () => {
+    setTopRemoved(60);
+  };
+
+  const adjustBottomDimensions = () => {
+    setBottomRemoved(60);
+  };
+
+  const horizontalDimensionPosition = [1, 2.5, 2.5, 4.5];
   console.log({ sceneRef });
   return (
     <div
@@ -650,13 +738,14 @@ export default function App() {
           position={[positionX[configuration.width].cabinet, 0, 1]}
         >
           <Person url={uri} />
-          {horizontalAlignment(
-            Math.floor(
-              configuration.width /
-                densityFactor[configuration.width][configuration.density]
-            )
-          )}
-
+          <group position={[0, isLowerStorageVisible ? 0 : -2, 0]}>
+            {horizontalAlignment(
+              Math.floor(
+                configuration.width /
+                  densityFactor[configuration.width][configuration.density]
+              )
+            )}
+          </group>
           {configuration.dimensions === "ON" && (
             <>
               <VerticalRule
@@ -671,7 +760,6 @@ export default function App() {
                 textPosition={[0, 0, 0.01]}
                 planeRotation={[0, 0, 0]}
                 planePosition={[0, 0, 0]}
-                planePo
                 type="width"
                 lineColor="grey"
                 height={165}
@@ -691,8 +779,20 @@ export default function App() {
               <HorizontalRule
                 groupPosition={[
                   positionX[configuration.width].cabinetHPole,
-                  verticalCabinConfig[configuration.height].measurementPole
-                    .verticalLineEnd[1] - 1,
+                  isUpperStorageVisible && isLowerStorageVisible
+                    ? verticalCabinConfig[configuration.height].measurementPole
+                        .verticalLineEnd[1] - horizontalDimensionPosition[0]
+                    : isLowerStorageVisible
+                      ? verticalCabinConfig[configuration.height]
+                          .measurementPole.verticalLineEnd[1] -
+                        horizontalDimensionPosition[1]
+                      : isUpperStorageVisible
+                        ? verticalCabinConfig[configuration.height]
+                            .measurementPole.verticalLineEnd[1] -
+                          horizontalDimensionPosition[2]
+                        : verticalCabinConfig[configuration.height]
+                            .measurementPole.verticalLineEnd[1] -
+                          horizontalDimensionPosition[3],
                   2,
                 ]}
                 units={configuration.units}
@@ -738,40 +838,48 @@ export default function App() {
                 groupRotation={[0, 0, 0]}
                 textRotation={[0, 0, 0]}
                 textPosition={
-                  verticalCabinConfig[configuration.height].measurementPole
-                    .textPosition
+                  verticalCabinConfig[
+                    configuration.height - topRemoved - bottomRemoved
+                  ].measurementPole.textPosition
                 }
                 planeRotation={[0, 0, 0]}
                 planePosition={
-                  verticalCabinConfig[configuration.height].measurementPole
-                    .planePosition
+                  verticalCabinConfig[
+                    configuration.height - topRemoved - bottomRemoved
+                  ].measurementPole.planePosition
                 }
                 type="width"
                 lineColor="grey"
-                height={configuration.height}
+                height={configuration.height - topRemoved - bottomRemoved}
                 verticalLineStart={
-                  verticalCabinConfig[configuration.height].measurementPole
-                    .verticalLineStart
+                  verticalCabinConfig[
+                    configuration.height - topRemoved - bottomRemoved
+                  ].measurementPole.verticalLineStart
                 }
                 verticalLineEnd={
-                  verticalCabinConfig[configuration.height].measurementPole
-                    .verticalLineEnd
+                  verticalCabinConfig[
+                    configuration.height - topRemoved - bottomRemoved
+                  ].measurementPole.verticalLineEnd
                 }
                 bottomLineStart={
-                  verticalCabinConfig[configuration.height].measurementPole
-                    .bottomLineStart
+                  verticalCabinConfig[
+                    configuration.height - topRemoved - bottomRemoved
+                  ].measurementPole.bottomLineStart
                 }
                 bottomLineEnd={
-                  verticalCabinConfig[configuration.height].measurementPole
-                    .bottomLineEnd
+                  verticalCabinConfig[
+                    configuration.height - topRemoved - bottomRemoved
+                  ].measurementPole.bottomLineEnd
                 }
                 topHorizontalLine={
-                  verticalCabinConfig[configuration.height].measurementPole
-                    .topHorizontalLine
+                  verticalCabinConfig[
+                    configuration.height - topRemoved - bottomRemoved
+                  ].measurementPole.topHorizontalLine
                 }
                 bottomHorizontalLine={
-                  verticalCabinConfig[configuration.height].measurementPole
-                    .bottomHorizontalLine
+                  verticalCabinConfig[
+                    configuration.height - topRemoved - bottomRemoved
+                  ].measurementPole.bottomHorizontalLine
                 }
               />
             </>
@@ -783,7 +891,7 @@ export default function App() {
         />
         <HoverModal
           open={showStorage1Modal}
-          handleClose={() => setShowStorage1Modal(false)}
+          handleModalClose={setShowStorage1Modal}
           position={
             verticalCabinConfig[configuration.height].storageCabinet01.position
           }
@@ -792,10 +900,14 @@ export default function App() {
           type="storage1"
           heading="Upper storage height"
           buttonText="Remove Upper Storage"
+          setIsUpperStorageVisible={setIsUpperStorageVisible}
+          setIsLowerStorageVisible={setIsLowerStorageVisible}
+          adjustTopDimensions={adjustTopDimensions}
+          adjustBottomDimensions={adjustBottomDimensions}
         />
         <HoverModal
           open={showStorage2Modal}
-          handleClose={() => setShowStorage2Modal(false)}
+          handleModalClose={() => setShowStorage2Modal(false)}
           position={
             verticalCabinConfig[configuration.height].storageCabinet02.position
           }
@@ -804,6 +916,10 @@ export default function App() {
           type="storage2"
           heading="Lower storage height"
           buttonText="Remove Lower Storage"
+          setIsUpperStorageVisible={setIsUpperStorageVisible}
+          setIsLowerStorageVisible={setIsLowerStorageVisible}
+          adjustTopDimensions={adjustTopDimensions}
+          adjustBottomDimensions={adjustBottomDimensions}
         />
         <OpenModal
           open={showOpen1Modal}

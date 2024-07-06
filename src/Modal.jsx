@@ -10,13 +10,18 @@ import {
 
 function HoverModal({
   open,
-  handleClose,
+  // handleClose,
   position,
   width,
   height,
   heading,
   buttonText,
   type,
+  setIsUpperStorageVisible,
+  setIsLowerStorageVisible,
+  handleModalClose,
+  adjustTopDimensions,
+  adjustBottomDimensions,
 }) {
   const [alignment, setAlignment] = useState("48cm");
   const [isHovered, setIsHovered] = useState(false);
@@ -25,6 +30,18 @@ function HoverModal({
     if (newAlignment !== null) {
       setAlignment(newAlignment);
     }
+  };
+
+  const handleClose = () => {
+    if (type === "storage1") {
+      setIsUpperStorageVisible(false);
+      adjustTopDimensions();
+    } else {
+      setIsLowerStorageVisible(false);
+      adjustBottomDimensions();
+    }
+    handleModalClose(false);
+    setIsHovered(false);
   };
 
   const handleMouseEnter = () => {

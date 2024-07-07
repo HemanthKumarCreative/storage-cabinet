@@ -47,6 +47,12 @@ export default function App() {
     books: "OFF",
     dimensions: "OFF",
     units: "cm",
+    openRow1: { doors: "Max", drawers: "None" },
+    openRow2: { doors: "None", drawers: "None" },
+    openRow3: { doors: "None", drawers: "None" },
+    openRow4: { doors: "None", drawers: "None" },
+    openRow5: { doors: "None", drawers: "None" },
+    openRow6: { doors: "None", drawers: "Max" },
   });
 
   const textureUrl = {
@@ -388,6 +394,7 @@ export default function App() {
           verticalCabinConfig[configuration.height].smallCabinet.position
         }
         setShowModal={setShowSmallModal}
+        rowConfig={configuration.openRow1}
       />
     );
 
@@ -407,6 +414,7 @@ export default function App() {
           verticalCabinConfig[configuration.height].openCabinet01.position
         }
         setShowModal={setShowOpen1Modal}
+        rowConfig={configuration.openRow2}
       />
     );
 
@@ -426,6 +434,7 @@ export default function App() {
           verticalCabinConfig[configuration.height].openCabinet02.position
         }
         setShowModal={setShowOpen2Modal}
+        rowConfig={configuration.openRow3}
       />
     );
 
@@ -445,6 +454,7 @@ export default function App() {
           verticalCabinConfig[configuration.height].openCabinet03.position
         }
         setShowModal={setShowOpen3Modal}
+        rowConfig={configuration.openRow4}
       />
     );
 
@@ -464,6 +474,7 @@ export default function App() {
           verticalCabinConfig[configuration.height].openCabinet04.position
         }
         setShowModal={setShowOpen4Modal}
+        rowConfig={configuration.openRow5}
       />
     );
 
@@ -483,6 +494,7 @@ export default function App() {
           verticalCabinConfig[configuration.height].drawerCabinet.position
         }
         setShowModal={setShowDrawerModal}
+        rowConfig={configuration.openRow6}
       />
     );
 
@@ -652,7 +664,6 @@ export default function App() {
   const uri = "https://pics.io/preview/66792a63548394472778ddc6/thumbnail";
   const sceneRef = useRef();
   const controlsRef = useRef();
-  console.log({ sceneRef });
   function save(blob, fileName) {
     const link = document.createElement("a");
     document.body.appendChild(link);
@@ -671,7 +682,6 @@ export default function App() {
       exporter.parse(
         sceneRef.current,
         (gltf) => {
-          console.log(gltf);
           // downloadJSON(gltf);
           saveArrayBuffer(gltf, "cabinet.glb");
         },
@@ -698,7 +708,6 @@ export default function App() {
   };
 
   const horizontalDimensionPosition = [1, 2.5, 2.5, 4.5];
-  console.log({ sceneRef });
   return (
     <div
       className="canvas-container"
@@ -932,6 +941,8 @@ export default function App() {
           type="open1"
           heading="Row Height"
           buttonText="Remove Lower Storage"
+          setConfiguration={setConfiguration}
+          configuration={configuration}
         />
         <OpenModal
           open={showOpen2Modal}
@@ -944,6 +955,8 @@ export default function App() {
           type="open2"
           heading="Row Height"
           buttonText="Remove Lower Storage"
+          setConfiguration={setConfiguration}
+          configuration={configuration}
         />
         <OpenModal
           open={showOpen3Modal}
@@ -956,6 +969,8 @@ export default function App() {
           type="open3"
           heading="Row Height"
           buttonText="Remove Lower Storage"
+          setConfiguration={setConfiguration}
+          configuration={configuration}
         />
         <OpenModal
           open={showOpen4Modal}
@@ -968,6 +983,8 @@ export default function App() {
           type="open4"
           heading="Row Height"
           buttonText="Remove Lower Storage"
+          setConfiguration={setConfiguration}
+          configuration={configuration}
         />
         <OpenModal
           open={showSmallModal}
@@ -980,6 +997,8 @@ export default function App() {
           type="small"
           heading="Row Height"
           buttonText="Remove Lower Storage"
+          setConfiguration={setConfiguration}
+          configuration={configuration}
         />
         <OpenModal
           open={showDrawerModal}
@@ -992,6 +1011,8 @@ export default function App() {
           type="drawer"
           heading="Row Height"
           buttonText="Remove Lower Storage"
+          setConfiguration={setConfiguration}
+          configuration={configuration}
         />
       </Canvas>
       <Configurator

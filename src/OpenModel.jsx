@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Html } from "@react-three/drei";
 import {
   Typography,
@@ -16,11 +16,63 @@ function HoverModal({
   heading,
   buttonText,
   type,
+  setConfiguration,
+  configuration,
 }) {
   const [rowHeight, setRowHeight] = useState("38cm");
-  const [doors, setDoors] = useState("None");
-  const [drawers, setDrawers] = useState("None");
+  const [doors, setDoors] = useState(type === "small" ? "Max" : "None");
+  const [drawers, setDrawers] = useState(type === "drawer" ? "Max" : "None");
   const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (
+      configuration?.openRow1 &&
+      configuration?.openRow2 &&
+      configuration?.openRow3 &&
+      configuration?.openRow4 &&
+      configuration?.openRow5 &&
+      configuration?.openRow6
+    ) {
+      switch (type) {
+        case "small":
+          setConfiguration((oldConfig) => ({
+            ...oldConfig,
+            openRow1: { doors, drawers },
+          }));
+          break;
+        case "open1":
+          setConfiguration((oldConfig) => ({
+            ...oldConfig,
+            openRow2: { doors, drawers },
+          }));
+          break;
+        case "open2":
+          setConfiguration((oldConfig) => ({
+            ...oldConfig,
+            openRow3: { doors, drawers },
+          }));
+          break;
+        case "open3":
+          setConfiguration((oldConfig) => ({
+            ...oldConfig,
+            openRow4: { doors, drawers },
+          }));
+          break;
+        case "open4":
+          setConfiguration((oldConfig) => ({
+            ...oldConfig,
+            openRow5: { doors, drawers },
+          }));
+          break;
+        case "drawer":
+          setConfiguration((oldConfig) => ({
+            ...oldConfig,
+            openRow6: { doors, drawers },
+          }));
+          break;
+      }
+    }
+  }, [doors, drawers]);
 
   const handleRowHeight = (event, newHeight) => {
     if (newHeight !== null) {
@@ -30,12 +82,26 @@ function HoverModal({
 
   const handleDoors = (event, newDoors) => {
     if (newDoors !== null) {
+      if (newDoors === "Max") {
+        setDrawers("None");
+      } else if (newDoors === "Some") {
+        setDrawers("Some");
+      } else if (newDoors === "None") {
+        // setDrawers("Max");
+      }
       setDoors(newDoors);
     }
   };
 
   const handleDrawers = (event, newDrawers) => {
     if (newDrawers !== null) {
+      if (newDrawers === "Max") {
+        setDoors("None");
+      } else if (newDrawers === "Some") {
+        setDoors("Some");
+      } else if (newDrawers === "None") {
+        // setDoors("Max");
+      }
       setDrawers(newDrawers);
     }
   };

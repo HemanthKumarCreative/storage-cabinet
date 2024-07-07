@@ -9,7 +9,6 @@ import ceramicPotGlb from "../modals/CeramicPot.glb";
 
 export default function Model(props) {
   const { nodes, materials } = useGLTF(ceramicPotGlb);
-  console.log({ nodes });
   return (
     <group {...props} dispose={null}>
       <mesh

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cabinet from "./Cabinet";
 
 const CabinetGroup = (props) => {
-  const {
+  let {
     densityMultiplier,
     count,
     configuration,
@@ -14,11 +14,184 @@ const CabinetGroup = (props) => {
     col,
     groupPosition,
     setShowModal,
+    rowConfig,
   } = props;
 
   const [isHovered, setIsHovered] = useState(false);
+  const [localCabinetType, setLocalCabinetType] = useState(cabinetType);
 
   const cabinets = [];
+
+  useEffect(() => {
+    if (rowConfig) {
+      if (rowConfig.doors === "Max") {
+        setLocalCabinetType("small");
+      } else if (rowConfig.drawers === "Max") {
+        setLocalCabinetType("drawer");
+      } else if (rowConfig.doors === "None" && rowConfig.drawers === "None") {
+        setLocalCabinetType("open");
+      } else if (rowConfig.doors === "Some" && rowConfig.drawers === "Some") {
+        setLocalCabinetType("mixed");
+      } else if (rowConfig.doors === "Some" && rowConfig.drawers === "None") {
+        setLocalCabinetType("doors open");
+      } else if (rowConfig.drawers === "Some" && rowConfig.doors === "None") {
+        setLocalCabinetType("drawers open");
+      }
+      console.log({ rowConfig, cabinetType });
+    }
+  }, [rowConfig]);
+
+  const mixed = [
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+    "small",
+    "drawer",
+  ];
+  const doorsOpen = [
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+    "small",
+    "open",
+  ];
+  const drawersOpen = [
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+    "drawer",
+    "open",
+  ];
+
   for (
     let i = -8;
     i <
@@ -27,7 +200,15 @@ const CabinetGroup = (props) => {
   ) {
     cabinets.push(
       <Cabinet
-        cabinetType={cabinetType}
+        cabinetType={
+          localCabinetType === "mixed"
+            ? mixed[Math.floor(i + 8)]
+            : localCabinetType === "doors open"
+              ? doorsOpen[Math.floor(i + 8)]
+              : localCabinetType === "drawers open"
+                ? drawersOpen[Math.floor(i + 8)]
+                : localCabinetType
+        }
         row={row}
         col={col}
         key={i}

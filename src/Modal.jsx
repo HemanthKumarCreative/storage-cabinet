@@ -22,13 +22,15 @@ function HoverModal({
   handleModalClose,
   adjustTopDimensions,
   adjustBottomDimensions,
+  setLowerStorageCabinetHeight,
 }) {
-  const [alignment, setAlignment] = useState("48cm");
+  const [alignment, setAlignment] = useState("60cm");
   const [isHovered, setIsHovered] = useState(false);
 
   const handleAlignment = (event, newAlignment) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
+      setLowerStorageCabinetHeight(newAlignment.split("cm")[0]);
     }
   };
 
@@ -124,17 +126,17 @@ function HoverModal({
             marginBottom: 16,
           }}
         >
-          <ToggleButton value="48cm" aria-label="48cm">
-            48cm
+          <ToggleButton value="60cm" aria-label="60cm">
+            60cm
           </ToggleButton>
-          <ToggleButton value="58cm" aria-label="58cm">
-            58cm
+          <ToggleButton value="50cm" aria-label="50cm">
+            50cm
           </ToggleButton>
-          <ToggleButton value="68cm" aria-label="68cm">
-            68cm
+          <ToggleButton value="40cm" aria-label="40cm">
+            40cm
           </ToggleButton>
-          <ToggleButton value="78cm" aria-label="78cm">
-            78cm
+          <ToggleButton value="30cm" aria-label="30cm">
+            30cm
           </ToggleButton>
         </ToggleButtonGroup>
         <Button

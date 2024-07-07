@@ -19,7 +19,7 @@ function HoverModal({
   setConfiguration,
   configuration,
 }) {
-  const [rowHeight, setRowHeight] = useState("38cm");
+  const [rowHeight, setRowHeight] = useState("30cm");
   const [doors, setDoors] = useState(type === "small" ? "Max" : "None");
   const [drawers, setDrawers] = useState(type === "drawer" ? "Max" : "None");
   const [isHovered, setIsHovered] = useState(false);
@@ -185,14 +185,14 @@ function HoverModal({
             marginBottom: 16,
           }}
         >
-          <ToggleButton value="18cm" aria-label="18cm">
-            18cm
+          <ToggleButton value="30cm" aria-label="30cm" color="warning">
+            30cm
           </ToggleButton>
-          <ToggleButton value="28cm" aria-label="28cm">
-            28cm
+          <ToggleButton value="40cm" aria-label="40cm" color="warning">
+            40cm
           </ToggleButton>
-          <ToggleButton value="38cm" aria-label="38cm">
-            38cm
+          <ToggleButton value="50cm" aria-label="50cm" color="warning">
+            50cm
           </ToggleButton>
         </ToggleButtonGroup>
         <Typography
@@ -213,13 +213,13 @@ function HoverModal({
             marginBottom: 16,
           }}
         >
-          <ToggleButton value="None" aria-label="None">
+          <ToggleButton value="None" aria-label="None" color="warning">
             None
           </ToggleButton>
-          <ToggleButton value="Some" aria-label="Some">
+          <ToggleButton value="Some" aria-label="Some" color="warning">
             Some
           </ToggleButton>
-          <ToggleButton value="Max" aria-label="Max">
+          <ToggleButton value="Max" aria-label="Max" color="warning">
             Max
           </ToggleButton>
         </ToggleButtonGroup>
@@ -240,14 +240,15 @@ function HoverModal({
             justifyContent: "center",
             marginBottom: 16,
           }}
+          color="warning"
         >
-          <ToggleButton value="None" aria-label="None">
+          <ToggleButton value="None" aria-label="None" color="warning">
             None
           </ToggleButton>
-          <ToggleButton value="Some" aria-label="Some">
+          <ToggleButton value="Some" aria-label="Some" color="warning">
             Some
           </ToggleButton>
-          <ToggleButton value="Max" aria-label="Max">
+          <ToggleButton value="Max" aria-label="Max" color="warning">
             Max
           </ToggleButton>
         </ToggleButtonGroup>

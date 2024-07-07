@@ -7,7 +7,6 @@ import DrawerCabinet from "./Cabinets/DrawerCabinet";
 // Higher-Order Component
 const Cabinet = (props) => {
   const { cabinetType, ...rest } = props;
-  console.log("Hii", { cabinetType });
   // Switch case to return the appropriate component
   switch (cabinetType) {
     case "storage":
@@ -18,6 +17,8 @@ const Cabinet = (props) => {
       return <DrawerCabinet {...rest} />;
     case "small":
       return <SmallCabinet {...rest} />;
+    default:
+      return <StorageCabinet {...rest} />;
   }
 };
 

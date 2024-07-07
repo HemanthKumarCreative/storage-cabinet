@@ -15,11 +15,11 @@ const CabinetGroup = (props) => {
     groupPosition,
     setShowModal,
     rowConfig,
+    lowerStorageCabinetHeight,
   } = props;
 
   const [isHovered, setIsHovered] = useState(false);
   const [localCabinetType, setLocalCabinetType] = useState(cabinetType);
-
   const cabinets = [];
 
   useEffect(() => {
@@ -37,7 +37,8 @@ const CabinetGroup = (props) => {
       } else if (rowConfig.drawers === "Some" && rowConfig.doors === "None") {
         setLocalCabinetType("drawers open");
       }
-      console.log({ rowConfig, cabinetType });
+    } else {
+      setLocalCabinetType("storage");
     }
   }, [rowConfig]);
 
@@ -227,6 +228,7 @@ const CabinetGroup = (props) => {
         colorCodes={colorCodes}
         dimensions={configuration.dimensions === "ON"}
         units={configuration.units}
+        lowerStorageCabinetHeight={lowerStorageCabinetHeight}
       />
     );
   }

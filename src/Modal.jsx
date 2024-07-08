@@ -126,16 +126,16 @@ function HoverModal({
             marginBottom: 16,
           }}
         >
-          <ToggleButton value="60cm" aria-label="60cm">
+          <ToggleButton value="60cm" aria-label="60cm" color="warning">
             60cm
           </ToggleButton>
-          <ToggleButton value="50cm" aria-label="50cm">
+          <ToggleButton value="50cm" aria-label="50cm" color="warning">
             50cm
           </ToggleButton>
-          <ToggleButton value="40cm" aria-label="40cm">
+          <ToggleButton value="40cm" aria-label="40cm" color="warning">
             40cm
           </ToggleButton>
-          <ToggleButton value="30cm" aria-label="30cm">
+          <ToggleButton value="30cm" aria-label="30cm" color="warning">
             30cm
           </ToggleButton>
         </ToggleButtonGroup>

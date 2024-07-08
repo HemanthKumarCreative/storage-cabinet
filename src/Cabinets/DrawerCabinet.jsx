@@ -28,6 +28,7 @@ function DrawerCabinet(props) {
     colorCodes,
     dimensions,
     units,
+    cabinetHeight,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -43,6 +44,18 @@ function DrawerCabinet(props) {
     }
   });
 
+  const heightScale = {
+    30: 1,
+    40: 1.2,
+    50: 1.4,
+  };
+
+  const drawerPositionY = {
+    30: 0.315,
+    40: 0.415,
+    50: 0.515,
+  };
+
   // Adjust scales based on depth
   let depthScale = 1;
   let widthScale = specialWidth
@@ -51,7 +64,11 @@ function DrawerCabinet(props) {
   let depthPositionX = -0.595;
   let doorPositionX = 0.1;
   let hingePosX = 0.522;
-
+  let topPositionY = {
+    30: 0,
+    40: 0.2,
+    50: 0.4,
+  };
   const decimal = {
     100: 0.01,
     75: 0.02,
@@ -111,51 +128,158 @@ function DrawerCabinet(props) {
   return (
     <group {...props} dispose={null}>
       {/* Meshes for cabinet components */}
-      {/* Left plank */}
-      <mesh
-        geometry={nodes.left_plank003.geometry}
-        material={materials.Material}
-        position={[0.002, 0.003, -0.006]}
-        scale={[depthScale, 1, 1]}
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-      </mesh>
-      {/* Right plank */}
-      <mesh
-        geometry={nodes.right_plank003.geometry}
-        material={materials["Material.003"]}
-        position={[0.004, 0.148, -1.49 * widthScale]}
-        scale={[depthScale, 1, 1]}
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-      </mesh>
-      {/* Top plank */}
-      <mesh
-        geometry={nodes.top_plank003.geometry}
-        material={materials["Material.002"]}
-        position={[-0.001, 1.023, -0.735 * widthScale]}
-        scale={[depthScale, 2, widthScale - decimal[density]]}
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-      </mesh>
+      <group position={[0, 0, 0]} scale={[1, heightScale[cabinetHeight], 1]}>
+        {/* Left plank */}
+        <mesh
+          geometry={nodes.left_plank003.geometry}
+          material={materials.Material}
+          position={[0.002, 0.003, -0.006]}
+          scale={[depthScale, 1, 1]}
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
+        </mesh>
+        {/* Right plank */}
+        <mesh
+          geometry={nodes.right_plank003.geometry}
+          material={materials["Material.003"]}
+          position={[0.004, 0.148, -1.49 * widthScale]}
+          scale={[depthScale, 1, 1]}
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
+        </mesh>
+        {/* Back plank */}
+        <mesh
+          geometry={nodes.back_plank003.geometry}
+          material={materials["Material.005"]}
+          position={[depthPositionX, 0.315, -0.746 * widthScale]}
+          scale={[1, 0.958, widthScale]}
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
+        </mesh>
+        {/* Middle Edge 1 */}
+        <mesh
+          geometry={cabinetEdgesNodes.edges002.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.625 * depthScale, 0.4, -1.488 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -0.595, -0.027]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Middle Edge 2 */}
+        <mesh
+          geometry={cabinetEdgesNodes.edges002.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[0.625 * depthScale, 0.4, 0]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -0.595, -0.027]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Middle Edge 3 */}
+        <mesh
+          geometry={cabinetEdgesNodes.edges002.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.625 * depthScale, 0.4, 0]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -0.595, -0.027]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Middle Edge 4 Red*/}
+        <mesh
+          geometry={cabinetEdgesNodes.edges002.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[0.625 * depthScale, 0.4, -1.5 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018, -0.595, -0.027]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+      </group>
+      <group position={[0, topPositionY[cabinetHeight], 0]}>
+        {/* Top plank */}
+        <mesh
+          geometry={nodes.top_plank003.geometry}
+          material={materials["Material.002"]}
+          position={[-0.001, 1.023, -0.735 * widthScale]}
+          scale={[depthScale, 2, widthScale - decimal[density]]}
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
+        </mesh>
+        {/* Top Side1 blue*/}
+        <mesh
+          geometry={cabinetEdgesNodes.edges003.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.63 * depthScale, 1.023, -0.744 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[
+            -0.01 * depthScale,
+            -1.3,
+            -0.027 * (widthScale - decimal[density]),
+          ]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Top Side 2 pink*/}
+        <mesh
+          geometry={cabinetEdgesNodes.edges001.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.308 * depthScale, 1.023, 0.023 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018 * depthScale, -1.3, -0.005]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Top Side 3 var green*/}
+        <mesh
+          geometry={cabinetEdgesNodes.edges003.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[0.63 * depthScale, 1.023, -0.744 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[
+            0.005 * depthScale,
+            -1.3,
+            -0.028 * (widthScale - decimal[density]),
+          ]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+        {/* Top Side 4 green*/}
+        <mesh
+          geometry={cabinetEdgesNodes.edges001.geometry}
+          material={cabinetEdgesMaterials["Material.012"]}
+          position={[-0.308 * depthScale, 1.023, -1.5 * widthScale]}
+          rotation={[0, 0, -Math.PI]}
+          scale={[-0.018 * depthScale, -1.3, -0.02]}
+        >
+          <meshStandardMaterial color="white" attach="material" />
+        </mesh>
+      </group>
       {/* Bottom plank */}
       <mesh
         geometry={nodes.bottom_plank003.geometry}
@@ -171,26 +295,15 @@ function DrawerCabinet(props) {
           color={colorCodes[color]}
         />
       </mesh>
-      {/* Back plank */}
-      <mesh
-        geometry={nodes.back_plank003.geometry}
-        material={materials["Material.005"]}
-        position={[depthPositionX, 0.315, -0.746 * widthScale]}
-        scale={[1, 0.958, widthScale]}
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-      </mesh>
       {/* Drawer group */}
       <group
         ref={drawerRef}
-        position={[0.581, 0.315, -0.754 * widthScale]}
-        scale={[depthScale, 1, widthScale + decimal[density]]}
+        position={[0.581, drawerPositionY[cabinetHeight], -0.754 * widthScale]}
+        scale={[
+          depthScale,
+          heightScale[cabinetHeight],
+          widthScale + decimal[density],
+        ]}
         onPointerUp={openDrawer}
         castShadow
         receiveShadow
@@ -326,94 +439,6 @@ function DrawerCabinet(props) {
         </mesh>
       </group>
       <group dispose={null}>
-        {/* Top Side1 blue*/}
-        <mesh
-          geometry={cabinetEdgesNodes.edges003.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.63 * depthScale, 1.023, -0.744 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[
-            -0.01 * depthScale,
-            -1.3,
-            -0.027 * (widthScale - decimal[density]),
-          ]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Top Side 2 pink*/}
-        <mesh
-          geometry={cabinetEdgesNodes.edges001.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.308 * depthScale, 1.023, 0.023 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[-0.018 * depthScale, -1.3, -0.005]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Top Side 3 var green*/}
-        <mesh
-          geometry={cabinetEdgesNodes.edges003.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[0.63 * depthScale, 1.023, -0.744 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[
-            0.005 * depthScale,
-            -1.3,
-            -0.028 * (widthScale - decimal[density]),
-          ]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Top Side 4 green*/}
-        <mesh
-          geometry={cabinetEdgesNodes.edges001.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.308 * depthScale, 1.023, -1.5 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[-0.018 * depthScale, -1.3, -0.02]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Middle Edge 1 */}
-        <mesh
-          geometry={cabinetEdgesNodes.edges002.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.625 * depthScale, 0.4, -1.488 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[-0.018, -0.595, -0.027]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Middle Edge 2 */}
-        <mesh
-          geometry={cabinetEdgesNodes.edges002.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[0.625 * depthScale, 0.4, 0]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[-0.018, -0.595, -0.027]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Middle Edge 3 */}
-        <mesh
-          geometry={cabinetEdgesNodes.edges002.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.625 * depthScale, 0.4, 0]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[-0.018, -0.595, -0.027]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Middle Edge 4 Red*/}
-        <mesh
-          geometry={cabinetEdgesNodes.edges002.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[0.625 * depthScale, 0.4, -1.5 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[-0.018, -0.595, -0.027]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
         {/* Bottom Side 1 */}
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}

@@ -18,6 +18,7 @@ function HoverModal({
   type,
   setConfiguration,
   configuration,
+  setCabinetHeight,
 }) {
   const [rowHeight, setRowHeight] = useState("30cm");
   const [doors, setDoors] = useState(type === "small" ? "Max" : "None");
@@ -77,6 +78,7 @@ function HoverModal({
   const handleRowHeight = (event, newHeight) => {
     if (newHeight !== null) {
       setRowHeight(newHeight);
+      setCabinetHeight(newHeight.split("cm")[0]);
     }
   };
 

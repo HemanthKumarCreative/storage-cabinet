@@ -35,7 +35,12 @@ export default function App() {
     useState(60);
   const [upperStorageCabinetHeight, setUpperStorageCabinetHeight] =
     useState(60);
-
+  const [drawerCabinetHeight, setDrawerCabinetHeight] = useState(30);
+  const [openCabinet04Height, setOpenCabinet04Height] = useState(30);
+  const [openCabinet03Height, setOpenCabinet03Height] = useState(30);
+  const [openCabinet02Height, setOpenCabinet02Height] = useState(30);
+  const [openCabinet01Height, setOpenCabinet01Height] = useState(30);
+  const [smallCabinetHeight, setSmallCabinetHeight] = useState(30);
   const [topRemoved, setTopRemoved] = useState(0);
   const [bottomRemoved, setBottomRemoved] = useState(0);
 
@@ -326,7 +331,7 @@ export default function App() {
     30: -0.67,
   };
   const horizontalAlignment = (count) => {
-    const groups = [];
+    let groups = [];
 
     const densityMultiplier = {
       450: {
@@ -388,6 +393,7 @@ export default function App() {
             }
             setShowModal={setShowStorage1Modal}
             cabinetHeight={upperStorageCabinetHeight}
+            type="storage1"
           />
         </group>
       );
@@ -410,7 +416,8 @@ export default function App() {
           }
           setShowModal={setShowSmallModal}
           rowConfig={configuration.openRow1}
-          cabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={smallCabinetHeight}
+          type="small"
         />
       </group>
     );
@@ -433,7 +440,8 @@ export default function App() {
           }
           setShowModal={setShowOpen1Modal}
           rowConfig={configuration.openRow2}
-          cabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={openCabinet01Height}
+          type="open1"
         />
       </group>
     );
@@ -456,7 +464,8 @@ export default function App() {
           }
           setShowModal={setShowOpen2Modal}
           rowConfig={configuration.openRow3}
-          cabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={openCabinet02Height}
+          type="open2"
         />
       </group>
     );
@@ -479,7 +488,8 @@ export default function App() {
           }
           setShowModal={setShowOpen3Modal}
           rowConfig={configuration.openRow4}
-          cabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={openCabinet03Height}
+          type="open3"
         />
       </group>
     );
@@ -502,7 +512,8 @@ export default function App() {
           }
           setShowModal={setShowOpen4Modal}
           rowConfig={configuration.openRow5}
-          cabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={openCabinet04Height}
+          type="open4"
         />
       </group>
     );
@@ -525,7 +536,8 @@ export default function App() {
           }
           setShowModal={setShowDrawerModal}
           rowConfig={configuration.openRow6}
-          cabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={drawerCabinetHeight}
+          type="drawer"
         />
       </group>
     );
@@ -550,6 +562,7 @@ export default function App() {
             }
             setShowModal={setShowStorage2Modal}
             cabinetHeight={lowerStorageCabinetHeight}
+            type="storage2"
           />
         </group>
       );
@@ -571,6 +584,11 @@ export default function App() {
       groups.push(drawerCabinetGroup);
     verticalCabinConfig[configuration.height].storageCabinet02 &&
       groups.push(storageCabinet02Group);
+
+    groups = [
+      <group position={[0, 1, 0]}> {groups.slice(0, 1)}</group>,
+      groups.slice(1),
+    ];
     return groups;
   };
 
@@ -981,6 +999,7 @@ export default function App() {
           buttonText="Remove Lower Storage"
           setConfiguration={setConfiguration}
           configuration={configuration}
+          setCabinetHeight={setOpenCabinet01Height}
         />
         <OpenModal
           open={showOpen2Modal}
@@ -995,6 +1014,7 @@ export default function App() {
           buttonText="Remove Lower Storage"
           setConfiguration={setConfiguration}
           configuration={configuration}
+          setCabinetHeight={setOpenCabinet02Height}
         />
         <OpenModal
           open={showOpen3Modal}
@@ -1009,6 +1029,7 @@ export default function App() {
           buttonText="Remove Lower Storage"
           setConfiguration={setConfiguration}
           configuration={configuration}
+          setCabinetHeight={setOpenCabinet03Height}
         />
         <OpenModal
           open={showOpen4Modal}
@@ -1023,6 +1044,7 @@ export default function App() {
           buttonText="Remove Lower Storage"
           setConfiguration={setConfiguration}
           configuration={configuration}
+          setCabinetHeight={setOpenCabinet04Height}
         />
         <OpenModal
           open={showSmallModal}
@@ -1037,6 +1059,7 @@ export default function App() {
           buttonText="Remove Lower Storage"
           setConfiguration={setConfiguration}
           configuration={configuration}
+          setCabinetHeight={setSmallCabinetHeight}
         />
         <OpenModal
           open={showDrawerModal}
@@ -1051,6 +1074,7 @@ export default function App() {
           buttonText="Remove Lower Storage"
           setConfiguration={setConfiguration}
           configuration={configuration}
+          setCabinetHeight={setDrawerCabinetHeight}
         />
       </Canvas>
       <Configurator

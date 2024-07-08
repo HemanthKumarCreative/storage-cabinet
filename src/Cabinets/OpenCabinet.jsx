@@ -81,11 +81,41 @@ function OpenCabinet(props) {
     col,
     row,
     units,
+    cabinetHeight,
+    type,
   } = props;
 
   const texture = useTexture(textureUrl);
   const width = specialWidth === 0 ? 50 : specialWidth;
 
+  const heightScale = {
+    30: 1,
+    40: 1.2,
+    50: 1.4,
+  };
+
+  const drawerPositionY = {
+    open4: {
+      30: 0,
+      40: 0.2,
+      50: 0.4,
+    },
+    open3: {
+      30: 0,
+      40: 0,
+      50: 0,
+    },
+    open2: {
+      30: 0,
+      40: 0,
+      50: 0,
+    },
+    open1: {
+      30: 0,
+      40: 0,
+      50: 0,
+    },
+  };
   // Adjust scales and positions based on depth
   let depthScale = 1;
   let depthPositionX = -0.6; // Default position along X-axis for back plank
@@ -152,109 +182,21 @@ function OpenCabinet(props) {
   const depthText = `D : ${depth.slice(0, 2)}`;
   const depthSize = textSize(depthText, 24);
   const Object = OBJECTS[row][col];
+  console.log({ type });
   return (
     <group {...props} dispose={null}>
-      {/* Top Plank */}
-      <mesh
-        geometry={nodes.top_plank002.geometry}
-        material={materials["Material.002"]}
-        position={[0, 1.023, -0.744 * widthScale]}
-        scale={[depthScale - 0.05, 1, widthScale - 0.15]} // Adjusted scale based on depth
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial map={texture} attach="material" />
-      </mesh>
-      {/* Left Plank */}
-      <mesh
-        geometry={nodes.left_plank002.geometry}
-        material={materials.Material}
-        position={[0.002, 0.003, -0.006]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-      </mesh>
-      {/* Right Plank */}
-      <mesh
-        geometry={nodes.right_plank002.geometry}
-        material={materials["Material.003"]}
-        position={[0.004, 0.148, -1.484 * widthScale]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-      </mesh>
-      {/* Back Plank */}
-      {backPanel && (
+      <group position={[0, drawerPositionY?.open4[cabinetHeight || 0], 0]}>
+        {/* Top Plank */}
         <mesh
-          geometry={nodes.back_plank002.geometry}
-          material={materials["Material.005"]}
-          position={[depthPositionX, 0.315, -0.746 * widthScale]} // Adjusted position based on depth along X-axis
-          scale={[1, 0.958, widthScale]}
+          geometry={nodes.top_plank002.geometry}
+          material={materials["Material.002"]}
+          position={[0, 1.023, -0.744 * widthScale]}
+          scale={[depthScale - 0.05, 1, widthScale - 0.15]} // Adjusted scale based on depth
           castShadow
           receiveShadow
         >
-          <meshStandardMaterial
-            map={texture}
-            attach="material"
-            color={colorCodes[color]}
-          />
+          <meshStandardMaterial map={texture} attach="material" />
         </mesh>
-      )}
-      {/* Display Books */}
-      {books && <Object />}
-      {/* Dimensions */}
-      {/* Height */}
-      {dimensions && (
-        <InnerDimension
-          heightSize={heightSize}
-          heightText={units === "cm" ? ` 30 ` : `${convertToFeetInches(30)}`}
-          groupPosition={[0.8, 0.6, -0.8]}
-          groupRotation={[0, Math.PI / 2, 0]}
-          textRotation={[0, 0, 0]}
-          textPosition={[0, 0, 0.01]}
-          planeRotation={[0, 0, 0]}
-          type="height"
-        />
-      )}
-      {/* Width */}
-      {dimensions && (
-        <InnerDimension
-          heightSize={heightSize}
-          heightText={units === "cm" ? ` 50 ` : `${convertToFeetInches(50)}`}
-          groupPosition={[0.8, 0, -0.8]}
-          groupRotation={[0, Math.PI / 2, 0]}
-          textRotation={[0, 0, 0]}
-          textPosition={[0, 0, 0.01]}
-          planeRotation={[0, 0, 0]}
-          type="width"
-        />
-      )}
-      {/* Depth */}
-      {/* {dimensions && (
-        <InnerDimension
-          heightSize={heightSize}
-          heightText={heightText}
-          groupPosition={[0, 0, -0.8]}
-          groupRotation={[0, Math.PI / 2, 0]}
-          textRotation={[0, 0, 0]}
-          textPosition={[0, 0, 0.01]}
-          planeRotation={[0, 0, 0]}
-          type="depth"
-        />
-      )} */}
-      <group dispose={null}>
         {/* Top Side1 blue*/}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
@@ -303,6 +245,55 @@ function OpenCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
+      </group>
+      <group scale={[1, heightScale[cabinetHeight], 1]}>
+        {/* Left Plank */}
+        <mesh
+          geometry={nodes.left_plank002.geometry}
+          material={materials.Material}
+          position={[0.002, 0.003, -0.006]}
+          scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
+        </mesh>
+        {/* Right Plank */}
+        <mesh
+          geometry={nodes.right_plank002.geometry}
+          material={materials["Material.003"]}
+          position={[0.004, 0.148, -1.484 * widthScale]}
+          scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
+        </mesh>
+        {/* Back Plank */}
+        {backPanel && (
+          <mesh
+            geometry={nodes.back_plank002.geometry}
+            material={materials["Material.005"]}
+            position={[depthPositionX, 0.315, -0.746 * widthScale]} // Adjusted position based on depth along X-axis
+            scale={[1, 0.958, widthScale]}
+            castShadow
+            receiveShadow
+          >
+            <meshStandardMaterial
+              map={texture}
+              attach="material"
+              color={colorCodes[color]}
+            />
+          </mesh>
+        )}
         {/* Middle Edge 1 */}
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
@@ -343,6 +334,50 @@ function OpenCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
+      </group>
+      {/* Display Books */}
+      {books && <Object />}
+      {/* Dimensions */}
+      {/* Height */}
+      {dimensions && (
+        <InnerDimension
+          heightSize={heightSize}
+          heightText={units === "cm" ? ` 30 ` : `${convertToFeetInches(30)}`}
+          groupPosition={[0.8, 0.6, -0.8]}
+          groupRotation={[0, Math.PI / 2, 0]}
+          textRotation={[0, 0, 0]}
+          textPosition={[0, 0, 0.01]}
+          planeRotation={[0, 0, 0]}
+          type="height"
+        />
+      )}
+      {/* Width */}
+      {dimensions && (
+        <InnerDimension
+          heightSize={heightSize}
+          heightText={units === "cm" ? ` 50 ` : `${convertToFeetInches(50)}`}
+          groupPosition={[0.8, 0, -0.8]}
+          groupRotation={[0, Math.PI / 2, 0]}
+          textRotation={[0, 0, 0]}
+          textPosition={[0, 0, 0.01]}
+          planeRotation={[0, 0, 0]}
+          type="width"
+        />
+      )}
+      {/* Depth */}
+      {/* {dimensions && (
+        <InnerDimension
+          heightSize={heightSize}
+          heightText={heightText}
+          groupPosition={[0, 0, -0.8]}
+          groupRotation={[0, Math.PI / 2, 0]}
+          textRotation={[0, 0, 0]}
+          textPosition={[0, 0, 0.01]}
+          planeRotation={[0, 0, 0]}
+          type="depth"
+        />
+      )} */}
+      <group dispose={null}>
         {/* Bottom Side 1 */}
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}

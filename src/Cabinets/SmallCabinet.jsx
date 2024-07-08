@@ -26,6 +26,7 @@ function SmallCabinet(props) {
     colorCodes,
     dimensions,
     units,
+    cabinetHeight,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -47,6 +48,12 @@ function SmallCabinet(props) {
   let depthPositionX = -0.6;
   let doorPositionX = 0.618; // Adjusted position for door
   let hingePosX = 0.522;
+
+  const heightScale = {
+    30: 1,
+    40: 1.2,
+    50: 1.4,
+  };
 
   switch (depth) {
     case "24cm":

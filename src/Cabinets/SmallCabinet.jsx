@@ -55,6 +55,24 @@ function SmallCabinet(props) {
     50: 1.4,
   };
 
+  const positionY = {
+    30: 0,
+    40: 0.19,
+    50: 0.38,
+  };
+
+  const doorScaleY = {
+    30: 0.9,
+    40: 1.1,
+    50: 1.2,
+  };
+
+  const doorPositionY = {
+    30: 0.386,
+    40: 0.5,
+    50: 0.6,
+  };
+
   switch (depth) {
     case "24cm":
       depthScale = 1;
@@ -112,121 +130,7 @@ function SmallCabinet(props) {
 
   return (
     <group {...props} dispose={null}>
-      <mesh
-        geometry={nodes.left_plank001.geometry}
-        material={materials.Material}
-        position={[0.002, 0.003, -0.006]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-      </mesh>
-      <mesh
-        geometry={nodes.right_plank001.geometry}
-        material={materials["Material.003"]}
-        position={[0.004, 0.148, -1.484 * widthScale]}
-        scale={[depthScale, 1, 1]} // Adjusted scale based on depth
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-      </mesh>
-      <mesh
-        geometry={nodes.bottom_plank001.geometry}
-        material={materials["Material.004"]}
-        position={[-0.008, -0.267, -0.742 * widthScale]}
-        scale={[depthScale, 1, widthScale - decimal[density]]} // Adjusted scale based on depth
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-      </mesh>
-      <mesh
-        geometry={nodes.back_plank001.geometry}
-        material={materials["Material.005"]}
-        position={[depthPositionX, 0.315, -0.746 * widthScale]}
-        scale={[1, 0.958, widthScale]}
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-      </mesh>
-      <mesh
-        ref={doorRef}
-        geometry={nodes.door001.geometry}
-        material={materials["Material.001"]}
-        position={[
-          doorPositionX,
-          0.386,
-          -1.444 * widthScale - decimal[density],
-        ]}
-        rotation={[0, 0, 0]} // Initial rotation state
-        scale={[2, 0.9, widthScale + decimal[density]]}
-        onPointerUp={openDoor}
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-        {/* Dimensions */}
-        {/* Height */}
-        {dimensions && (
-          <InnerDimension
-            heightSize={heightSize}
-            heightText={units === "cm" ? ` 30 ` : `${convertToFeetInches(30)}`}
-            groupPosition={[0.2, 0.1, 0.7]}
-            groupRotation={[0, Math.PI / 2, 0]}
-            textRotation={[0, 0, 0]}
-            textPosition={[0, 0, 0.01]}
-            planeRotation={[0, 0, 0]}
-            type="height"
-          />
-        )}
-        {/* Width */}
-        {dimensions && (
-          <InnerDimension
-            heightSize={heightSize}
-            heightText={units === "cm" ? ` 50 ` : `${convertToFeetInches(50)}`}
-            groupPosition={[0.2, -0.5, 0.7]}
-            groupRotation={[0, Math.PI / 2, 0]}
-            textRotation={[0, 0, 0]}
-            textPosition={[0, 0, 0.01]}
-            planeRotation={[0, 0, 0]}
-            type="width"
-          />
-        )}
-      </mesh>
-      <mesh
-        geometry={nodes.hinge_top001.geometry}
-        material={materials["Material.006"]}
-        position={[hingePosX, 0.791, -1.449 * widthScale]}
-      />
-      <mesh
-        geometry={nodes.hinge_bottom001.geometry}
-        material={materials["Material.006"]}
-        position={[hingePosX, -0.014, -1.449 * widthScale]}
-      />
-      <group dispose={null}>
+      <group position={[0, positionY[cabinetHeight], 0]}>
         {/* Top Side1 blue*/}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
@@ -275,6 +179,47 @@ function SmallCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
+        <mesh
+          geometry={nodes.top_plank001.geometry}
+          material={materials["Material.002"]}
+          position={[-0.001, 1.023, -0.744]}
+        >
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
+        </mesh>
+      </group>
+      <group scale={[1, heightScale[cabinetHeight], 1]}>
+        <mesh
+          geometry={nodes.left_plank001.geometry}
+          material={materials.Material}
+          position={[0.002, 0.003, -0.006]}
+          scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
+        </mesh>
+        <mesh
+          geometry={nodes.right_plank001.geometry}
+          material={materials["Material.003"]}
+          position={[0.004, 0.148, -1.484 * widthScale]}
+          scale={[depthScale, 1, 1]} // Adjusted scale based on depth
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
+        </mesh>
         {/* Middle Edge 1 */}
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
@@ -315,6 +260,94 @@ function SmallCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
+        <mesh
+          geometry={nodes.back_plank001.geometry}
+          material={materials["Material.005"]}
+          position={[depthPositionX, 0.315, -0.746 * widthScale]}
+          scale={[1, 0.958, widthScale]}
+          castShadow
+          receiveShadow
+        >
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
+        </mesh>
+      </group>
+      <mesh
+        geometry={nodes.bottom_plank001.geometry}
+        material={materials["Material.004"]}
+        position={[-0.008, -0.267, -0.742 * widthScale]}
+        scale={[depthScale, 1, widthScale - decimal[density]]} // Adjusted scale based on depth
+        castShadow
+        receiveShadow
+      >
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
+      </mesh>
+      <mesh
+        ref={doorRef}
+        geometry={nodes.door001.geometry}
+        material={materials["Material.001"]}
+        position={[
+          doorPositionX,
+          doorPositionY[cabinetHeight],
+          -1.444 * widthScale - decimal[density],
+        ]}
+        rotation={[0, 0, 0]} // Initial rotation state
+        scale={[2, doorScaleY[cabinetHeight], widthScale + decimal[density]]}
+        onPointerUp={openDoor}
+        castShadow
+        receiveShadow
+      >
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          color={colorCodes[color]}
+        />
+        {/* Dimensions */}
+        {/* Height */}
+        {dimensions && (
+          <InnerDimension
+            heightSize={heightSize}
+            heightText={units === "cm" ? ` 30 ` : `${convertToFeetInches(30)}`}
+            groupPosition={[0.2, 0.1, 0.7]}
+            groupRotation={[0, Math.PI / 2, 0]}
+            textRotation={[0, 0, 0]}
+            textPosition={[0, 0, 0.01]}
+            planeRotation={[0, 0, 0]}
+            type="height"
+          />
+        )}
+        {/* Width */}
+        {dimensions && (
+          <InnerDimension
+            heightSize={heightSize}
+            heightText={units === "cm" ? ` 50 ` : `${convertToFeetInches(50)}`}
+            groupPosition={[0.2, -0.5, 0.7]}
+            groupRotation={[0, Math.PI / 2, 0]}
+            textRotation={[0, 0, 0]}
+            textPosition={[0, 0, 0.01]}
+            planeRotation={[0, 0, 0]}
+            type="width"
+          />
+        )}
+      </mesh>
+      <mesh
+        geometry={nodes.hinge_top001.geometry}
+        material={materials["Material.006"]}
+        position={[hingePosX, 0.791, -1.449 * widthScale]}
+      />
+      <mesh
+        geometry={nodes.hinge_bottom001.geometry}
+        material={materials["Material.006"]}
+        position={[hingePosX, -0.014, -1.449 * widthScale]}
+      />
+      <group dispose={null}>
         {/* Bottom Side 1 */}
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}

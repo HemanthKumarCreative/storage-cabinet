@@ -585,10 +585,10 @@ export default function App() {
     verticalCabinConfig[configuration.height].storageCabinet02 &&
       groups.push(storageCabinet02Group);
 
-    groups = [
-      <group position={[0, 1, 0]}> {groups.slice(0, 1)}</group>,
-      groups.slice(1),
-    ];
+    // groups = [
+    //   <group position={[0, 1, 0]}> {groups.slice(0, 1)}</group>,
+    //   groups.slice(1),
+    // ];
     return groups;
   };
 

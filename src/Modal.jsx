@@ -22,7 +22,7 @@ function HoverModal({
   handleModalClose,
   adjustTopDimensions,
   adjustBottomDimensions,
-  setLowerStorageCabinetHeight,
+  setCabinetHeight,
 }) {
   const [alignment, setAlignment] = useState("60cm");
   const [isHovered, setIsHovered] = useState(false);
@@ -30,7 +30,7 @@ function HoverModal({
   const handleAlignment = (event, newAlignment) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
-      setLowerStorageCabinetHeight(newAlignment.split("cm")[0]);
+      setCabinetHeight(newAlignment.split("cm")[0]);
     }
   };
 

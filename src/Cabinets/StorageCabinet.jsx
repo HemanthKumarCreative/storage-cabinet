@@ -28,7 +28,7 @@ function StorageCabinet(props) {
     dimensions,
     units,
     setShowModel,
-    lowerStorageCabinetHeight,
+    cabinetHeight,
   } = props;
 
   const texture = useTexture(textureUrl);
@@ -176,12 +176,8 @@ function StorageCabinet(props) {
       <mesh
         geometry={nodes.left_plank.geometry}
         material={materials.Material}
-        position={[
-          0.002,
-          positionY[lowerStorageCabinetHeight],
-          -0.006 * widthScale,
-        ]}
-        scale={[depthScale, heightScale[lowerStorageCabinetHeight], 1]} // Adjusted scale based on depth and width
+        position={[0.002, positionY[cabinetHeight], -0.006 * widthScale]}
+        scale={[depthScale, heightScale[cabinetHeight], 1]} // Adjusted scale based on depth and width
         map={texture}
         castShadow
         receiveShadow
@@ -197,10 +193,10 @@ function StorageCabinet(props) {
         material={materials["Material.003"]}
         position={[
           0.004,
-          rightPlankPosition[lowerStorageCabinetHeight],
+          rightPlankPosition[cabinetHeight],
           -1.484 * widthScale,
         ]}
-        scale={[depthScale, heightScale[lowerStorageCabinetHeight], 1]} // Adjusted scale based on depth and width
+        scale={[depthScale, heightScale[cabinetHeight], 1]} // Adjusted scale based on depth and width
         castShadow
         receiveShadow
       >
@@ -213,11 +209,7 @@ function StorageCabinet(props) {
       <mesh
         geometry={nodes.top_plank.geometry}
         material={materials["Material.002"]}
-        position={[
-          -0.001,
-          topPositionY[lowerStorageCabinetHeight],
-          -0.744 * widthScale,
-        ]}
+        position={[-0.001, topPositionY[cabinetHeight], -0.744 * widthScale]}
         scale={[depthScale, 2, widthScale - decimal[density]]} // Adjusted scale based on depth and width
         castShadow
         receiveShadow
@@ -247,10 +239,10 @@ function StorageCabinet(props) {
         material={materials["Material.005"]}
         position={[
           depthPositionX,
-          backPlankPosition[lowerStorageCabinetHeight],
+          backPlankPosition[cabinetHeight],
           -0.746 * widthScale,
         ]}
-        scale={[1, heightScale[lowerStorageCabinetHeight], widthScale]}
+        scale={[1, heightScale[cabinetHeight], widthScale]}
         castShadow
         receiveShadow
       >
@@ -266,12 +258,12 @@ function StorageCabinet(props) {
         material={materials["Material.001"]}
         position={[
           doorPositionX,
-          doorPositionY[lowerStorageCabinetHeight],
+          doorPositionY[cabinetHeight],
           -1.446 * widthScale - decimal[density],
         ]}
         scale={[
           2,
-          heightScale[lowerStorageCabinetHeight] - 0.05,
+          heightScale[cabinetHeight] - 0.05,
           widthScale + decimal[density],
         ]}
         onPointerUp={openDoor}
@@ -288,7 +280,11 @@ function StorageCabinet(props) {
         {dimensions && (
           <InnerDimension
             heightSize={heightSize}
-            heightText={units === "cm" ? ` 60 ` : `${convertToFeetInches(60)}`}
+            heightText={
+              units === "cm"
+                ? ` ${cabinetHeight} `
+                : `${convertToFeetInches(cabinetHeight)}`
+            }
             groupPosition={[0.2, 0.3, 0.7]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}
@@ -316,7 +312,7 @@ function StorageCabinet(props) {
         material={materials["Material.006"]}
         position={[
           hingePosX,
-          hingeTopPositionY[lowerStorageCabinetHeight],
+          hingeTopPositionY[cabinetHeight],
           -1.449 * widthScale,
         ]}
       />
@@ -325,7 +321,7 @@ function StorageCabinet(props) {
         material={materials["Material.006"]}
         position={[
           hingePosX,
-          hingeBottomPositionY[lowerStorageCabinetHeight],
+          hingeBottomPositionY[cabinetHeight],
           -1.449 * widthScale,
         ]}
       />
@@ -344,7 +340,7 @@ function StorageCabinet(props) {
           material={cabinetEdgesMaterials["Material.012"]}
           position={[
             -0.63 * depthScale,
-            topPositionY[lowerStorageCabinetHeight],
+            topPositionY[cabinetHeight],
             -0.744 * widthScale,
           ]}
           rotation={[0, 0, -Math.PI]}
@@ -362,7 +358,7 @@ function StorageCabinet(props) {
           material={cabinetEdgesMaterials["Material.012"]}
           position={[
             -0.308 * depthScale,
-            topPositionY[lowerStorageCabinetHeight],
+            topPositionY[cabinetHeight],
             0.023 * widthScale,
           ]}
           rotation={[0, 0, -Math.PI]}
@@ -376,7 +372,7 @@ function StorageCabinet(props) {
           material={cabinetEdgesMaterials["Material.012"]}
           position={[
             0.63 * depthScale,
-            topPositionY[lowerStorageCabinetHeight],
+            topPositionY[cabinetHeight],
             -0.744 * widthScale,
           ]}
           rotation={[0, 0, -Math.PI]}
@@ -394,7 +390,7 @@ function StorageCabinet(props) {
           material={cabinetEdgesMaterials["Material.012"]}
           position={[
             -0.308 * depthScale,
-            topPositionY[lowerStorageCabinetHeight],
+            topPositionY[cabinetHeight],
             -1.5 * widthScale,
           ]}
           rotation={[0, 0, -Math.PI]}
@@ -408,15 +404,11 @@ function StorageCabinet(props) {
           material={cabinetEdgesMaterials["Material.012"]}
           position={[
             -0.625 * depthScale,
-            edgesPositionY[lowerStorageCabinetHeight],
+            edgesPositionY[cabinetHeight],
             -1.488 * widthScale,
           ]}
           rotation={[0, 0, -Math.PI]}
-          scale={[
-            -0.018,
-            -0.965 * heightScale[lowerStorageCabinetHeight],
-            -0.027,
-          ]}
+          scale={[-0.018, -0.965 * heightScale[cabinetHeight], -0.027]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
@@ -424,17 +416,9 @@ function StorageCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[
-            0.625 * depthScale,
-            edgesPositionY[lowerStorageCabinetHeight],
-            0,
-          ]}
+          position={[0.625 * depthScale, edgesPositionY[cabinetHeight], 0]}
           rotation={[0, 0, -Math.PI]}
-          scale={[
-            -0.018,
-            -0.965 * heightScale[lowerStorageCabinetHeight],
-            -0.027,
-          ]}
+          scale={[-0.018, -0.965 * heightScale[cabinetHeight], -0.027]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
@@ -442,17 +426,9 @@ function StorageCabinet(props) {
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
-          position={[
-            -0.625 * depthScale,
-            edgesPositionY[lowerStorageCabinetHeight],
-            0,
-          ]}
+          position={[-0.625 * depthScale, edgesPositionY[cabinetHeight], 0]}
           rotation={[0, 0, -Math.PI]}
-          scale={[
-            -0.018,
-            -0.965 * heightScale[lowerStorageCabinetHeight],
-            -0.027,
-          ]}
+          scale={[-0.018, -0.965 * heightScale[cabinetHeight], -0.027]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
@@ -462,15 +438,11 @@ function StorageCabinet(props) {
           material={cabinetEdgesMaterials["Material.012"]}
           position={[
             0.625 * depthScale,
-            edgesPositionY[lowerStorageCabinetHeight],
+            edgesPositionY[cabinetHeight],
             -1.5 * widthScale,
           ]}
           rotation={[0, 0, -Math.PI]}
-          scale={[
-            -0.018,
-            -0.965 * heightScale[lowerStorageCabinetHeight],
-            -0.027,
-          ]}
+          scale={[-0.018, -0.965 * heightScale[cabinetHeight], -0.027]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>

@@ -33,6 +33,9 @@ export default function App() {
   const [isLowerStorageVisible, setIsLowerStorageVisible] = useState(true);
   const [lowerStorageCabinetHeight, setLowerStorageCabinetHeight] =
     useState(60);
+  const [upperStorageCabinetHeight, setUpperStorageCabinetHeight] =
+    useState(60);
+
   const [topRemoved, setTopRemoved] = useState(0);
   const [bottomRemoved, setBottomRemoved] = useState(0);
 
@@ -384,7 +387,7 @@ export default function App() {
                 .position
             }
             setShowModal={setShowStorage1Modal}
-            lowerStorageCabinetHeight={lowerStorageCabinetHeight}
+            cabinetHeight={upperStorageCabinetHeight}
           />
         </group>
       );
@@ -407,7 +410,7 @@ export default function App() {
           }
           setShowModal={setShowSmallModal}
           rowConfig={configuration.openRow1}
-          lowerStorageCabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={lowerStorageCabinetHeight}
         />
       </group>
     );
@@ -430,7 +433,7 @@ export default function App() {
           }
           setShowModal={setShowOpen1Modal}
           rowConfig={configuration.openRow2}
-          lowerStorageCabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={lowerStorageCabinetHeight}
         />
       </group>
     );
@@ -453,7 +456,7 @@ export default function App() {
           }
           setShowModal={setShowOpen2Modal}
           rowConfig={configuration.openRow3}
-          lowerStorageCabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={lowerStorageCabinetHeight}
         />
       </group>
     );
@@ -476,7 +479,7 @@ export default function App() {
           }
           setShowModal={setShowOpen3Modal}
           rowConfig={configuration.openRow4}
-          lowerStorageCabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={lowerStorageCabinetHeight}
         />
       </group>
     );
@@ -499,7 +502,7 @@ export default function App() {
           }
           setShowModal={setShowOpen4Modal}
           rowConfig={configuration.openRow5}
-          lowerStorageCabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={lowerStorageCabinetHeight}
         />
       </group>
     );
@@ -522,7 +525,7 @@ export default function App() {
           }
           setShowModal={setShowDrawerModal}
           rowConfig={configuration.openRow6}
-          lowerStorageCabinetHeight={lowerStorageCabinetHeight}
+          cabinetHeight={lowerStorageCabinetHeight}
         />
       </group>
     );
@@ -546,7 +549,7 @@ export default function App() {
                 .position
             }
             setShowModal={setShowStorage2Modal}
-            lowerStorageCabinetHeight={lowerStorageCabinetHeight}
+            cabinetHeight={lowerStorageCabinetHeight}
           />
         </group>
       );
@@ -946,7 +949,7 @@ export default function App() {
           setIsLowerStorageVisible={setIsLowerStorageVisible}
           adjustTopDimensions={adjustTopDimensions}
           adjustBottomDimensions={adjustBottomDimensions}
-          setLowerStorageCabinetHeight={setLowerStorageCabinetHeight}
+          setCabinetHeight={setUpperStorageCabinetHeight}
         />
         <HoverModal
           open={showStorage2Modal}
@@ -963,7 +966,7 @@ export default function App() {
           setIsLowerStorageVisible={setIsLowerStorageVisible}
           adjustTopDimensions={adjustTopDimensions}
           adjustBottomDimensions={adjustBottomDimensions}
-          setLowerStorageCabinetHeight={setLowerStorageCabinetHeight}
+          setCabinetHeight={setLowerStorageCabinetHeight}
         />
         <OpenModal
           open={showOpen1Modal}

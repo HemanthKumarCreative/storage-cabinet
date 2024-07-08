@@ -15,7 +15,7 @@ const CabinetGroup = (props) => {
     groupPosition,
     setShowModal,
     rowConfig,
-    lowerStorageCabinetHeight,
+    cabinetHeight,
   } = props;
 
   const [isHovered, setIsHovered] = useState(false);
@@ -228,7 +228,7 @@ const CabinetGroup = (props) => {
         colorCodes={colorCodes}
         dimensions={configuration.dimensions === "ON"}
         units={configuration.units}
-        lowerStorageCabinetHeight={lowerStorageCabinetHeight}
+        cabinetHeight={cabinetHeight}
       />
     );
   }

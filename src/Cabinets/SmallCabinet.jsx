@@ -52,25 +52,31 @@ function SmallCabinet(props) {
   const heightScale = {
     30: 1,
     40: 1.2,
-    50: 1.4,
+    60: 2,
   };
 
   const positionY = {
     30: 0,
     40: 0.19,
-    50: 0.38,
+    60: 1.2,
   };
 
   const doorScaleY = {
     30: 0.9,
     40: 1.1,
-    50: 1.2,
+    60: 1.9,
   };
 
   const doorPositionY = {
     30: 0.386,
     40: 0.5,
-    50: 0.6,
+    60: 1.02,
+  };
+
+  const verticalPosition = {
+    30: 0,
+    40: 0,
+    60: 0.2,
   };
 
   switch (depth) {
@@ -191,7 +197,10 @@ function SmallCabinet(props) {
           />
         </mesh>
       </group>
-      <group scale={[1, heightScale[cabinetHeight], 1]}>
+      <group
+        scale={[1, heightScale[cabinetHeight], 1]}
+        position={[0, verticalPosition[cabinetHeight], 0]}
+      >
         <mesh
           geometry={nodes.left_plank001.geometry}
           material={materials.Material}

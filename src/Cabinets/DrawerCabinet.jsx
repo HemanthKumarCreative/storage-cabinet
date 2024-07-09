@@ -46,14 +46,20 @@ function DrawerCabinet(props) {
 
   const heightScale = {
     30: 1,
-    40: 1.2,
-    50: 1.4,
+    45: 1.2,
+    60: 2,
   };
 
   const drawerPositionY = {
     30: 0.315,
-    40: 0.415,
-    50: 0.515,
+    45: 0.415,
+    60: 0.94,
+  };
+
+  const verticalPosition = {
+    30: 0,
+    45: 0,
+    60: 0.28,
   };
 
   // Adjust scales based on depth
@@ -66,8 +72,8 @@ function DrawerCabinet(props) {
   let hingePosX = 0.522;
   let topPositionY = {
     30: 0,
-    40: 0.2,
-    50: 0.4,
+    45: 0.2,
+    60: 1.3,
   };
   const decimal = {
     100: 0.01,
@@ -128,7 +134,10 @@ function DrawerCabinet(props) {
   return (
     <group {...props} dispose={null}>
       {/* Meshes for cabinet components */}
-      <group position={[0, 0, 0]} scale={[1, heightScale[cabinetHeight], 1]}>
+      <group
+        position={[0, verticalPosition[cabinetHeight], 0]}
+        scale={[1, heightScale[cabinetHeight], 1]}
+      >
         {/* Left plank */}
         <mesh
           geometry={nodes.left_plank003.geometry}

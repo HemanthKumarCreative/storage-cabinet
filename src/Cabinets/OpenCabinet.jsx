@@ -90,32 +90,39 @@ function OpenCabinet(props) {
 
   const heightScale = {
     30: 1,
-    40: 1.2,
-    50: 1.4,
+    45: 1.2,
+    60: 2.1,
   };
 
   const drawerPositionY = {
     open4: {
       30: 0,
-      40: 0.2,
-      50: 0.4,
+      45: 0.2,
+      60: 1.3,
     },
     open3: {
       30: 0,
-      40: 0,
-      50: 0,
+      45: 0.2,
+      60: 1.3,
     },
     open2: {
       30: 0,
-      40: 0,
-      50: 0,
+      45: 0.2,
+      60: 1.3,
     },
     open1: {
       30: 0,
-      40: 0,
-      50: 0,
+      45: 0.2,
+      60: 1.3,
     },
   };
+
+  const positionY = {
+    30: 0,
+    45: 0,
+    60: 0.2,
+  };
+
   // Adjust scales and positions based on depth
   let depthScale = 1;
   let depthPositionX = -0.6; // Default position along X-axis for back plank
@@ -246,7 +253,10 @@ function OpenCabinet(props) {
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
       </group>
-      <group scale={[1, heightScale[cabinetHeight], 1]}>
+      <group
+        scale={[1, heightScale[cabinetHeight], 1]}
+        position={[0, positionY[cabinetHeight], 0]}
+      >
         {/* Left Plank */}
         <mesh
           geometry={nodes.left_plank002.geometry}
@@ -335,6 +345,19 @@ function OpenCabinet(props) {
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
       </group>
+      {/* Bottom Plank */}
+      <mesh
+        geometry={nodes.bottom_plank002.geometry}
+        material={materials["Material.004"]}
+        position={[0, -0.267, -0.742 * widthScale]}
+        scale={[depthScale, 2, widthScale - 0.15]} // Adjusted scale based on depth
+      >
+        <meshStandardMaterial
+          map={texture}
+          attach="material"
+          // color="#E2DFD2"
+        />
+      </mesh>
       {/* Display Books */}
       {books && <Object />}
       {/* Dimensions */}

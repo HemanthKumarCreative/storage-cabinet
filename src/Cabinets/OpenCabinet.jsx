@@ -387,11 +387,15 @@ function OpenCabinet(props) {
           geometry={nodes.top_plank002.geometry}
           material={materials["Material.002"]}
           position={[0, 1.023, -0.744 * widthScale]}
-          scale={[depthScale - 0.05, 1, widthScale - 0.15]} // Adjusted scale based on depth
+          scale={[depthScale - 0.05, 1, widthScale]} // Adjusted scale based on depth
           castShadow
           receiveShadow
         >
-          <meshStandardMaterial map={texture} attach="material" />
+          <meshStandardMaterial
+            map={texture}
+            attach="material"
+            color={colorCodes[color]}
+          />
         </mesh>
         {/* Top Side1 blue*/}
         <mesh
@@ -539,12 +543,12 @@ function OpenCabinet(props) {
         geometry={nodes.bottom_plank002.geometry}
         material={materials["Material.004"]}
         position={[0, -0.267, -0.742 * widthScale]}
-        scale={[depthScale, 2, widthScale - 0.15]} // Adjusted scale based on depth
+        scale={[depthScale, 2, widthScale - 0.1]} // Adjusted scale based on depth
       >
         <meshStandardMaterial
           map={texture}
           attach="material"
-          // color="#E2DFD2"
+          color={colorCodes[color]}
         />
       </mesh>
       {/* Display Books */}

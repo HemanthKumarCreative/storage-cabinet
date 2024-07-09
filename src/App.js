@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import "./App.css"; // Import the CSS file
@@ -373,154 +373,9 @@ export default function App() {
     };
 
     let counter = 0;
-    const storageCabinet01Group = smallCabinetHeight !== "60" &&
-      verticalCabinConfig[configuration.height].storageCabinet01 &&
+    const storageCabinet01Group = verticalCabinConfig[configuration.height]
+      .storageCabinet01 &&
       isUpperStorageVisible && (
-        <group position={[0, groupPositionY[lowerStorageCabinetHeight], 0]}>
-          <HorizontalGroup
-            densityMultiplier={densityMultiplier}
-            count={count}
-            configuration={configuration}
-            densityFactor={densityFactor}
-            textureUrl={textureUrl}
-            colorCodes={colorCodes}
-            cabinetType="storage"
-            col={counter}
-            row={0}
-            groupPosition={
-              verticalCabinConfig[configuration.height].storageCabinet01
-                .position
-            }
-            setShowModal={setShowStorage1Modal}
-            cabinetHeight={upperStorageCabinetHeight}
-            type="storage1"
-          />
-        </group>
-      );
-
-    const smallCabinetGroup = openCabinet01Height !== "60" &&
-      verticalCabinConfig[configuration.height].smallCabinet && (
-        <group position={[0, groupPositionY[lowerStorageCabinetHeight], 0]}>
-          <HorizontalGroup
-            densityMultiplier={densityMultiplier}
-            count={count}
-            configuration={configuration}
-            densityFactor={densityFactor}
-            textureUrl={textureUrl}
-            colorCodes={colorCodes}
-            cabinetType="small"
-            col={counter}
-            row={0}
-            groupPosition={
-              verticalCabinConfig[configuration.height].smallCabinet.position
-            }
-            setShowModal={setShowSmallModal}
-            rowConfig={configuration.openRow1}
-            cabinetHeight={smallCabinetHeight}
-            type="small"
-          />
-        </group>
-      );
-
-    const openCabinet01Group = openCabinet02Height !== "60" &&
-      verticalCabinConfig[configuration.height].openCabinet01 && (
-        <group position={[0, groupPositionY[lowerStorageCabinetHeight], 0]}>
-          <HorizontalGroup
-            densityMultiplier={densityMultiplier}
-            count={count}
-            configuration={configuration}
-            densityFactor={densityFactor}
-            textureUrl={textureUrl}
-            colorCodes={colorCodes}
-            cabinetType="open"
-            col={counter}
-            row={0}
-            groupPosition={
-              verticalCabinConfig[configuration.height].openCabinet01.position
-            }
-            setShowModal={setShowOpen1Modal}
-            rowConfig={configuration.openRow2}
-            cabinetHeight={openCabinet01Height}
-            type="open1"
-          />
-        </group>
-      );
-
-    const openCabinet02Group = openCabinet03Height !== "60" &&
-      verticalCabinConfig[configuration.height].openCabinet02 && (
-        <group position={[0, groupPositionY[lowerStorageCabinetHeight], 0]}>
-          <HorizontalGroup
-            densityMultiplier={densityMultiplier}
-            count={count}
-            configuration={configuration}
-            densityFactor={densityFactor}
-            textureUrl={textureUrl}
-            colorCodes={colorCodes}
-            cabinetType="open"
-            col={counter}
-            row={0}
-            groupPosition={
-              verticalCabinConfig[configuration.height].openCabinet02.position
-            }
-            setShowModal={setShowOpen2Modal}
-            rowConfig={configuration.openRow3}
-            cabinetHeight={openCabinet02Height}
-            type="open2"
-          />
-        </group>
-      );
-
-    const openCabinet03Group = openCabinet04Height !== "60" &&
-      verticalCabinConfig[configuration.height].openCabinet03 && (
-        <group position={[0, groupPositionY[lowerStorageCabinetHeight], 0]}>
-          <HorizontalGroup
-            densityMultiplier={densityMultiplier}
-            count={count}
-            configuration={configuration}
-            densityFactor={densityFactor}
-            textureUrl={textureUrl}
-            colorCodes={colorCodes}
-            cabinetType="open"
-            col={counter}
-            row={0}
-            groupPosition={
-              verticalCabinConfig[configuration.height].openCabinet03.position
-            }
-            setShowModal={setShowOpen3Modal}
-            rowConfig={configuration.openRow4}
-            cabinetHeight={openCabinet03Height}
-            type="open3"
-          />
-        </group>
-      );
-
-    const openCabinet04Group = drawerCabinetHeight !== "60" &&
-      verticalCabinConfig[configuration.height].openCabinet04 && (
-        <group position={[0, groupPositionY[lowerStorageCabinetHeight], 0]}>
-          <HorizontalGroup
-            densityMultiplier={densityMultiplier}
-            count={count}
-            configuration={configuration}
-            densityFactor={densityFactor}
-            textureUrl={textureUrl}
-            colorCodes={colorCodes}
-            cabinetType="open"
-            col={counter}
-            row={0}
-            groupPosition={
-              verticalCabinConfig[configuration.height].openCabinet04.position
-            }
-            setShowModal={setShowOpen4Modal}
-            rowConfig={configuration.openRow5}
-            cabinetHeight={openCabinet04Height}
-            type="open4"
-          />
-        </group>
-      );
-
-    const drawerCabinetGroup = verticalCabinConfig[configuration.height]
-      .drawerCabinet && (
-      <group position={[0, groupPositionY[lowerStorageCabinetHeight], 0]}>
         <HorizontalGroup
           densityMultiplier={densityMultiplier}
           count={count}
@@ -528,68 +383,738 @@ export default function App() {
           densityFactor={densityFactor}
           textureUrl={textureUrl}
           colorCodes={colorCodes}
-          cabinetType="drawer"
+          cabinetType="storage"
           col={counter}
           row={0}
           groupPosition={
-            verticalCabinConfig[configuration.height].drawerCabinet.position
+            verticalCabinConfig[configuration.height].storageCabinet01.position
           }
-          setShowModal={setShowDrawerModal}
-          rowConfig={configuration.openRow6}
-          cabinetHeight={drawerCabinetHeight}
-          type="drawer"
+          setShowModal={setShowStorage1Modal}
+          cabinetHeight={upperStorageCabinetHeight}
+          type="storage1"
         />
-      </group>
+      );
+
+    const smallCabinetGroup = verticalCabinConfig[configuration.height]
+      .smallCabinet && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="small"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].smallCabinet.position
+        }
+        setShowModal={setShowSmallModal}
+        rowConfig={configuration.openRow1}
+        cabinetHeight={smallCabinetHeight}
+        type="small"
+      />
+    );
+
+    const openCabinet01Group = verticalCabinConfig[configuration.height]
+      .openCabinet01 && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="open"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].openCabinet01.position
+        }
+        setShowModal={setShowOpen1Modal}
+        rowConfig={configuration.openRow2}
+        cabinetHeight={openCabinet01Height}
+        type="open1"
+      />
+    );
+
+    const openCabinet02Group = verticalCabinConfig[configuration.height]
+      .openCabinet02 && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="open"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].openCabinet02.position
+        }
+        setShowModal={setShowOpen2Modal}
+        rowConfig={configuration.openRow3}
+        cabinetHeight={openCabinet02Height}
+        type="open2"
+      />
+    );
+
+    const openCabinet03Group = verticalCabinConfig[configuration.height]
+      .openCabinet03 && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="open"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].openCabinet03.position
+        }
+        setShowModal={setShowOpen3Modal}
+        rowConfig={configuration.openRow4}
+        cabinetHeight={openCabinet03Height}
+        type="open3"
+      />
+    );
+
+    const openCabinet04Group = verticalCabinConfig[configuration.height]
+      .openCabinet04 && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="open"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].openCabinet04.position
+        }
+        setShowModal={setShowOpen4Modal}
+        rowConfig={configuration.openRow5}
+        cabinetHeight={openCabinet04Height}
+        type="open4"
+      />
+    );
+
+    const drawerCabinetGroup = verticalCabinConfig[configuration.height]
+      .drawerCabinet && (
+      <HorizontalGroup
+        densityMultiplier={densityMultiplier}
+        count={count}
+        configuration={configuration}
+        densityFactor={densityFactor}
+        textureUrl={textureUrl}
+        colorCodes={colorCodes}
+        cabinetType="drawer"
+        col={counter}
+        row={0}
+        groupPosition={
+          verticalCabinConfig[configuration.height].drawerCabinet.position
+        }
+        setShowModal={setShowDrawerModal}
+        rowConfig={configuration.openRow6}
+        cabinetHeight={drawerCabinetHeight}
+        type="drawer"
+      />
     );
 
     const storageCabinet02Group = verticalCabinConfig[configuration.height]
       .storageCabinet02 &&
       isLowerStorageVisible && (
-        <group position={[0, 0, 0]}>
-          <HorizontalGroup
-            densityMultiplier={densityMultiplier}
-            count={count}
-            configuration={configuration}
-            densityFactor={densityFactor}
-            textureUrl={textureUrl}
-            colorCodes={colorCodes}
-            cabinetType="storage"
-            col={counter}
-            row={0}
-            groupPosition={
-              verticalCabinConfig[configuration.height].storageCabinet02
-                .position
-            }
-            setShowModal={setShowStorage2Modal}
-            cabinetHeight={lowerStorageCabinetHeight}
-            type="storage2"
-          />
-        </group>
+        <HorizontalGroup
+          densityMultiplier={densityMultiplier}
+          count={count}
+          configuration={configuration}
+          densityFactor={densityFactor}
+          textureUrl={textureUrl}
+          colorCodes={colorCodes}
+          cabinetType="storage"
+          col={counter}
+          row={0}
+          groupPosition={
+            verticalCabinConfig[configuration.height].storageCabinet02.position
+          }
+          setShowModal={setShowStorage2Modal}
+          cabinetHeight={lowerStorageCabinetHeight}
+          type="storage2"
+        />
       );
 
     // vertically align
-    verticalCabinConfig[configuration.height].storageCabinet01 &&
-      groups.push(storageCabinet01Group);
-    verticalCabinConfig[configuration.height].smallCabinet &&
-      groups.push(smallCabinetGroup);
-    verticalCabinConfig[configuration.height].openCabinet01 &&
-      groups.push(openCabinet01Group);
-    verticalCabinConfig[configuration.height].openCabinet02 &&
-      groups.push(openCabinet02Group);
-    verticalCabinConfig[configuration.height].openCabinet03 &&
-      groups.push(openCabinet03Group);
-    verticalCabinConfig[configuration.height].openCabinet04 &&
-      groups.push(openCabinet04Group);
-    verticalCabinConfig[configuration.height].drawerCabinet &&
-      groups.push(drawerCabinetGroup);
-    verticalCabinConfig[configuration.height].storageCabinet02 &&
-      groups.push(storageCabinet02Group);
+    // verticalCabinConfig[configuration.height].storageCabinet01 &&
+    //   groups.push(storageCabinet01Group);
+    // verticalCabinConfig[configuration.height].smallCabinet &&
+    //   groups.push(smallCabinetGroup);
+    // verticalCabinConfig[configuration.height].openCabinet01 &&
+    //   groups.push(openCabinet01Group);
+    // verticalCabinConfig[configuration.height].openCabinet02 &&
+    //   groups.push(openCabinet02Group);
+    // verticalCabinConfig[configuration.height].openCabinet03 &&
+    //   groups.push(openCabinet03Group);
+    // verticalCabinConfig[configuration.height].openCabinet04 &&
+    //   groups.push(openCabinet04Group);
+    // verticalCabinConfig[configuration.height].drawerCabinet &&
+    //   groups.push(drawerCabinetGroup);
+    // verticalCabinConfig[configuration.height].storageCabinet02 &&
+    //   groups.push(storageCabinet02Group);
 
     // groups = [
     //   <group position={[0, 1, 0]}> {groups.slice(0, 1)}</group>,
     //   groups.slice(1),
     // ];
-    return groups;
+
+    const positionVariation = {
+      150: {
+        lowerStorageHeight: {
+          60: 0,
+          50: -0.26,
+          40: -0.46,
+          30: -0.66,
+        },
+        drawerStorageHeight: {
+          30: 0,
+          45: 0.6,
+          60: 1.3,
+        },
+      },
+      180: {
+        lowerStorageHeight: {
+          60: 0,
+          50: -0.26,
+          40: -0.46,
+          30: -0.66,
+        },
+        drawerStorageHeight: {
+          30: 0,
+          45: 0.6,
+          60: 1.3,
+        },
+        openCabinet04HeightVar: {
+          30: 0,
+          45: 0.5,
+          60: 1.3,
+        },
+      },
+      210: {
+        lowerStorageHeight: {
+          60: 0,
+          50: -0.26,
+          40: -0.46,
+          30: -0.66,
+        },
+        drawerStorageHeight: {
+          30: 0,
+          45: 0.6,
+          60: 1.3,
+        },
+        openCabinet04HeightVar: {
+          30: 0,
+          45: 0.4,
+          60: 1.3,
+        },
+        openCabinet03HeightVar: {
+          30: 0,
+          45: 0.5,
+          60: 1.3,
+        },
+        openCabinet02HeightVar: {
+          30: 0.1,
+          45: 0.55,
+          60: 1.4,
+        },
+        openCabinet01HeightVar: {
+          30: 0,
+          45: 0.4,
+          60: 1.3,
+        },
+      },
+      240: {
+        lowerStorageHeight: {
+          60: 0,
+          50: -0.26,
+          40: -0.46,
+          30: -0.66,
+        },
+        drawerStorageHeight: {
+          30: 0,
+          45: 0.6,
+          60: 1.3,
+        },
+        openCabinet04HeightVar: {
+          30: 0,
+          45: 0.4,
+          60: 1.3,
+        },
+        openCabinet03HeightVar: {
+          30: 0,
+          45: 0.4,
+          60: 1.3,
+        },
+        openCabinet02HeightVar: {
+          30: 0.1,
+          45: 0.5,
+          60: 1.4,
+        },
+        openCabinet01HeightVar: {
+          30: 0,
+          45: 0.4,
+          60: 1.3,
+        },
+      },
+      270: {
+        lowerStorageHeight: {
+          60: 0,
+          50: -0.26,
+          40: -0.46,
+          30: -0.66,
+        },
+        drawerStorageHeight: {
+          30: 0,
+          45: 0.6,
+          60: 1.3,
+        },
+        openCabinet04HeightVar: {
+          30: 0,
+          45: 0.4,
+          60: 1.3,
+        },
+        openCabinet03HeightVar: {
+          30: 0,
+          45: 0.4,
+          60: 1.3,
+        },
+        openCabinet02HeightVar: {
+          30: 0.1,
+          45: 0.55,
+          60: 1.4,
+        },
+        openCabinet01HeightVar: {
+          30: 0,
+          45: 0.5,
+          60: 1.3,
+        },
+      },
+      300: {
+        lowerStorageHeight: {
+          60: 0,
+          50: -0.26,
+          40: -0.46,
+          30: -0.66,
+        },
+        drawerStorageHeight: {
+          30: 0,
+          45: 0.6,
+          60: 1.3,
+        },
+        openCabinet04HeightVar: {
+          30: 0,
+          45: 0.4,
+          60: 1.3,
+        },
+        openCabinet03HeightVar: {
+          30: 0,
+          45: 0.4,
+          60: 1.3,
+        },
+        openCabinet02HeightVar: {
+          30: 0.1,
+          45: 0.55,
+          60: 1.4,
+        },
+        openCabinet01HeightVar: {
+          30: 0,
+          45: 0.4,
+          60: 1.3,
+        },
+        smallCabinetHeightVar: {
+          30: 0,
+          45: 0.55,
+          60: 1.2,
+        },
+      },
+    };
+    const verticalGroup = {
+      150: {
+        groups: [
+          <group
+            position={[
+              0,
+              positionVariation[150].lowerStorageHeight[
+                lowerStorageCabinetHeight
+              ],
+              0,
+            ]}
+          >
+            {[
+              <group
+                position={[
+                  0,
+                  positionVariation[150].drawerStorageHeight[
+                    drawerCabinetHeight
+                  ],
+                  0,
+                ]}
+              >
+                {storageCabinet01Group}
+              </group>,
+              drawerCabinetGroup,
+            ]}
+          </group>,
+          storageCabinet02Group,
+        ],
+      },
+      180: {
+        groups: [
+          <group
+            position={[
+              0,
+              positionVariation[180].lowerStorageHeight[
+                lowerStorageCabinetHeight
+              ],
+              0,
+            ]}
+          >
+            {[
+              <group
+                position={[
+                  0,
+                  positionVariation[180].drawerStorageHeight[
+                    drawerCabinetHeight
+                  ],
+                  0,
+                ]}
+              >
+                {[
+                  <group
+                    position={[
+                      0,
+                      positionVariation[180].openCabinet04HeightVar[
+                        openCabinet04Height
+                      ],
+                      0,
+                    ]}
+                  >
+                    {storageCabinet01Group}
+                  </group>,
+                  openCabinet04Group,
+                ]}
+              </group>,
+              drawerCabinetGroup,
+            ]}
+          </group>,
+          storageCabinet02Group,
+        ],
+      },
+      210: {
+        groups: [
+          <group
+            position={[
+              0,
+              positionVariation[210].lowerStorageHeight[
+                lowerStorageCabinetHeight
+              ],
+              0,
+            ]}
+          >
+            {[
+              <group
+                position={[
+                  0,
+                  positionVariation[210].drawerStorageHeight[
+                    drawerCabinetHeight
+                  ],
+                  0,
+                ]}
+              >
+                {[
+                  <group
+                    position={[
+                      0,
+                      positionVariation[210].openCabinet04HeightVar[
+                        openCabinet04Height
+                      ],
+                      0,
+                    ]}
+                  >
+                    {[
+                      <group
+                        position={[
+                          0,
+                          positionVariation[210].openCabinet03HeightVar[
+                            openCabinet03Height
+                          ],
+                          0,
+                        ]}
+                      >
+                        {storageCabinet01Group}
+                      </group>,
+                      openCabinet03Group,
+                    ]}
+                  </group>,
+                  openCabinet04Group,
+                ]}
+              </group>,
+              drawerCabinetGroup,
+            ]}
+          </group>,
+          storageCabinet02Group,
+        ],
+      },
+      240: {
+        groups: [
+          <group
+            position={[
+              0,
+              positionVariation[240].lowerStorageHeight[
+                lowerStorageCabinetHeight
+              ],
+              0,
+            ]}
+          >
+            {[
+              <group
+                position={[
+                  0,
+                  positionVariation[240].drawerStorageHeight[
+                    drawerCabinetHeight
+                  ],
+                  0,
+                ]}
+              >
+                {[
+                  <group
+                    position={[
+                      0,
+                      positionVariation[240].openCabinet04HeightVar[
+                        openCabinet04Height
+                      ],
+                      0,
+                    ]}
+                  >
+                    {[
+                      <group
+                        position={[
+                          0,
+                          positionVariation[240].openCabinet03HeightVar[
+                            openCabinet03Height
+                          ],
+                          0,
+                        ]}
+                      >
+                        {[
+                          <group
+                            position={[
+                              0,
+                              positionVariation[240].openCabinet02HeightVar[
+                                openCabinet02Height
+                              ],
+                              0,
+                            ]}
+                          >
+                            {storageCabinet01Group}
+                          </group>,
+                          openCabinet02Group,
+                        ]}
+                      </group>,
+                      openCabinet03Group,
+                    ]}
+                  </group>,
+                  openCabinet04Group,
+                ]}
+              </group>,
+              drawerCabinetGroup,
+            ]}
+          </group>,
+          storageCabinet02Group,
+        ],
+      },
+      270: {
+        groups: [
+          <group
+            position={[
+              0,
+              positionVariation[270].lowerStorageHeight[
+                lowerStorageCabinetHeight
+              ],
+              0,
+            ]}
+          >
+            {[
+              <group
+                position={[
+                  0,
+                  positionVariation[270].drawerStorageHeight[
+                    drawerCabinetHeight
+                  ],
+                  0,
+                ]}
+              >
+                {[
+                  <group
+                    position={[
+                      0,
+                      positionVariation[270].openCabinet04HeightVar[
+                        openCabinet04Height
+                      ],
+                      0,
+                    ]}
+                  >
+                    {[
+                      <group
+                        position={[
+                          0,
+                          positionVariation[270].openCabinet03HeightVar[
+                            openCabinet03Height
+                          ],
+                          0,
+                        ]}
+                      >
+                        {[
+                          <group
+                            position={[
+                              0,
+                              positionVariation[270].openCabinet02HeightVar[
+                                openCabinet02Height
+                              ],
+                              0,
+                            ]}
+                          >
+                            {[
+                              <group
+                                position={[
+                                  0,
+                                  positionVariation[270].openCabinet01HeightVar[
+                                    openCabinet01Height
+                                  ],
+                                  0,
+                                ]}
+                              >
+                                {storageCabinet01Group}
+                              </group>,
+                              openCabinet01Group,
+                            ]}
+                          </group>,
+                          openCabinet02Group,
+                        ]}
+                      </group>,
+                      openCabinet03Group,
+                    ]}
+                  </group>,
+                  openCabinet04Group,
+                ]}
+              </group>,
+              drawerCabinetGroup,
+            ]}
+          </group>,
+          storageCabinet02Group,
+        ],
+      },
+      300: {
+        groups: [
+          <group
+            position={[
+              0,
+              positionVariation[300].lowerStorageHeight[
+                lowerStorageCabinetHeight
+              ],
+              0,
+            ]}
+          >
+            {[
+              <group
+                position={[
+                  0,
+                  positionVariation[300].drawerStorageHeight[
+                    drawerCabinetHeight
+                  ],
+                  0,
+                ]}
+              >
+                {[
+                  <group
+                    position={[
+                      0,
+                      positionVariation[300].openCabinet04HeightVar[
+                        openCabinet04Height
+                      ],
+                      0,
+                    ]}
+                  >
+                    {[
+                      <group
+                        position={[
+                          0,
+                          positionVariation[300].openCabinet03HeightVar[
+                            openCabinet03Height
+                          ],
+                          0,
+                        ]}
+                      >
+                        {[
+                          <group
+                            position={[
+                              0,
+                              positionVariation[300].openCabinet02HeightVar[
+                                openCabinet02Height
+                              ],
+                              0,
+                            ]}
+                          >
+                            {[
+                              <group
+                                position={[
+                                  0,
+                                  positionVariation[300].openCabinet01HeightVar[
+                                    openCabinet01Height
+                                  ],
+                                  0,
+                                ]}
+                              >
+                                {[
+                                  <group
+                                    position={[
+                                      0,
+                                      positionVariation[300]
+                                        .smallCabinetHeightVar[
+                                        smallCabinetHeight
+                                      ],
+                                      0,
+                                    ]}
+                                  >
+                                    {storageCabinet01Group}
+                                  </group>,
+                                  smallCabinetGroup,
+                                ]}
+                              </group>,
+                              openCabinet01Group,
+                            ]}
+                          </group>,
+                          openCabinet02Group,
+                        ]}
+                      </group>,
+                      openCabinet03Group,
+                    ]}
+                  </group>,
+                  openCabinet04Group,
+                ]}
+              </group>,
+              drawerCabinetGroup,
+            ]}
+          </group>,
+          storageCabinet02Group,
+        ],
+      },
+    };
+    return verticalGroup[configuration.height].groups;
   };
 
   const positionX = {
@@ -760,6 +1285,23 @@ export default function App() {
   const adjustBottomDimensions = () => {
     setBottomRemoved(60);
   };
+
+  useEffect(() => {
+    drawerCabinetHeight === 60 && setOpenCabinet01Height(30);
+    // openCabinet01Height === 60 && setOpenCabinet02Height(30);
+    // openCabinet02Height === 60 && setOpenCabinet03Height(30);
+    // openCabinet03Height === 60 && setOpenCabinet04Height(30);
+    // openCabinet04Height === 60 && setSmallCabinetHeight(30);
+  }, [
+    upperStorageCabinetHeight,
+    smallCabinetHeight,
+    openCabinet01Height,
+    openCabinet02Height,
+    openCabinet03Height,
+    openCabinet04Height,
+    drawerCabinetHeight,
+    lowerStorageCabinetHeight,
+  ]);
 
   const horizontalDimensionPosition = [1, 2.5, 2.5, 4.5];
   return (

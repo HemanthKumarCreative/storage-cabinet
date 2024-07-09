@@ -51,31 +51,31 @@ function SmallCabinet(props) {
 
   const heightScale = {
     30: 1,
-    40: 1.2,
+    45: 1.4,
     60: 2,
   };
 
   const positionY = {
     30: 0,
-    40: 0.19,
+    45: 0.48,
     60: 1.2,
   };
 
   const doorScaleY = {
     30: 0.9,
-    40: 1.1,
+    45: 1.3,
     60: 1.9,
   };
 
   const doorPositionY = {
     30: 0.386,
-    40: 0.5,
+    45: 0.65,
     60: 1.02,
   };
 
   const verticalPosition = {
     30: 0,
-    40: 0,
+    45: 0.1,
     60: 0.2,
   };
 

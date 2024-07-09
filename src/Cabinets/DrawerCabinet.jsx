@@ -46,19 +46,19 @@ function DrawerCabinet(props) {
 
   const heightScale = {
     30: 1,
-    45: 1.2,
+    45: 1.5,
     60: 2,
   };
 
   const drawerPositionY = {
     30: 0.315,
-    45: 0.415,
+    45: 0.615,
     60: 0.94,
   };
 
   const verticalPosition = {
     30: 0,
-    45: 0,
+    45: 0.16,
     60: 0.28,
   };
 
@@ -72,7 +72,7 @@ function DrawerCabinet(props) {
   let hingePosX = 0.522;
   let topPositionY = {
     30: 0,
-    45: 0.2,
+    45: 0.6,
     60: 1.3,
   };
   const decimal = {

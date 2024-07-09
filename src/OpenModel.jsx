@@ -190,7 +190,7 @@ function HoverModal({
           <ToggleButton value="30cm" aria-label="30cm" color="warning">
             30cm
           </ToggleButton>
-          <ToggleButton value="45cm" aria-label="45cm" color="warning" disabled>
+          <ToggleButton value="45cm" aria-label="45cm" color="warning">
             45cm
           </ToggleButton>
           <ToggleButton value="60cm" aria-label="60cm" color="warning">

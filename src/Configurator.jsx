@@ -9,11 +9,15 @@ import {
   ToggleButtonGroup,
   Tooltip,
 } from "@mui/material";
+import { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
+
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ColorConfig from "./ColorConfig";
 import { color } from "three/examples/jsm/nodes/Nodes.js";
 import { BsGrid3X3 } from "react-icons/bs";
 import { FcExport } from "react-icons/fc";
+import { MdOutlineResetTv } from "react-icons/md";
+import { styled } from "@mui/material/styles";
 
 function Configurator({
   configuration,
@@ -21,6 +25,7 @@ function Configurator({
   exportGLTF,
   handleReset,
   controlsRef,
+  resetScene,
 }) {
   const handleInputChange = (prop) => (event, newValue) => {
     setConfiguration({ ...configuration, [prop]: newValue });
@@ -57,6 +62,17 @@ function Configurator({
     { value: 100, label: "" },
   ];
 
+  const BootstrapTooltip = styled(({ className, ...props }) => (
+    <Tooltip {...props} arrow classes={{ popper: className }} />
+  ))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+      color: theme.palette.common.black,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+      backgroundColor: theme.palette.common.black,
+    },
+  }));
+
   return (
     <Card
       style={{
@@ -67,9 +83,53 @@ function Configurator({
       }}
     >
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Custom Configuration
-        </Typography>
+        <Grid container spacing={2}>
+          <Grid
+            item
+            xs={3}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <BootstrapTooltip title="Export the Current Scene as GLB" arrow>
+              <ToggleButton
+                value="export"
+                aria-label="Export"
+                size="small"
+                onClick={exportGLTF}
+              >
+                <FcExport style={{ fontSize: "20px", color: "#b84b4a" }} />
+              </ToggleButton>
+            </BootstrapTooltip>
+            <BootstrapTooltip title="Reset the Scene to Initial State">
+              <ToggleButton
+                value="export"
+                aria-label="Export"
+                size="small"
+                onClick={resetScene}
+              >
+                <MdOutlineResetTv
+                  style={{ fontSize: "20px", color: "#b84b4a" }}
+                />
+              </ToggleButton>
+            </BootstrapTooltip>
+          </Grid>
+          <Grid
+            item
+            xs={9}
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Typography gutterBottom variant="h5" component="div">
+              Custom Configuration
+            </Typography>
+          </Grid>
+        </Grid>
         <Grid container spacing={2}>
           {/* Style */}
           {/* <Grid
@@ -83,24 +143,7 @@ function Configurator({
           >
             <Typography variant="subtitle1">Export</Typography>
           </Grid> */}
-          {/* <Grid
-            item
-            xs={4}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <ToggleButton
-              value="export"
-              aria-label="Export"
-              size="small"
-              onClick={exportGLTF}
-            >
-              <FcExport style={{ fontSize: "20px", color: "#b84b4a" }} />
-            </ToggleButton>
-          </Grid> */}
+
           {/* <Grid
             item
             xs={2}
@@ -157,9 +200,9 @@ function Configurator({
             />
           </Grid>
           <Grid item xs={2}>
-            <Tooltip title="Set the density of the cabinet">
+            <BootstrapTooltip title="Set the density of the cabinet">
               <HelpOutlineIcon fontSize="small" style={{ cursor: "pointer" }} />
-            </Tooltip>
+            </BootstrapTooltip>
           </Grid>
 
           {/* Width */}
@@ -189,9 +232,9 @@ function Configurator({
             />
           </Grid>
           <Grid item xs={2}>
-            <Tooltip title="Adjust the width of the cabinet">
+            <BootstrapTooltip title="Adjust the width of the cabinet">
               <HelpOutlineIcon fontSize="small" style={{ cursor: "pointer" }} />
-            </Tooltip>
+            </BootstrapTooltip>
           </Grid>
 
           {/* Height */}
@@ -213,9 +256,9 @@ function Configurator({
             />
           </Grid>
           <Grid item xs={2}>
-            <Tooltip title="Set the height of the cabinet">
+            <BootstrapTooltip title="Set the height of the cabinet">
               <HelpOutlineIcon fontSize="small" style={{ cursor: "pointer" }} />
-            </Tooltip>
+            </BootstrapTooltip>
           </Grid>
 
           {/* Depth */}
@@ -270,9 +313,9 @@ function Configurator({
             </ToggleButtonGroup>
           </Grid>
           <Grid item xs={2}>
-            <Tooltip title="Select the depth of the cabinet">
+            <BootstrapTooltip title="Select the depth of the cabinet">
               <HelpOutlineIcon fontSize="small" style={{ cursor: "pointer" }} />
-            </Tooltip>
+            </BootstrapTooltip>
           </Grid>
 
           {/* Back Panel */}
@@ -315,9 +358,9 @@ function Configurator({
             </ToggleButtonGroup>
           </Grid>
           <Grid item xs={2}>
-            <Tooltip title="Select the back panel material">
+            <BootstrapTooltip title="Select the back panel material">
               <HelpOutlineIcon fontSize="small" style={{ cursor: "pointer" }} />
-            </Tooltip>
+            </BootstrapTooltip>
           </Grid>
 
           {/* Finish */}
@@ -354,9 +397,9 @@ function Configurator({
             </ToggleButtonGroup>
           </Grid>
           <Grid item xs={2}>
-            <Tooltip title="Choose the finish of the cabinet">
+            <BootstrapTooltip title="Choose the finish of the cabinet">
               <HelpOutlineIcon fontSize="small" style={{ cursor: "pointer" }} />
-            </Tooltip>
+            </BootstrapTooltip>
           </Grid>
 
           {/* Color */}
@@ -371,9 +414,9 @@ function Configurator({
             />
           </Grid>
           {/* <Grid item xs={2}>
-            <Tooltip title="Select the color of the cabinet">
+            <BootstrapTooltip title="Select the color of the cabinet">
               <HelpOutlineIcon fontSize="small" style={{ cursor: "pointer" }} />
-            </Tooltip>
+            </BootstrapTooltip>
           </Grid> */}
           <Grid
             item

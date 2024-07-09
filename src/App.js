@@ -1310,7 +1310,26 @@ export default function App() {
     drawerCabinetHeight,
     lowerStorageCabinetHeight,
   ]);
-
+  const resetScene = () => {
+    setTopRemoved(0);
+    setBottomRemoved(0);
+    setIsLowerStorageVisible(true);
+    setIsUpperStorageVisible(true);
+    handleReset();
+    setLowerStorageCabinetHeight(60);
+    setUpperStorageCabinetHeight(60);
+    setDrawerCabinetHeight(30);
+    setSmallCabinetHeight(30);
+    setOpenCabinet01Height(30);
+    setOpenCabinet02Height(30);
+    setOpenCabinet03Height(30);
+    setOpenCabinet04Height(30);
+    setConfiguration({
+      ...configuration,
+      dimensions: "OFF",
+      books: "OFF",
+    });
+  };
   const horizontalDimensionPosition = [1, 2.5, 2.5, 4.5];
   return (
     <div
@@ -1633,6 +1652,7 @@ export default function App() {
         exportGLTF={exportGLTF}
         handleReset={handleReset}
         controlsRef={controlsRef}
+        resetScene={resetScene}
       />
     </div>
   );

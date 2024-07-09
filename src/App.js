@@ -392,6 +392,7 @@ export default function App() {
           setShowModal={setShowStorage1Modal}
           cabinetHeight={upperStorageCabinetHeight}
           type="storage1"
+          books={configuration.books === "ON"}
         />
       );
 
@@ -414,6 +415,7 @@ export default function App() {
         rowConfig={configuration.openRow1}
         cabinetHeight={smallCabinetHeight}
         type="small"
+        books={configuration.books === "ON"}
       />
     );
 
@@ -428,7 +430,7 @@ export default function App() {
         colorCodes={colorCodes}
         cabinetType="open"
         col={counter}
-        row={0}
+        row={1}
         groupPosition={
           verticalCabinConfig[configuration.height].openCabinet01.position
         }
@@ -436,6 +438,7 @@ export default function App() {
         rowConfig={configuration.openRow2}
         cabinetHeight={openCabinet01Height}
         type="open1"
+        books={configuration.books === "ON"}
       />
     );
 
@@ -450,7 +453,7 @@ export default function App() {
         colorCodes={colorCodes}
         cabinetType="open"
         col={counter}
-        row={0}
+        row={2}
         groupPosition={
           verticalCabinConfig[configuration.height].openCabinet02.position
         }
@@ -458,6 +461,7 @@ export default function App() {
         rowConfig={configuration.openRow3}
         cabinetHeight={openCabinet02Height}
         type="open2"
+        books={configuration.books === "ON"}
       />
     );
 
@@ -472,7 +476,7 @@ export default function App() {
         colorCodes={colorCodes}
         cabinetType="open"
         col={counter}
-        row={0}
+        row={3}
         groupPosition={
           verticalCabinConfig[configuration.height].openCabinet03.position
         }
@@ -480,6 +484,7 @@ export default function App() {
         rowConfig={configuration.openRow4}
         cabinetHeight={openCabinet03Height}
         type="open3"
+        books={configuration.books === "ON"}
       />
     );
 
@@ -494,7 +499,7 @@ export default function App() {
         colorCodes={colorCodes}
         cabinetType="open"
         col={counter}
-        row={0}
+        row={4}
         groupPosition={
           verticalCabinConfig[configuration.height].openCabinet04.position
         }
@@ -502,6 +507,7 @@ export default function App() {
         rowConfig={configuration.openRow5}
         cabinetHeight={openCabinet04Height}
         type="open4"
+        books={configuration.books === "ON"}
       />
     );
 
@@ -516,7 +522,7 @@ export default function App() {
         colorCodes={colorCodes}
         cabinetType="drawer"
         col={counter}
-        row={0}
+        row={5}
         groupPosition={
           verticalCabinConfig[configuration.height].drawerCabinet.position
         }
@@ -524,6 +530,7 @@ export default function App() {
         rowConfig={configuration.openRow6}
         cabinetHeight={drawerCabinetHeight}
         type="drawer"
+        books={configuration.books === "ON"}
       />
     );
 
@@ -546,6 +553,7 @@ export default function App() {
           setShowModal={setShowStorage2Modal}
           cabinetHeight={lowerStorageCabinetHeight}
           type="storage2"
+          books={configuration.books === "ON"}
         />
       );
 
@@ -738,7 +746,7 @@ export default function App() {
         smallCabinetHeightVar: {
           30: 0,
           45: 0.55,
-          60: 1.2,
+          60: 1.3,
         },
       },
     };

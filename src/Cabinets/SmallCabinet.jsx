@@ -125,7 +125,7 @@ function SmallCabinet(props) {
     return { width: metrics.width, height: fontSize };
   };
 
-  const heightText = ` 50 `;
+  const heightText = ` ${cabinetHeight} `;
   const heightSize = textSize(heightText, 24);
 
   const widthText = `W : ${widthScale * 50}`;
@@ -323,7 +323,11 @@ function SmallCabinet(props) {
         {dimensions && (
           <InnerDimension
             heightSize={heightSize}
-            heightText={units === "cm" ? ` 30 ` : `${convertToFeetInches(30)}`}
+            heightText={
+              units === "cm"
+                ? ` ${cabinetHeight} `
+                : `${convertToFeetInches(cabinetHeight)}`
+            }
             groupPosition={[0.2, 0.1, 0.7]}
             groupRotation={[0, Math.PI / 2, 0]}
             textRotation={[0, 0, 0]}

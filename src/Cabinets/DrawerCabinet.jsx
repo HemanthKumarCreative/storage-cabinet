@@ -122,7 +122,7 @@ function DrawerCabinet(props) {
     return { width: metrics.width, height: fontSize };
   };
 
-  const heightText = ` 50 `;
+  const heightText = ` ${cabinetHeight} `;
   const heightSize = textSize(heightText, 24);
 
   const widthText = `W : ${widthScale * 50}`;
@@ -415,7 +415,9 @@ function DrawerCabinet(props) {
               <InnerDimension
                 heightSize={heightSize}
                 heightText={
-                  units === "cm" ? ` 30 ` : `${convertToFeetInches(30)}`
+                  units === "cm"
+                    ? ` ${cabinetHeight} `
+                    : `${convertToFeetInches(cabinetHeight)}`
                 }
                 groupPosition={[0.9, 0.2, 0.6]}
                 groupRotation={[0, Math.PI / 2, 0]}

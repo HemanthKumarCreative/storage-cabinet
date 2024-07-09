@@ -72,7 +72,7 @@ function Configurator({
         </Typography>
         <Grid container spacing={2}>
           {/* Style */}
-          <Grid
+          {/* <Grid
             item
             xs={2}
             style={{
@@ -82,8 +82,8 @@ function Configurator({
             }}
           >
             <Typography variant="subtitle1">Export</Typography>
-          </Grid>
-          <Grid
+          </Grid> */}
+          {/* <Grid
             item
             xs={4}
             style={{
@@ -100,8 +100,8 @@ function Configurator({
             >
               <FcExport style={{ fontSize: "20px", color: "#b84b4a" }} />
             </ToggleButton>
-          </Grid>
-          <Grid
+          </Grid> */}
+          {/* <Grid
             item
             xs={2}
             style={{
@@ -111,8 +111,8 @@ function Configurator({
             }}
           >
             <Typography variant="subtitle1">Style</Typography>
-          </Grid>
-          <Grid item xs={2}>
+          </Grid> */}
+          {/* <Grid item xs={2}>
             <ToggleButtonGroup
               value={configuration.style}
               onChange={handleSelectChange("style")}
@@ -127,7 +127,7 @@ function Configurator({
                 <BsGrid3X3 style={{ fontSize: "20px", color: "#b84b4a" }} />
               </ToggleButton>
             </ToggleButtonGroup>
-          </Grid>
+          </Grid> */}
 
           {/* Density */}
           <Grid

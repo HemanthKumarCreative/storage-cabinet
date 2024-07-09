@@ -17,6 +17,7 @@ const CabinetGroup = (props) => {
     rowConfig,
     cabinetHeight,
     type,
+    books,
   } = props;
 
   const [isHovered, setIsHovered] = useState(false);
@@ -212,7 +213,7 @@ const CabinetGroup = (props) => {
                 : localCabinetType
         }
         row={row}
-        col={col}
+        col={Math.ceil(i + 8)}
         key={i}
         position={[i, 5, 0]}
         rotation={[0, -Math.PI / 2, 0]}
@@ -231,6 +232,7 @@ const CabinetGroup = (props) => {
         units={configuration.units}
         cabinetHeight={cabinetHeight}
         type={type}
+        books={configuration.books === "ON"}
       />
     );
   }

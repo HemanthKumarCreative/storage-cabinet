@@ -1294,17 +1294,6 @@ export default function App() {
     setBottomRemoved(60);
   };
 
-  useEffect(
-    () => {},
-    lowerStorageCabinetHeight,
-    upperStorageCabinetHeight,
-    openCabinet01Height,
-    openCabinet02Height,
-    openCabinet03Height,
-    openCabinet04Height,
-    smallCabinetHeight,
-    drawerCabinetHeight
-  );
   const resetScene = async () => {
     setTopRemoved(0);
     setBottomRemoved(0);

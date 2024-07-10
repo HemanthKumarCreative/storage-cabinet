@@ -74,14 +74,14 @@ function Height({
         smoothness={4} // Smoothness of the rounded corners
         rotation={planeRotation}
       >
-        <meshBasicMaterial color="#3A3B3C" />
+        <meshBasicMaterial color="#E6E6E6" />
       </RoundedBox>
       <Text
         rotation={textRotation}
         position={textPosition}
         fontSize={0.2} // Smaller font size
         fontWeight="800" // Medium font weight
-        color="white"
+        color="#333333"
         anchorX="center"
         anchorY="middle"
       >

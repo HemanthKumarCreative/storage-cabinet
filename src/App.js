@@ -1294,23 +1294,18 @@ export default function App() {
     setBottomRemoved(60);
   };
 
-  useEffect(() => {
-    drawerCabinetHeight === 60 && setOpenCabinet01Height(30);
-    // openCabinet01Height === 60 && setOpenCabinet02Height(30);
-    // openCabinet02Height === 60 && setOpenCabinet03Height(30);
-    // openCabinet03Height === 60 && setOpenCabinet04Height(30);
-    // openCabinet04Height === 60 && setSmallCabinetHeight(30);
-  }, [
+  useEffect(
+    () => {},
+    lowerStorageCabinetHeight,
     upperStorageCabinetHeight,
-    smallCabinetHeight,
     openCabinet01Height,
     openCabinet02Height,
     openCabinet03Height,
     openCabinet04Height,
-    drawerCabinetHeight,
-    lowerStorageCabinetHeight,
-  ]);
-  const resetScene = () => {
+    smallCabinetHeight,
+    drawerCabinetHeight
+  );
+  const resetScene = async () => {
     setTopRemoved(0);
     setBottomRemoved(0);
     setIsLowerStorageVisible(true);
@@ -1328,6 +1323,7 @@ export default function App() {
       ...configuration,
       dimensions: "OFF",
       books: "OFF",
+      height: 240,
     });
   };
   const horizontalDimensionPosition = [1, 2.5, 2.5, 4.5];

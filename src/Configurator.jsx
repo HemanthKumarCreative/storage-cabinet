@@ -28,6 +28,7 @@ function Configurator({
   resetScene,
 }) {
   const handleInputChange = (prop) => (event, newValue) => {
+    if (prop === "height") resetScene();
     setConfiguration({ ...configuration, [prop]: newValue });
   };
 

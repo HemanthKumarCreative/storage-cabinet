@@ -14,11 +14,18 @@ import NesCafeGlb from "./NesCafeGlb";
 import RayBanGlb from "./RayBanGlb";
 import InnerDimension from "../Dimensions/InnerDimension";
 
+/**
+ * OpenCabinet Component
+ * @param {object} props - Properties passed to the component
+ * @returns {JSX.Element} A 3D model of an open cabinet with customizable content
+ */
 function OpenCabinet(props) {
+  // Load GLTF models
   const { nodes, materials } = useGLTF(OpenCabinetGlb);
   const cabinetEdgesNodes = useGLTF(CabinetEdgesGlb).nodes;
   const cabinetEdgesMaterials = useGLTF(CabinetEdgesGlb).materials;
 
+  // Define objects to be placed inside the cabinet
   const OBJECTS = [
     [
       Book,
@@ -253,7 +260,8 @@ function OpenCabinet(props) {
       ShineSprite,
     ],
   ];
-  // Destructure depth from props
+
+  // Destructure properties from props
   const {
     depth,
     backPanel,
@@ -273,16 +281,20 @@ function OpenCabinet(props) {
     type,
   } = props;
 
-  console.log({ row, col, books });
+  // Load texture from URL
   const texture = useTexture(textureUrl);
+
+  // Calculate width based on specialWidth
   const width = specialWidth === 0 ? 50 : specialWidth;
 
+  // Height scaling based on cabinet height
   const heightScale = {
     30: 1,
     45: 1.5,
     60: 2.1,
   };
 
+  // Drawer Y-axis positions based on cabinet height
   const drawerPositionY = {
     open4: {
       30: 0,
@@ -306,25 +318,28 @@ function OpenCabinet(props) {
     },
   };
 
+  // Cabinet Y-axis positions based on height
   const positionY = {
     30: 0,
     45: 0,
     60: 0.2,
   };
 
-  // Adjust scales and positions based on depth
+  // Depth scaling and position adjustments based on depth
   let depthScale = 1;
   let depthPositionX = -0.6; // Default position along X-axis for back plank
   let widthScale = specialWidth
     ? width / 25
     : densityFactor[configWidth][density] / 50;
 
+  // Convert cm to feet and inches
   const convertToFeetInches = (cm) => {
     const inches = cm / 2.54;
     const feet = Math.ceil(inches / 12);
     return `${feet}'`;
   };
 
+  // Decimal values for scaling adjustments
   const decimal = {
     100: 0.01,
     75: 0.02,
@@ -332,6 +347,7 @@ function OpenCabinet(props) {
     25: 0.14,
   };
 
+  // Adjust depth scaling and position based on depth
   switch (depth) {
     case "24cm":
       depthScale = 1;
@@ -348,6 +364,7 @@ function OpenCabinet(props) {
       break;
   }
 
+  // Use Three.js context to enable shadows
   const { gl, scene } = useThree();
 
   useEffect(() => {
@@ -360,7 +377,7 @@ function OpenCabinet(props) {
     });
   }, [gl, scene]);
 
-  // Calculate text sizes function
+  // Helper function to calculate text sizes
   const textSize = (text, fontSize) => {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
@@ -369,6 +386,7 @@ function OpenCabinet(props) {
     return { width: metrics.width, height: fontSize };
   };
 
+  // Calculate text sizes for dimensions
   const heightText = ` ${cabinetHeight} `;
   const heightSize = textSize(heightText, 24);
 
@@ -377,8 +395,10 @@ function OpenCabinet(props) {
 
   const depthText = `D : ${depth.slice(0, 2)}`;
   const depthSize = textSize(depthText, 24);
+
   const Object = OBJECTS[row][col];
-  console.log({ type });
+
+  // Render the component
   return (
     <group {...props} dispose={null}>
       <group position={[0, drawerPositionY?.open4[cabinetHeight || 0], 0]}>
@@ -397,7 +417,7 @@ function OpenCabinet(props) {
             color={colorCodes[color]}
           />
         </mesh>
-        {/* Top Side1 blue*/}
+        {/* Top Side1 blue */}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -411,7 +431,7 @@ function OpenCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Top Side 2 pink*/}
+        {/* Top Side 2 pink */}
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -421,7 +441,7 @@ function OpenCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Top Side 3 var green*/}
+        {/* Top Side 3 var green */}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -435,7 +455,7 @@ function OpenCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Top Side 4 green*/}
+        {/* Top Side 4 green */}
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -527,7 +547,7 @@ function OpenCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Middle Edge 4 Red*/}
+        {/* Middle Edge 4 Red */}
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -608,7 +628,7 @@ function OpenCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Bottpm Side 2 */}
+        {/* Bottom Side 2 */}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -622,7 +642,7 @@ function OpenCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Bottom side 3 */}
+        {/* Bottom Side 3 */}
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -632,7 +652,7 @@ function OpenCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Bottom side 4 */}
+        {/* Bottom Side 4 */}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}

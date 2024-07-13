@@ -7,21 +7,33 @@ import React, { useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
 import BatCreatureGlb from "../modals/BatCreature.glb";
 
+/**
+ * Model component renders a 3D model of a bat creature imported from a GLB file.
+ * It utilizes GLTFLoader and enables animations through useAnimations hook from @react-three/drei.
+ * @param {Object} props - Props for positioning and scaling the model.
+ *                        Supports standard props like position and scale.
+ * @returns {JSX.Element} - React component representing the 3D model.
+ */
 export default function Model(props) {
   const group = useRef();
+  
+  // Loading the GLTF model and animations using useGLTF and useAnimations hooks
   const { nodes, materials, animations } = useGLTF(BatCreatureGlb);
   const { actions } = useAnimations(animations, group);
+  
+  // Render the 3D model and its components
   return (
     <group
       ref={group}
       {...props}
-      dispose={null}
-      scale={[0.8, 0.6, 0.8]}
-      position={[0.5, -0.2, -0.7]}
-      // rotation={[0, Math.PI / 2, 0]}
+      dispose={null} // Prevent auto-disposal of this group to maintain animation state
+      scale={[0.8, 0.6, 0.8]} // Scale the model for appropriate size in the scene
+      position={[0.5, -0.2, -0.7]} // Position the model in 3D space
+      // rotation={[0, Math.PI / 2, 0]} // Optional: Uncomment to rotate the model
     >
       <group name="Scene">
         <group name="batCat_Rigging">
+          {/* Primitives representing parts of the model */}
           <primitive object={nodes.roothip} />
           <primitive object={nodes.wtl1L} />
           <primitive object={nodes.wtl2L} />
@@ -29,6 +41,8 @@ export default function Model(props) {
           <primitive object={nodes.wtl1R} />
           <primitive object={nodes.wtl2R} />
           <primitive object={nodes.wtl3R} />
+          
+          {/* Skinned meshes with geometry, material, and skeleton */}
           <skinnedMesh
             name="batCat_fangs"
             geometry={nodes.batCat_fangs.geometry}
@@ -59,4 +73,5 @@ export default function Model(props) {
   );
 }
 
+// Preload the GLTF model to ensure it's ready for rendering when used in the application
 useGLTF.preload(BatCreatureGlb);

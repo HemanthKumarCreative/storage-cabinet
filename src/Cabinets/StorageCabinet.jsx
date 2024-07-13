@@ -1,20 +1,30 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF, useTexture, Text } from "@react-three/drei";
+import { useGLTF, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import StorageCabinetGlb from "../modals/StorageCabinetUpdated.glb";
 import CabinetEdgesGlb from "../modals/CabinetEdges.glb";
 import InnerDimension from "../Dimensions/InnerDimension";
 
+/**
+ * StorageCabinet Component
+ * This component renders a 3D model of a storage cabinet with interactive door functionality.
+ * 
+ * @param {object} props - Component properties
+ * @returns {JSX.Element} The 3D model of the storage cabinet
+ */
 function StorageCabinet(props) {
+  // Load GLTF models for the cabinet and its edges
   const { nodes, materials } = useGLTF(StorageCabinetGlb);
   const cabinetEdgesNodes = useGLTF(CabinetEdgesGlb).nodes;
   const cabinetEdgesMaterials = useGLTF(CabinetEdgesGlb).materials;
 
+  // Reference for the cabinet door
   const doorRef = useRef();
+  // State to track if the door is hovered (used for opening/closing the door)
   const [isHovered, setIsHovered] = useState(false);
 
-  // Destructure props to get depth and specialWidth
+  // Destructure props to get depth and other necessary parameters
   const {
     depth,
     backPanel,
@@ -31,9 +41,11 @@ function StorageCabinet(props) {
     cabinetHeight,
   } = props;
 
+  // Load texture from the provided URL
   const texture = useTexture(textureUrl);
-
   const width = specialWidth === 0 ? 50 : specialWidth;
+
+  // Animate the door opening and closing based on hover state
   useFrame(() => {
     if (doorRef.current) {
       doorRef.current.rotation.y = THREE.MathUtils.lerp(
@@ -44,7 +56,7 @@ function StorageCabinet(props) {
     }
   });
 
-  // Adjust scales based on depth and width
+  // Adjust scales and positions based on depth and width
   let depthScale = 1;
   let widthScale = specialWidth
     ? width / 25
@@ -142,11 +154,13 @@ function StorageCabinet(props) {
       break;
   }
 
+  // Handle door open/close interaction
   const openDoor = (event) => {
     event.stopPropagation();
     setIsHovered(!isHovered);
   };
 
+  // Helper functions for dimension calculations
   const decimal = {
     100: 0.01,
     75: 0.02,
@@ -171,6 +185,7 @@ function StorageCabinet(props) {
   const depthText = `D : ${depth.slice(0, 2)}`;
   const depthSize = textSize(depthText, 24);
 
+  // Render the 3D model of the cabinet
   return (
     <group {...props} dispose={null}>
       <mesh
@@ -470,7 +485,7 @@ function StorageCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Bottom side 3 */}
+        {/* Bottom Side 3 */}
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -480,7 +495,7 @@ function StorageCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Bottom side 4 */}
+        {/* Bottom Side 4 */}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -499,6 +514,7 @@ function StorageCabinet(props) {
   );
 }
 
+// Preload the GLTF model to ensure it's loaded before usage
 useGLTF.preload(StorageCabinetGlb);
 useGLTF.preload(CabinetEdgesGlb);
 

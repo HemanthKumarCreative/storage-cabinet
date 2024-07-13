@@ -20,6 +20,9 @@ import Cabinet from "./Cabinet";
 import HorizontalGroup from "./HorizontalGroup";
 import OpenModal from "./OpenModel";
 
+/**
+ * Main application component for configuring and visualizing cabinets.
+ */
 export default function App() {
   const [showStorage1Modal, setShowStorage1Modal] = useState(false);
   const [showStorage2Modal, setShowStorage2Modal] = useState(false);
@@ -43,7 +46,9 @@ export default function App() {
   const [smallCabinetHeight, setSmallCabinetHeight] = useState(30);
   const [topRemoved, setTopRemoved] = useState(0);
   const [bottomRemoved, setBottomRemoved] = useState(0);
+
   console.log({ drawerCabinetHeight });
+
   const [configuration, setConfiguration] = useState({
     style: "grid",
     density: 100,
@@ -330,6 +335,12 @@ export default function App() {
     40: -0.47,
     30: -0.67,
   };
+
+  /**
+   * Returns a JSX array representing the vertical group of cabinets based on the configuration.
+   * @param {number} count - The count of cabinets to align.
+   * @returns {Array} Array of JSX elements representing the aligned cabinets.
+   */
   const horizontalAlignment = (count) => {
     let groups = [];
 
@@ -557,29 +568,6 @@ export default function App() {
         />
       );
 
-    // vertically align
-    // verticalCabinConfig[configuration.height].storageCabinet01 &&
-    //   groups.push(storageCabinet01Group);
-    // verticalCabinConfig[configuration.height].smallCabinet &&
-    //   groups.push(smallCabinetGroup);
-    // verticalCabinConfig[configuration.height].openCabinet01 &&
-    //   groups.push(openCabinet01Group);
-    // verticalCabinConfig[configuration.height].openCabinet02 &&
-    //   groups.push(openCabinet02Group);
-    // verticalCabinConfig[configuration.height].openCabinet03 &&
-    //   groups.push(openCabinet03Group);
-    // verticalCabinConfig[configuration.height].openCabinet04 &&
-    //   groups.push(openCabinet04Group);
-    // verticalCabinConfig[configuration.height].drawerCabinet &&
-    //   groups.push(drawerCabinetGroup);
-    // verticalCabinConfig[configuration.height].storageCabinet02 &&
-    //   groups.push(storageCabinet02Group);
-
-    // groups = [
-    //   <group position={[0, 1, 0]}> {groups.slice(0, 1)}</group>,
-    //   groups.slice(1),
-    // ];
-
     const positionVariation = {
       150: {
         lowerStorageHeight: {
@@ -750,6 +738,7 @@ export default function App() {
         },
       },
     };
+
     const verticalGroup = {
       150: {
         groups: [
@@ -1122,6 +1111,7 @@ export default function App() {
         ],
       },
     };
+
     return verticalGroup[configuration.height].groups;
   };
 
@@ -1251,6 +1241,12 @@ export default function App() {
   const uri = "https://pics.io/preview/66792a63548394472778ddc6/thumbnail";
   const sceneRef = useRef();
   const controlsRef = useRef();
+  
+  /**
+   * Saves a given Blob as a file.
+   * @param {Blob} blob - The Blob to save.
+   * @param {string} fileName - The name of the file.
+   */
   function save(blob, fileName) {
     const link = document.createElement("a");
     document.body.appendChild(link);
@@ -1259,17 +1255,24 @@ export default function App() {
     link.click();
   }
 
+  /**
+   * Saves an array buffer as a file.
+   * @param {ArrayBuffer} buffer - The buffer to save.
+   * @param {string} fileName - The name of the file.
+   */
   function saveArrayBuffer(buffer, fileName) {
     save(new Blob([buffer], { type: "application/octet-stream" }), fileName);
   }
 
+  /**
+   * Exports the current scene as a GLTF file.
+   */
   const exportGLTF = () => {
     const exporter = new GLTFExporter();
     if (sceneRef.current) {
       exporter.parse(
         sceneRef.current,
         (gltf) => {
-          // downloadJSON(gltf);
           saveArrayBuffer(gltf, "cabinet.glb");
         },
         (err) => {
@@ -1280,20 +1283,32 @@ export default function App() {
     }
   };
 
+  /**
+   * Resets the controls.
+   */
   const handleReset = () => {
     if (controlsRef.current) {
       controlsRef.current.reset();
     }
   };
 
+  /**
+   * Adjusts the top dimensions.
+   */
   const adjustTopDimensions = () => {
     setTopRemoved(60);
   };
 
+  /**
+   * Adjusts the bottom dimensions.
+   */
   const adjustBottomDimensions = () => {
     setBottomRemoved(60);
   };
 
+  /**
+   * Resets the scene to its default state.
+   */
   const resetScene = async () => {
     setTopRemoved(0);
     setBottomRemoved(0);
@@ -1315,7 +1330,9 @@ export default function App() {
       height: 240,
     });
   };
+
   const horizontalDimensionPosition = [1, 2.5, 2.5, 4.5];
+
   return (
     <div
       className="canvas-container"
@@ -1418,7 +1435,6 @@ export default function App() {
                 textPosition={[0, 0, 0.01]}
                 planeRotation={[0, 0, 0]}
                 planePosition={[0, 0, 0]}
-                planePo
                 type="width"
                 lineColor="grey"
                 height={configuration.width}
@@ -1504,7 +1520,6 @@ export default function App() {
         </group>
         <OrbitControls
           ref={controlsRef}
-          // enabled={configuration.dimensions === "OFF"}
         />
         <HoverModal
           open={showStorage1Modal}

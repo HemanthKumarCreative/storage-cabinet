@@ -2,6 +2,22 @@ import React, { useRef } from "react";
 import { RoundedBox, Text, Line } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
+/**
+ * Height Component
+ * This component displays a dimension indicator (height, width, or depth) with text labels and lines.
+ * 
+ * @param {object} props - Component properties
+ * @param {object} props.heightSize - Size of the height text
+ * @param {string} props.heightText - Text to display for the height
+ * @param {array} props.textPosition - Position of the text
+ * @param {array} props.textRotation - Rotation of the text
+ * @param {array} props.groupPosition - Position of the group
+ * @param {array} props.groupRotation - Rotation of the group
+ * @param {array} props.planeRotation - Rotation of the plane
+ * @param {string} props.type - Type of dimension ("height", "width", or "depth")
+ * @param {string} props.lineColor - Color of the lines
+ * @returns {JSX.Element} The Height dimension component
+ */
 function Height({
   heightSize,
   heightText,
@@ -68,6 +84,7 @@ function Height({
 
   return (
     <group position={groupPosition} rotation={groupRotation}>
+      {/* Display the background box for the text */}
       <RoundedBox
         args={[heightSize.width / 100, heightSize.height / 100, 0.0025]}
         radius={0.05} // Border radius
@@ -76,6 +93,7 @@ function Height({
       >
         <meshBasicMaterial color="#E6E6E6" />
       </RoundedBox>
+      {/* Display the height text */}
       <Text
         rotation={textRotation}
         position={textPosition}
@@ -87,6 +105,7 @@ function Height({
       >
         {heightText}
       </Text>
+      {/* Display the lines based on the type */}
       {type === "height" && (
         <group ref={heightLinesRef} scale={[0, 0, 0]}>
           {/* Top vertical line */}

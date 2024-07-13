@@ -2,6 +2,28 @@ import React, { useRef } from "react";
 import { RoundedBox, Text, Line } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
+/**
+ * Height Component
+ * This component displays a height dimension indicator with text labels and lines.
+ * 
+ * @param {object} props - Component properties
+ * @param {array} props.textPosition - Position of the text
+ * @param {array} props.textRotation - Rotation of the text
+ * @param {array} props.groupPosition - Position of the group
+ * @param {array} props.groupRotation - Rotation of the group
+ * @param {array} props.planeRotation - Rotation of the plane
+ * @param {array} props.planePosition - Position of the plane
+ * @param {string} props.lineColor - Color of the lines
+ * @param {number} props.height - Height value to display
+ * @param {array} props.verticalLineStart - Start position of the vertical line
+ * @param {array} props.verticalLineEnd - End position of the vertical line
+ * @param {array} props.bottomLineStart - Start position of the bottom line
+ * @param {array} props.bottomLineEnd - End position of the bottom line
+ * @param {array} props.topHorizontalLine - Points for the top horizontal line
+ * @param {array} props.bottomHorizontalLine - Points for the bottom horizontal line
+ * @param {string} props.units - Units of measurement ("cm" or "inches")
+ * @returns {JSX.Element} The Height dimension component
+ */
 function Height({
   textPosition,
   textRotation,
@@ -19,6 +41,7 @@ function Height({
   bottomHorizontalLine,
   units,
 }) {
+  // Helper function to calculate text size
   const textSize = (text, fontSize) => {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
@@ -27,6 +50,7 @@ function Height({
     return { width: metrics.width, height: fontSize };
   };
 
+  // Helper function to convert cm to feet and inches
   const convertToFeetInches = (cm) => {
     const inches = cm / 2.54;
     const feet = Math.floor(inches / 12);
@@ -34,6 +58,7 @@ function Height({
     return `${feet}' ${remainingInches}''`;
   };
 
+  // Determine the height text based on units
   const heightText =
     units === "cm" ? ` ${height} ` : ` ${convertToFeetInches(height)} `;
   const heightSize = textSize(heightText, 24);

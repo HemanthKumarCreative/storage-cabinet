@@ -10,15 +10,26 @@ import {
   Tooltip,
 } from "@mui/material";
 import { TooltipProps, tooltipClasses } from "@mui/material/Tooltip";
-
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ColorConfig from "./ColorConfig";
-import { color } from "three/examples/jsm/nodes/Nodes.js";
 import { BsGrid3X3 } from "react-icons/bs";
 import { FcExport } from "react-icons/fc";
 import { MdOutlineResetTv } from "react-icons/md";
 import { styled } from "@mui/material/styles";
 
+/**
+ * Configurator component provides various UI elements to configure the cabinet model.
+ *
+ * @param {object} props - The props passed to the component.
+ * @param {object} props.configuration - The current configuration state of the cabinet.
+ * @param {function} props.setConfiguration - Function to update the configuration state.
+ * @param {function} props.exportGLTF - Function to export the GLTF model.
+ * @param {function} props.handleReset - Function to reset the scene.
+ * @param {object} props.controlsRef - Reference to the OrbitControls.
+ * @param {function} props.resetScene - Function to reset the scene and related states.
+ *
+ * @returns {React.Element} The rendered component.
+ */
 function Configurator({
   configuration,
   setConfiguration,
@@ -27,6 +38,7 @@ function Configurator({
   controlsRef,
   resetScene,
 }) {
+  // Handle slider and toggle button changes
   const handleInputChange = (prop) => (event, newValue) => {
     if (prop === "height") resetScene();
     setConfiguration({ ...configuration, [prop]: newValue });
@@ -39,6 +51,7 @@ function Configurator({
     });
   };
 
+  // Define mappings for height, width, and density sliders
   const heightMap = [
     { value: 150, label: "" },
     { value: 180, label: "" },
@@ -63,6 +76,7 @@ function Configurator({
     { value: 100, label: "" },
   ];
 
+  // Custom styled tooltip
   const BootstrapTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} arrow classes={{ popper: className }} />
   ))(({ theme }) => ({
@@ -85,6 +99,7 @@ function Configurator({
     >
       <CardContent>
         <Grid container spacing={2}>
+          {/* Export and Reset Buttons */}
           <Grid
             item
             xs={3}
@@ -132,48 +147,7 @@ function Configurator({
           </Grid>
         </Grid>
         <Grid container spacing={2}>
-          {/* Style */}
-          {/* <Grid
-            item
-            xs={2}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="subtitle1">Export</Typography>
-          </Grid> */}
-
-          {/* <Grid
-            item
-            xs={2}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="subtitle1">Style</Typography>
-          </Grid> */}
-          {/* <Grid item xs={2}>
-            <ToggleButtonGroup
-              value={configuration.style}
-              onChange={handleSelectChange("style")}
-              aria-label="style"
-            >
-              <ToggleButton
-                value="grid"
-                aria-label="Grid"
-                size="small"
-                disabled={configuration.style === "grid"}
-              >
-                <BsGrid3X3 style={{ fontSize: "20px", color: "#b84b4a" }} />
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </Grid> */}
-
-          {/* Density */}
+          {/* Density Slider */}
           <Grid
             item
             xs={4}
@@ -196,7 +170,6 @@ function Configurator({
               size="small"
               step={null}
               marks={densityMap}
-              // disabled={true}
               color="warning"
             />
           </Grid>
@@ -206,7 +179,7 @@ function Configurator({
             </BootstrapTooltip>
           </Grid>
 
-          {/* Width */}
+          {/* Width Slider */}
           <Grid
             item
             xs={4}
@@ -238,7 +211,7 @@ function Configurator({
             </BootstrapTooltip>
           </Grid>
 
-          {/* Height */}
+          {/* Height Slider */}
           <Grid item xs={4}>
             <Typography variant="subtitle1">Height</Typography>
           </Grid>
@@ -251,7 +224,7 @@ function Configurator({
               min={150}
               max={300}
               step={null}
-              marks={heightMap} // Add marks to show stepper behavior
+              marks={heightMap}
               size="small"
               color="warning"
             />
@@ -262,7 +235,7 @@ function Configurator({
             </BootstrapTooltip>
           </Grid>
 
-          {/* Depth */}
+          {/* Depth Toggle Button Group */}
           <Grid
             item
             xs={4}
@@ -319,7 +292,7 @@ function Configurator({
             </BootstrapTooltip>
           </Grid>
 
-          {/* Back Panel */}
+          {/* Back Panel Toggle Button Group */}
           <Grid
             item
             xs={4}
@@ -364,7 +337,7 @@ function Configurator({
             </BootstrapTooltip>
           </Grid>
 
-          {/* Finish */}
+          {/* Finish Toggle Button Group */}
           <Grid item xs={4}>
             <Typography variant="subtitle1">Finish</Typography>
           </Grid>
@@ -403,10 +376,7 @@ function Configurator({
             </BootstrapTooltip>
           </Grid>
 
-          {/* Color */}
-          {/* <Grid item xs={4}>
-            <Typography variant="subtitle1">Colour</Typography>
-          </Grid> */}
+          {/* Color Configuration */}
           <Grid item xs={12}>
             <ColorConfig
               finish={configuration.finish}
@@ -414,11 +384,8 @@ function Configurator({
               color={configuration.color}
             />
           </Grid>
-          {/* <Grid item xs={2}>
-            <BootstrapTooltip title="Select the color of the cabinet">
-              <HelpOutlineIcon fontSize="small" style={{ cursor: "pointer" }} />
-            </BootstrapTooltip>
-          </Grid> */}
+
+          {/* Objects Visibility Toggle Button Group */}
           <Grid
             item
             xs={4}
@@ -457,6 +424,8 @@ function Configurator({
               </ToggleButton>
             </ToggleButtonGroup>
           </Grid>
+
+          {/* Dimensions Toggle Button Group */}
           <Grid
             item
             xs={4}
@@ -496,6 +465,8 @@ function Configurator({
               </ToggleButton>
             </ToggleButtonGroup>
           </Grid>
+
+          {/* Units Toggle Button Group (visible only if dimensions are ON) */}
           {configuration.dimensions === "ON" && (
             <>
               <Grid

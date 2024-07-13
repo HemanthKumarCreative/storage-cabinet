@@ -2,6 +2,28 @@ import React, { useRef } from "react";
 import { RoundedBox, Text, Line } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
+/**
+ * Height Component
+ * This component displays the height dimension with a text label and lines.
+ * 
+ * @param {object} props - Component properties
+ * @param {array} props.textPosition - Position of the text
+ * @param {array} props.textRotation - Rotation of the text
+ * @param {array} props.groupPosition - Position of the group
+ * @param {array} props.groupRotation - Rotation of the group
+ * @param {array} props.planeRotation - Rotation of the plane
+ * @param {array} props.planePosition - Position of the plane
+ * @param {string} props.lineColor - Color of the lines
+ * @param {number} props.height - Height value to display
+ * @param {array} props.horizontalLineStart - Start position of the horizontal line
+ * @param {array} props.horizontalLineEnd - End position of the horizontal line
+ * @param {array} props.leftLineStart - Start position of the left line
+ * @param {array} props.leftLineEnd - End position of the left line
+ * @param {array} props.rightHorizontalLine - Points for the right horizontal line
+ * @param {array} props.leftHorizontalLine - Points for the left horizontal line
+ * @param {string} props.units - Units of measurement ("cm" or "inches")
+ * @returns {JSX.Element} The Height dimension component
+ */
 function Height({
   textPosition,
   textRotation,
@@ -19,6 +41,7 @@ function Height({
   leftHorizontalLine,
   units,
 }) {
+  // Helper function to calculate text size
   const textSize = (text, fontSize) => {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
@@ -27,6 +50,7 @@ function Height({
     return { width: metrics.width, height: fontSize };
   };
 
+  // Helper function to convert cm to feet and inches
   const convertToFeetInches = (cm) => {
     const inches = cm / 2.54;
     const feet = Math.floor(inches / 12);
@@ -34,11 +58,12 @@ function Height({
     return `${feet}' ${remainingInches}''`;
   };
 
+  // Determine the height text based on units
   const heightText =
     units === "cm" ? ` ${height} ` : ` ${convertToFeetInches(height)} `;
   const heightSize = textSize(heightText, 24);
 
-  // References for the line groups
+  // Reference for the line groups
   const widthLinesRef = useRef();
 
   // Animation with useFrame
@@ -50,6 +75,7 @@ function Height({
 
   return (
     <group position={groupPosition} rotation={groupRotation}>
+      {/* Display the background box for the text */}
       <RoundedBox
         args={[heightSize.width / 100, heightSize.height / 100, 0.0025]}
         radius={0.05} // Border radius
@@ -59,6 +85,7 @@ function Height({
       >
         <meshBasicMaterial color="#3A3B3C" />
       </RoundedBox>
+      {/* Display the height text */}
       <Text
         rotation={textRotation}
         position={textPosition}
@@ -70,6 +97,7 @@ function Height({
       >
         {heightText}
       </Text>
+      {/* Display the lines */}
       <group ref={widthLinesRef} scale={[0, 0, 0]}>
         {/* Right horizontal line */}
         <Line

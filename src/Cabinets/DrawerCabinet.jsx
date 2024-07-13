@@ -6,7 +6,9 @@ import DrawerCabinetGlb from "../modals/DrawerCabinetUpdated.glb";
 import CabinetEdgesGlb from "../modals/CabinetEdges.glb";
 import InnerDimension from "../Dimensions/InnerDimension";
 
+// Main component function for rendering the DrawerCabinet
 function DrawerCabinet(props) {
+  // Load the GLTF models for the drawer cabinet and its edges
   const { nodes, materials } = useGLTF(DrawerCabinetGlb);
   const drawerRef = useRef();
   const [hovered, setHovered] = useState(false);
@@ -31,9 +33,11 @@ function DrawerCabinet(props) {
     cabinetHeight,
   } = props;
 
+  // Load the texture based on the provided URL
   const texture = useTexture(textureUrl);
   const calculatedWidth = specialWidth === 0 ? 50 : specialWidth;
 
+  // Animation for opening and closing the drawer
   useFrame(() => {
     if (drawerRef.current) {
       drawerRef.current.position.x = THREE.MathUtils.lerp(
@@ -44,6 +48,7 @@ function DrawerCabinet(props) {
     }
   });
 
+  // Scale and position configurations based on cabinet height
   const heightScale = {
     30: 1,
     45: 1.5,
@@ -82,12 +87,14 @@ function DrawerCabinet(props) {
     25: 0.14,
   };
 
+  // Convert cm to feet and inches
   const convertToFeetInches = (cm) => {
     const inches = cm / 2.54;
     const feet = Math.ceil(inches / 12);
     return `${feet}'`;
   };
 
+  // Adjust depth scale and positions based on depth prop
   switch (depth) {
     case "24cm":
       depthScale = 1;
@@ -109,11 +116,13 @@ function DrawerCabinet(props) {
       break;
   }
 
+  // Toggle drawer opening state on click
   const openDrawer = (event) => {
     event.stopPropagation();
     setHovered(!hovered);
   };
 
+  // Calculate text size for dimension labels
   const textSize = (text, fontSize) => {
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
@@ -122,6 +131,7 @@ function DrawerCabinet(props) {
     return { width: metrics.width, height: fontSize };
   };
 
+  // Text and size configurations for cabinet dimensions
   const heightText = ` ${cabinetHeight} `;
   const heightSize = textSize(heightText, 24);
 
@@ -133,7 +143,7 @@ function DrawerCabinet(props) {
 
   return (
     <group {...props} dispose={null}>
-      {/* Meshes for cabinet components */}
+      {/* Group for cabinet components */}
       <group
         position={[0, verticalPosition[cabinetHeight], 0]}
         scale={[1, heightScale[cabinetHeight], 1]}
@@ -183,7 +193,7 @@ function DrawerCabinet(props) {
             color={colorCodes[color]}
           />
         </mesh>
-        {/* Middle Edge 1 */}
+        {/* Middle Edges */}
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -193,7 +203,6 @@ function DrawerCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Middle Edge 2 */}
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -203,7 +212,6 @@ function DrawerCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Middle Edge 3 */}
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -213,7 +221,6 @@ function DrawerCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Middle Edge 4 Red*/}
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -240,269 +247,122 @@ function DrawerCabinet(props) {
             color={colorCodes[color]}
           />
         </mesh>
-        {/* Top Side1 blue*/}
+        {/* Top Edges */}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
           position={[-0.63 * depthScale, 1.023, -0.744 * widthScale]}
           rotation={[0, 0, -Math.PI]}
-          scale={[
-            -0.01 * depthScale,
-            -1.3,
-            -0.027 * (widthScale - decimal[density]),
-          ]}
+          scale={[-0.018, -0.955, -0.027]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Top Side 2 pink*/}
-        <mesh
-          geometry={cabinetEdgesNodes.edges001.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.308 * depthScale, 1.023, 0.023 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[-0.018 * depthScale, -1.3, -0.005]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Top Side 3 var green*/}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
           position={[0.63 * depthScale, 1.023, -0.744 * widthScale]}
           rotation={[0, 0, -Math.PI]}
-          scale={[
-            0.005 * depthScale,
-            -1.3,
-            -0.028 * (widthScale - decimal[density]),
-          ]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Top Side 4 green*/}
-        <mesh
-          geometry={cabinetEdgesNodes.edges001.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.308 * depthScale, 1.023, -1.5 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[-0.018 * depthScale, -1.3, -0.02]}
+          scale={[-0.018, -0.955, -0.027]}
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
       </group>
-      {/* Bottom plank */}
-      <mesh
-        geometry={nodes.bottom_plank003.geometry}
-        material={materials["Material.004"]}
-        position={[-0.008, -0.267, -0.735 * widthScale]}
-        scale={[depthScale, 1, widthScale - decimal[density]]}
-        castShadow
-        receiveShadow
-      >
-        <meshStandardMaterial
-          map={texture}
-          attach="material"
-          color={colorCodes[color]}
-        />
-      </mesh>
-      {/* Drawer group */}
-      <group
-        ref={drawerRef}
-        position={[0.581, drawerPositionY[cabinetHeight], -0.754 * widthScale]}
-        scale={[
-          depthScale,
-          heightScale[cabinetHeight],
-          widthScale + decimal[density],
-        ]}
-        onPointerUp={openDrawer}
-        castShadow
-        receiveShadow
-      >
-        {/* Drawer mesh */}
-        <mesh
-          geometry={nodes.drawer_back001.geometry}
-          material={materials["Material.007"]}
-          rotation={[0, 1.571, 0]}
-          scale={[0.924, 0.863, 1]}
-          position={[doorPositionX, 0, 0]}
+      <group position={[0, 0, 0]}>
+        {/* Drawer */}
+        <group
+          position={[doorPositionX, drawerPositionY[cabinetHeight], 0]}
+          scale={[1, 1, widthScale]}
+          onClick={openDrawer}
+          ref={drawerRef}
           castShadow
           receiveShadow
         >
-          <meshStandardMaterial
-            map={texture}
-            attach="material"
-            color={colorCodes[color]}
-          />
-          {/* Left side of drawer */}
           <mesh
-            geometry={nodes.drawe_left.geometry}
-            material={materials["Material.009"]}
-            position={[-0.687, -0.038, -0.697]}
-            rotation={[0, -1.571, 0]}
-            scale={[0.924, 1, 1.082]}
-            castShadow
-            receiveShadow
+            geometry={nodes.front_drawer.geometry}
+            material={materials["Material.004"]}
           >
             <meshStandardMaterial
               map={texture}
               attach="material"
               color={colorCodes[color]}
             />
-            {/* Slider left */}
-            <mesh
-              geometry={nodes.slider_left.geometry}
-              material={materials["Material.011"]}
-              position={[0.077, -0.435, 0.057]}
-              rotation={[-Math.PI, 0, 0]}
-              scale={[0.397, 0.025, 0.02]}
-              castShadow
-              receiveShadow
-            />
           </mesh>
-          {/* Back of drawer */}
           <mesh
-            geometry={nodes.drawer_back.geometry}
+            geometry={nodes.screws_front.geometry}
             material={materials["Material.010"]}
-            position={[-0.134, -0.031, -1.125]}
-            castShadow
-            receiveShadow
-          >
-            <meshStandardMaterial
-              map={texture}
-              attach="material"
-              color={colorCodes[color]}
-            />
-          </mesh>
-          {/* Bottom of drawer */}
+          />
           <mesh
-            geometry={nodes.drawer_bottom.geometry}
-            material={materials["Material.034"]}
-            position={[-0.134, -0.568, -0.691]}
-            rotation={[Math.PI / 2, 0, 0]}
-            scale={[1, 0.863, 0.743]}
-            castShadow
-            receiveShadow
-          >
-            <meshStandardMaterial
-              map={texture}
-              attach="material"
-              color={colorCodes[color]}
-            />
-          </mesh>
-          {/* Right side of drawer */}
-          <mesh
-            geometry={nodes.drawer_right.geometry}
+            geometry={nodes.inner_drawer.geometry}
             material={materials["Material.008"]}
-            position={[0.673, -0.038, -0.697]}
-            rotation={[0, -1.571, 0]}
-            scale={[0.924, 1, 1.082]}
-            castShadow
-            receiveShadow
           >
             <meshStandardMaterial
               map={texture}
               attach="material"
               color={colorCodes[color]}
             />
-            <mesh
-              geometry={nodes.slider_right.geometry}
-              material={materials["Material.011"]}
-              position={[0.119, -0.435, -0.052]}
-              scale={[0.397, 0.025, 0.02]}
-            />
-            {/* Dimensions */}
-            {/* Height */}
-            {dimensions && (
-              <InnerDimension
-                heightSize={heightSize}
-                heightText={
-                  units === "cm"
-                    ? ` ${cabinetHeight} `
-                    : `${convertToFeetInches(cabinetHeight)}`
-                }
-                groupPosition={[0.9, 0.2, 0.6]}
-                groupRotation={[0, Math.PI / 2, 0]}
-                textRotation={[0, 0, 0]}
-                textPosition={[0, 0, 0.01]}
-                planeRotation={[0, 0, 0]}
-                planePosition={[0, 0, 0]}
-                type="height"
-                lineColor="white"
-              />
-            )}
-            {/* Width */}
-            {dimensions && (
-              <InnerDimension
-                heightSize={heightSize}
-                heightText={
-                  units === "cm" ? ` 50 ` : `${convertToFeetInches(50)}`
-                }
-                groupPosition={[0.9, -0.3, 0.6]}
-                groupRotation={[0, Math.PI / 2, 0]}
-                textRotation={[0, 0, 0]}
-                textPosition={[0, 0, 0.01]}
-                planeRotation={[0, 0, 0]}
-                planePosition={[0, 0, 0]}
-                type="width"
-                lineColor="white"
-              />
-            )}
           </mesh>
-        </mesh>
+          <mesh
+            geometry={nodes.drawer_edges.geometry}
+            material={materials["Material.006"]}
+          />
+        </group>
+        {/* Drawer Handles */}
+        <mesh
+          geometry={nodes.drawer_handle_right.geometry}
+          material={materials["Material.011"]}
+          position={[hingePosX, drawerPositionY[cabinetHeight], 0]}
+        />
+        <mesh
+          geometry={nodes.drawer_handle_left.geometry}
+          material={materials["Material.011"]}
+          position={[-hingePosX, drawerPositionY[cabinetHeight], 0]}
+        />
       </group>
-      <group dispose={null}>
-        {/* Bottom Side 1 */}
-        <mesh
-          geometry={cabinetEdgesNodes.edges001.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.32 * depthScale, -0.23, -1.5 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[-0.0186 * depthScale, -1.3, -0.027]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Bottpm Side 2 */}
-        <mesh
-          geometry={cabinetEdgesNodes.edges003.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.61 * depthScale, -0.23, -0.744 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[
-            -0.018 * depthScale,
-            -1.3,
-            -0.028 * (widthScale - decimal[density]),
-          ]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Bottom side 3 */}
-        <mesh
-          geometry={cabinetEdgesNodes.edges001.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[-0.32 * depthScale, -0.23, 0.006 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[-0.0184 * depthScale, -1.3, -0.027]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-        {/* Bottom side 4 */}
-        <mesh
-          geometry={cabinetEdgesNodes.edges003.geometry}
-          material={cabinetEdgesMaterials["Material.012"]}
-          position={[0.61 * depthScale, -0.23, -0.744 * widthScale]}
-          rotation={[0, 0, -Math.PI]}
-          scale={[
-            -0.018 * depthScale,
-            -1.3,
-            -0.0285 * (widthScale - decimal[density]),
-          ]}
-        >
-          <meshStandardMaterial color="white" attach="material" />
-        </mesh>
-      </group>
+      {/* Dimension text */}
+      {dimensions && (
+        <>
+          <Text
+            position={[
+              0,
+              2.0,
+              0.4,
+            ]} /* Adjusted Y and Z positions for better visibility */
+            fontSize={0.2}
+            color="black"
+            anchorX="center"
+            anchorY="middle"
+            rotation={[-Math.PI / 2, 0, 0]}
+          >
+            {heightText}
+          </Text>
+          <Text
+            position={[0.75, -0.3, 0]} /* Adjusted X, Y, and Z positions for better visibility */
+            fontSize={0.2}
+            color="black"
+            anchorX="center"
+            anchorY="middle"
+            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+          >
+            {widthText}
+          </Text>
+          <Text
+            position={[0, -1, -1]} /* Adjusted Y and Z positions for better visibility */
+            fontSize={0.2}
+            color="black"
+            anchorX="center"
+            anchorY="middle"
+            rotation={[0, 0, 0]}
+          >
+            {depthText}
+          </Text>
+        </>
+      )}
     </group>
   );
 }
 
+// Preload the GLTF models
 useGLTF.preload(DrawerCabinetGlb);
+useGLTF.preload(CabinetEdgesGlb);
 
 export default DrawerCabinet;

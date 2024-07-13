@@ -1,6 +1,14 @@
 import React, { Suspense, useMemo } from "react";
 import * as THREE from "three";
 
+/**
+ * Texture Component
+ * This component renders a textured plane mesh.
+ * 
+ * @param {object} props - Component properties
+ * @param {THREE.Texture} props.texture - The texture to be applied to the mesh
+ * @returns {JSX.Element} The textured plane mesh
+ */
 const Texture = ({ texture }) => {
   return (
     <mesh
@@ -14,7 +22,16 @@ const Texture = ({ texture }) => {
   );
 };
 
+/**
+ * Image Component
+ * This component loads an image from a URL and displays it as a texture on a 3D plane.
+ * 
+ * @param {object} props - Component properties
+ * @param {string} props.url - The URL of the image to be loaded as a texture
+ * @returns {JSX.Element} The group containing the textured plane and lighting
+ */
 const Image = ({ url }) => {
+  // Load the texture from the URL
   const texture = useMemo(() => new THREE.TextureLoader().load(url), [url]);
 
   return (

@@ -8,20 +8,26 @@ import { useGLTF } from "@react-three/drei";
 import NapoleanGlb from "../modals/NapoleanGlb.glb";
 
 export default function Model(props) {
+  // Load the GLTF model
   const { nodes, materials } = useGLTF(NapoleanGlb);
+
   return (
+    // Group to hold the model
     <group
-      {...props}
-      dispose={null}
-      scale={[0.002, 0.002, 0.002]}
-      rotation={[-Math.PI / 2, 0, 0]}
-      position={[0, 0.4, -0.5]}
+      {...props} // Spread props to the group
+      dispose={null} // Ensure proper disposal of resources
+      scale={[0.002, 0.002, 0.002]} // Scale the model
+      rotation={[-Math.PI / 2, 0, 0]} // Rotate the model
+      position={[0, 0.4, -0.5]} // Position the model
     >
+      {/* Mesh representing the Napolean model */}
       <mesh geometry={nodes.napoleon.geometry} material={materials.Marble}>
+        {/* Apply a standard material with a specific color */}
         <meshStandardMaterial color="#886451" attach="material" />
       </mesh>
     </group>
   );
 }
 
+// Preload the GLTF model for better performance
 useGLTF.preload(NapoleanGlb);

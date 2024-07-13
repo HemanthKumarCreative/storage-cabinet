@@ -8,19 +8,25 @@ import { useGLTF } from "@react-three/drei";
 import NesCafeGlb from "../modals/NesCafeGlb.glb";
 
 export default function Model(props) {
+  // Load the GLTF model
   const { nodes, materials } = useGLTF(NesCafeGlb);
+
   return (
+    // Group to hold the model
     <group
-      {...props}
-      dispose={null}
-      scale={[10, 10, 10]}
-      position={[0, -0.2, -0.8]}
+      {...props} // Spread props to the group
+      dispose={null} // Ensure proper disposal of resources
+      scale={[10, 10, 10]} // Scale the model
+      position={[0, -0.2, -0.8]} // Position the model
     >
+      {/* Mesh representing the Nescafe mug model */}
       <mesh geometry={nodes.mug_Circle.geometry} material={materials.Mat_1}>
+        {/* Apply a standard material with a specific color */}
         <meshStandardMaterial color="#645188" attach="material" />
       </mesh>
     </group>
   );
 }
 
+// Preload the GLTF model for better performance
 useGLTF.preload(NesCafeGlb);

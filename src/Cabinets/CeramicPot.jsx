@@ -7,10 +7,15 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import ceramicPotGlb from "../modals/CeramicPot.glb";
 
+// This component renders a 3D model of a ceramic pot.
 export default function Model(props) {
+  // Load the GLTF model using the useGLTF hook
   const { nodes, materials } = useGLTF(ceramicPotGlb);
+
   return (
+    // The group element acts as a container for the mesh
     <group {...props} dispose={null}>
+      {/* Render the ceramic pot mesh with specific geometry, material, scale, and position */}
       <mesh
         geometry={nodes.Ceramic_pot.geometry}
         material={materials.Ceramic_pot}
@@ -21,4 +26,5 @@ export default function Model(props) {
   );
 }
 
+// Preload the GLTF model to improve performance
 useGLTF.preload(ceramicPotGlb);

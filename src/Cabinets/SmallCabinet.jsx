@@ -6,12 +6,22 @@ import SmallCabinetGlb from "../modals/SmallCabinet.glb";
 import CabinetEdgesGlb from "../modals/CabinetEdges.glb";
 import InnerDimension from "../Dimensions/InnerDimension";
 
+/**
+ * SmallCabinet Component
+ * This component renders a 3D model of a small cabinet with interactive door functionality.
+ * 
+ * @param {object} props - Component properties
+ * @returns {JSX.Element} The 3D model of the small cabinet
+ */
 function SmallCabinet(props) {
+  // Load GLTF models for the cabinet and its edges
   const { nodes, materials } = useGLTF(SmallCabinetGlb);
   const cabinetEdgesNodes = useGLTF(CabinetEdgesGlb).nodes;
   const cabinetEdgesMaterials = useGLTF(CabinetEdgesGlb).materials;
 
+  // Reference for the cabinet door
   const doorRef = useRef();
+  // State to track if the door is hovered (used for opening/closing the door)
   const [isHovered, setIsHovered] = useState(false);
 
   // Destructure props to get depth and other necessary parameters
@@ -29,9 +39,12 @@ function SmallCabinet(props) {
     cabinetHeight,
   } = props;
 
+  // Load texture from the provided URL
   const texture = useTexture(textureUrl);
 
   const width = specialWidth === 0 ? 50 : specialWidth;
+
+  // Animate the door opening and closing based on hover state
   useFrame(() => {
     if (doorRef.current) {
       doorRef.current.rotation.y = isHovered
@@ -40,7 +53,7 @@ function SmallCabinet(props) {
     }
   });
 
-  // Adjust scales based on depth and width
+  // Adjust scales and positions based on depth and width
   let depthScale = 1;
   let widthScale = specialWidth
     ? width / 25
@@ -79,6 +92,7 @@ function SmallCabinet(props) {
     60: 0.2,
   };
 
+  // Adjust depth scaling and positions based on the depth value
   switch (depth) {
     case "24cm":
       depthScale = 1;
@@ -99,11 +113,13 @@ function SmallCabinet(props) {
       break;
   }
 
+  // Handle door open/close interaction
   const openDoor = (event) => {
     event.stopPropagation();
     setIsHovered(!isHovered);
   };
 
+  // Helper functions for dimension calculations
   const decimal = {
     100: 0,
     75: 0,
@@ -134,10 +150,11 @@ function SmallCabinet(props) {
   const depthText = `D : ${depth.slice(0, 2)}`;
   const depthSize = textSize(depthText, 24);
 
+  // Render the 3D model of the cabinet
   return (
     <group {...props} dispose={null}>
       <group position={[0, positionY[cabinetHeight], 0]}>
-        {/* Top Side1 blue*/}
+        {/* Top Side1 */}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -151,7 +168,7 @@ function SmallCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Top Side 2 pink*/}
+        {/* Top Side 2 */}
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -161,7 +178,7 @@ function SmallCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Top Side 3 var green*/}
+        {/* Top Side 3 */}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -175,7 +192,7 @@ function SmallCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Top Side 4 green*/}
+        {/* Top Side 4 */}
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -259,7 +276,7 @@ function SmallCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Middle Edge 4 Red*/}
+        {/* Middle Edge 4 */}
         <mesh
           geometry={cabinetEdgesNodes.edges002.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -371,7 +388,7 @@ function SmallCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Bottpm Side 2 */}
+        {/* Bottom Side 2 */}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -385,7 +402,7 @@ function SmallCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Bottom side 3 */}
+        {/* Bottom Side 3 */}
         <mesh
           geometry={cabinetEdgesNodes.edges001.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -395,7 +412,7 @@ function SmallCabinet(props) {
         >
           <meshStandardMaterial color="white" attach="material" />
         </mesh>
-        {/* Bottom side 4 */}
+        {/* Bottom Side 4 */}
         <mesh
           geometry={cabinetEdgesNodes.edges003.geometry}
           material={cabinetEdgesMaterials["Material.012"]}
@@ -414,6 +431,7 @@ function SmallCabinet(props) {
   );
 }
 
+// Preload the GLTF model to ensure it's loaded before usage
 useGLTF.preload(SmallCabinetGlb);
 
 export default SmallCabinet;

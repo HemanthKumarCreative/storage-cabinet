@@ -7,16 +7,28 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import ShineSpriteGlb from "../modals/ShineSprite.gltf";
 
+/**
+ * Model Component
+ * This component loads and renders a 3D model of a Shine Sprite using GLTF.
+ * 
+ * @param {object} props - Component properties
+ * @returns {JSX.Element} The 3D model of the Shine Sprite
+ */
 export default function Model(props) {
+  // Load GLTF model and extract nodes and materials
   const { nodes, materials } = useGLTF(ShineSpriteGlb);
+
   return (
+    // Group component to hold the model with specified props, scale, and position
     <group
       {...props}
       dispose={null}
       scale={[0.3, 0.3, 0.3]}
       position={[0, 0.2, -0.7]}
     >
+      {/* Inner group to apply rotation */}
       <group rotation={[Math.PI / 2, 0, Math.PI / 2]}>
+        {/* Mesh components representing parts of the Shine Sprite */}
         <mesh geometry={nodes.Torus002.geometry} material={materials.Gold} />
         <mesh geometry={nodes.Torus002_1.geometry} material={materials.Eyes} />
       </group>
@@ -24,4 +36,5 @@ export default function Model(props) {
   );
 }
 
+// Preload the GLTF model to ensure it's loaded before usage
 useGLTF.preload(ShineSpriteGlb);

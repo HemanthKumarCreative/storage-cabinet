@@ -8,9 +8,28 @@ import {
   Paper,
 } from "@mui/material";
 
+/**
+ * HoverModal Component
+ *
+ * @param {Object} props - Component props
+ * @param {boolean} props.open - Determines if the modal should be open
+ * @param {Array} props.position - The 3D position of the modal in the scene
+ * @param {number} props.width - The width of the cabinet
+ * @param {number} props.height - The height of the cabinet
+ * @param {string} props.heading - The heading text displayed at the top of the modal
+ * @param {string} props.buttonText - The text for the button displayed at the bottom of the modal
+ * @param {string} props.type - The type of cabinet, either "storage1" or another type
+ * @param {function} props.setIsUpperStorageVisible - Function to set the visibility of the upper storage
+ * @param {function} props.setIsLowerStorageVisible - Function to set the visibility of the lower storage
+ * @param {function} props.handleModalClose - Function to handle closing the modal
+ * @param {function} props.adjustTopDimensions - Function to adjust the top dimensions of the cabinet
+ * @param {function} props.adjustBottomDimensions - Function to adjust the bottom dimensions of the cabinet
+ * @param {function} props.setCabinetHeight - Function to set the height of the cabinet
+ *
+ * @returns {JSX.Element} HoverModal component
+ */
 function HoverModal({
   open,
-  // handleClose,
   position,
   width,
   height,
@@ -27,6 +46,12 @@ function HoverModal({
   const [alignment, setAlignment] = useState("60cm");
   const [isHovered, setIsHovered] = useState(false);
 
+  /**
+   * Handle alignment change for cabinet height
+   *
+   * @param {Object} event - The event object
+   * @param {string} newAlignment - The new alignment value
+   */
   const handleAlignment = (event, newAlignment) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
@@ -34,6 +59,9 @@ function HoverModal({
     }
   };
 
+  /**
+   * Handle closing the modal
+   */
   const handleClose = () => {
     if (type === "storage1") {
       setIsUpperStorageVisible(false);
@@ -46,10 +74,16 @@ function HoverModal({
     setIsHovered(false);
   };
 
+  /**
+   * Handle mouse enter event
+   */
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
 
+  /**
+   * Handle mouse leave event
+   */
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
@@ -86,11 +120,11 @@ function HoverModal({
         style={{
           padding: "16px",
           backgroundColor: "white",
-          transform: `translate(${horizontalHoverPosition[width]}%, ${verticalHoverPosition}%)`, // Adjust this value to move the modal to the top
+          transform: `translate(${horizontalHoverPosition[width]}%, ${verticalHoverPosition}%)`,
           zIndex: 1000,
           position: "relative",
           left: "-40%",
-          top: "10%", // Adjust this value to position the modal from the top
+          top: "10%",
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

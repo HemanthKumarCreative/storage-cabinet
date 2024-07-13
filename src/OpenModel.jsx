@@ -7,6 +7,24 @@ import {
   Paper,
 } from "@mui/material";
 
+/**
+ * HoverModal Component
+ *
+ * @param {Object} props - Component props
+ * @param {boolean} props.open - Determines if the modal should be open
+ * @param {function} props.handleClose - Function to handle closing the modal
+ * @param {Array} props.position - The 3D position of the modal in the scene
+ * @param {number} props.width - The width of the cabinet
+ * @param {number} props.height - The height of the cabinet
+ * @param {string} props.heading - The heading text displayed at the top of the modal
+ * @param {string} props.buttonText - The text for the button displayed at the bottom of the modal
+ * @param {string} props.type - The type of cabinet
+ * @param {function} props.setConfiguration - Function to set the cabinet configuration
+ * @param {Object} props.configuration - The current cabinet configuration
+ * @param {function} props.setCabinetHeight - Function to set the height of the cabinet
+ *
+ * @returns {JSX.Element} HoverModal component
+ */
 function HoverModal({
   open,
   handleClose,
@@ -75,6 +93,12 @@ function HoverModal({
     }
   }, [doors, drawers]);
 
+  /**
+   * Handle row height change
+   *
+   * @param {Object} event - The event object
+   * @param {string} newHeight - The new height value
+   */
   const handleRowHeight = (event, newHeight) => {
     if (newHeight !== null) {
       setRowHeight(newHeight);
@@ -82,36 +106,50 @@ function HoverModal({
     }
   };
 
+  /**
+   * Handle doors selection change
+   *
+   * @param {Object} event - The event object
+   * @param {string} newDoors - The new doors value
+   */
   const handleDoors = (event, newDoors) => {
     if (newDoors !== null) {
       if (newDoors === "Max") {
         setDrawers("None");
       } else if (newDoors === "Some") {
         setDrawers("Some");
-      } else if (newDoors === "None") {
-        // setDrawers("Max");
       }
       setDoors(newDoors);
     }
   };
 
+  /**
+   * Handle drawers selection change
+   *
+   * @param {Object} event - The event object
+   * @param {string} newDrawers - The new drawers value
+   */
   const handleDrawers = (event, newDrawers) => {
     if (newDrawers !== null) {
       if (newDrawers === "Max") {
         setDoors("None");
       } else if (newDrawers === "Some") {
         setDoors("Some");
-      } else if (newDrawers === "None") {
-        // setDoors("Max");
       }
       setDrawers(newDrawers);
     }
   };
 
+  /**
+   * Handle mouse enter event
+   */
   const handleMouseEnter = () => {
     setIsHovered(true);
   };
 
+  /**
+   * Handle mouse leave event
+   */
   const handleMouseLeave = () => {
     setIsHovered(false);
   };

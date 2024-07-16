@@ -6,7 +6,11 @@ import {
   ToggleButtonGroup,
   Button,
   Paper,
+  IconButton,
 } from "@mui/material";
+
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 
 function HoverModal({
   open,
@@ -26,12 +30,17 @@ function HoverModal({
 }) {
   const [alignment, setAlignment] = useState("60cm");
   const [isHovered, setIsHovered] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
 
   const handleAlignment = (event, newAlignment) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
       setCabinetHeight(newAlignment.split("cm")[0]);
     }
+  };
+
+  const handleMinimize = () => {
+    setIsMinimized(!isMinimized);
   };
 
   const handleClose = () => {
@@ -89,7 +98,7 @@ function HoverModal({
           transform: `translate(${horizontalHoverPosition[width]}%, ${verticalHoverPosition}%)`, // Adjust this value to move the modal to the top
           zIndex: 1000,
           position: "relative",
-          left: "-40%",
+          left: isMinimized ? "7%" : "-40%",
           top: "10%", // Adjust this value to position the modal from the top
         }}
         onMouseEnter={handleMouseEnter}
@@ -108,13 +117,29 @@ function HoverModal({
             borderRight: "15px solid white",
           }}
         ></div>
-        <Typography
-          variant="h6"
-          component="h2"
-          style={{ textAlign: "center", marginBottom: 8 }}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            marginBottom: 8,
+          }}
         >
-          {heading}
-        </Typography>
+          <IconButton onClick={handleMinimize} size="small">
+            {isMinimized ? (
+              <ChevronLeftRoundedIcon />
+            ) : (
+              <ChevronRightRoundedIcon />
+            )}
+          </IconButton>
+          <Typography
+            variant="h6"
+            component="h2"
+            style={{ textAlign: "center" }}
+          >
+            {heading}
+          </Typography>
+        </div>
         <ToggleButtonGroup
           value={alignment}
           exclusive

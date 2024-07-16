@@ -35,7 +35,7 @@ function SmallCabinet(props) {
   useFrame(() => {
     if (doorRef.current) {
       doorRef.current.rotation.y = isHovered
-        ? Math.min(Math.PI / 2, doorRef.current.rotation.y + 0.05)
+        ? Math.min(Math.PI / 4, doorRef.current.rotation.y + 0.05)
         : Math.max(0, doorRef.current.rotation.y - 0.05);
     }
   });

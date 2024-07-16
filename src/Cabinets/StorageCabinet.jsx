@@ -38,7 +38,7 @@ function StorageCabinet(props) {
     if (doorRef.current) {
       doorRef.current.rotation.y = THREE.MathUtils.lerp(
         doorRef.current.rotation.y,
-        isHovered ? Math.PI / 2 : 0,
+        isHovered ? Math.PI / 4 : 0,
         0.1
       );
     }

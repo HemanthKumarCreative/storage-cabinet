@@ -5,7 +5,11 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   Paper,
+  IconButton,
 } from "@mui/material";
+
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 
 function HoverModal({
   open,
@@ -24,6 +28,7 @@ function HoverModal({
   const [doors, setDoors] = useState(type === "small" ? "Max" : "None");
   const [drawers, setDrawers] = useState(type === "drawer" ? "Max" : "None");
   const [isHovered, setIsHovered] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
 
   useEffect(() => {
     if (
@@ -116,6 +121,10 @@ function HoverModal({
     setIsHovered(false);
   };
 
+  const handleMinimize = () => {
+    setIsMinimized(!isMinimized);
+  };
+
   if (!open && !isHovered) {
     return null;
   }
@@ -150,7 +159,7 @@ function HoverModal({
           transform: `translate(${horizontalHoverPosition[width]}%, ${verticalHoverPosition}%)`,
           zIndex: 1000,
           position: "relative",
-          left: "-40%",
+          left: isMinimized ? "-10%" : "-40%",
           top: "10%",
         }}
         onMouseEnter={handleMouseEnter}
@@ -169,13 +178,31 @@ function HoverModal({
             borderRight: "15px solid white",
           }}
         ></div>
-        <Typography
-          variant="subtitle1"
-          component="p"
-          style={{ textAlign: "center", marginBottom: 8 }}
+        <div
+          style={{
+            display: "flex",
+            // justifyContent: "space-around",
+            alignItems: "center",
+            gap: "10px",
+            marginBottom: 8,
+          }}
         >
-          Row Height
-        </Typography>
+          <IconButton onClick={handleMinimize} size="small">
+            {isMinimized ? (
+              <ChevronLeftRoundedIcon />
+            ) : (
+              <ChevronRightRoundedIcon />
+            )}
+          </IconButton>
+          <Typography
+            variant="subtitle1"
+            component="p"
+            style={{ textAlign: "center" }}
+          >
+            Row Height
+          </Typography>
+        </div>
+
         <ToggleButtonGroup
           value={rowHeight}
           exclusive

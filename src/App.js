@@ -19,6 +19,7 @@ import HoverModal from "./Modal";
 import Cabinet from "./Cabinet";
 import HorizontalGroup from "./HorizontalGroup";
 import OpenModal from "./OpenModel";
+import person_img from "./textures/Man_Silhouett.png";
 
 export default function App() {
   const [showStorage1Modal, setShowStorage1Modal] = useState(false);
@@ -1248,7 +1249,6 @@ export default function App() {
     },
   };
 
-  const uri = "https://pics.io/preview/66792a63548394472778ddc6/thumbnail";
   const sceneRef = useRef();
   const controlsRef = useRef();
   function save(blob, fileName) {
@@ -1354,7 +1354,7 @@ export default function App() {
           rotation={[0, 0, 0]}
           position={[positionX[configuration.width].cabinet, 0, 1]}
         >
-          <Person url={uri} />
+          <Person url={person_img} />
           <group position={[0, isLowerStorageVisible ? 0 : -2, 0]}>
             {horizontalAlignment(
               Math.floor(
